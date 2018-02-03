@@ -13,14 +13,43 @@
 
 namespace live
 {
-    struct Rect {
+    class Vec2
+    {
+    public:
+        union {
+            int x, y;
+        };
+    };
+    class Vec3;
+    class Vec4;
+    
+    class Position
+    {
+    public:
         int x;
         int y;
+    };
+
+    class Size
+    {
+    public:
         int width;
         int height;
     };
+    
+    class Rect {
+    public:
+        Position position;
+        Size size;
+    };
+    
+    class Circle
+    {
+    public:
+        
+    };
 
-    class Matrix4D : public Uncopyable
+    class Matrix4D : Uncopyable
     {
     public:
         static constexpr int ROW = 4;
@@ -44,58 +73,44 @@ namespace live
             float m[ROW * COLUMN];
         };
         
-        template <typename... Args>
+        Matrix4D();
+        
+        template<typename... Args>
         Matrix4D(Args&&... args) : m { args... }
         {
-            static_assert(sizeof...(args)==ROW*COLUMN, "Matrix Size Length is Invalid. Please check element length");
         }
         
-        inline float at(const unsigned short row, const unsigned short column)
-        {
-            return m[row * ROW + column];
-        }
+        virtual ~Matrix4D() = default;
+    public:
+        inline Matrix4D operator-() const;
+        inline Matrix4D operator+(const Matrix4D& other) const;
+        inline Matrix4D operator-(const Matrix4D& other) const;
+        inline Matrix4D operator*(const Matrix4D& other) const;
         
-        inline Matrix4D& operator+() { return *this; }
-        inline Matrix4D operator-() {
-            return {
-                -m11, -m12, -m13, -m14,
-                -m21, -m22, -m23, -m24,
-                -m31, -m32, -m33, -m34,
-                -m41, -m42, -m43, -m44
-            };
-        };
+        inline Matrix4D& operator+=(const Matrix4D& other);
+        inline Matrix4D& operator-=(const Matrix4D& other);
+        inline Matrix4D& operator*=(const Matrix4D& other);
         
-        inline Matrix4D operator+(const Matrix4D& other)
-        {
-        #define PLUS(ELEM) ELEM+other.ELEM
-            return {
-                PLUS(m11), PLUS(m12), PLUS(m13), PLUS(m14),
-                PLUS(m21), PLUS(m22), PLUS(m23), PLUS(m24),
-                PLUS(m31), PLUS(m32), PLUS(m33), PLUS(m34),
-                PLUS(m41), PLUS(m42), PLUS(m43), PLUS(m44)
-            };
-        #undef PLUS
-        }
-        inline Matrix4D operator-(const Matrix4D& other)
-        {
-        #define MINUS(ELEM) ELEM-other.ELEM
-            return {
-                MINUS(m11), MINUS(m12), MINUS(m13), MINUS(m14),
-                MINUS(m21), MINUS(m22), MINUS(m23), MINUS(m24),
-                MINUS(m31), MINUS(m32), MINUS(m33), MINUS(m34),
-                MINUS(m41), MINUS(m42), MINUS(m43), MINUS(m44)
-            };
-        #undef MINUS
-        }
+        inline Matrix4D& operator*(const Vec2& vec) const;
+        inline Matrix4D& operator*(const Vec3& vec) const;
+        inline Matrix4D& operator*(const Vec4& vec) const;
         
-        Matrix4D operator*(const Matrix4D& other)
-        {
+        Matrix4D operator+() const = delete;
+        Matrix4D operator/(const Matrix4D& other) = delete;
+        Matrix4D& operator/=(const Matrix4D& other) = delete;
+    public:
+        Matrix4D transpose() const;
+        Matrix4D inverse() const;
+        float eigenValue() const;
+        Vec4 eigenVector() const;
+        float determinant() const;
 
-        }
-        
-        Matrix4D(Matrix4D&&) = default;
-        Matrix4D& operator=(Matrix4D&&) = default;
+        DEFINE_DEFAULT_MOVE_CONSTRUCTOR(Matrix4D);
     };
+    
+    #include "Matrix4D.inl"
+    
+    
 }
 
 #endif /* defined(__LiveEngine__Rect__) */

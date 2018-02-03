@@ -7,3 +7,12 @@
 //
 
 #include "BaseType.h"
+
+using namespace live;
+
+Matrix4D::Matrix4D() :
+m { 0.0f, 0.0f, 0.0f, 0.0f,
+    0.0f, 0.0f, 0.0f, 0.0f,
+    0.0f, 0.0f, 0.0f, 0.0f,
+    0.0f, 0.0f, 0.0f, 0.0f }
+{}
