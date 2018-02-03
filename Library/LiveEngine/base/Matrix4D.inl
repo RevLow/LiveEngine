@@ -1,6 +1,41 @@
 #define PLUS(ELEM) ELEM+other.ELEM
 #define MINUS(ELEM) ELEM-other.ELEM
 
+namespace {
+    template<int R, int C, int N>
+    struct multiple{
+        inline static float f(const Matrix4D& src, const Matrix4D& other)
+        {
+            constexpr int NN = N-1;
+            return src.m[R * Matrix4D::COLUMN + NN] * other.m[NN * Matrix4D::COLUMN + C] + multiple<R, C, NN>::f(src, other);
+        }
+    };
+    template<int R, int C>
+    struct multiple<R, C, 0> {
+        inline static float f(const Matrix4D& src, const Matrix4D& other) { return 0.0f; }
+    };
+    
+    template<int R, int C>
+    struct assign{
+        inline static void f(Matrix4D& dst, const Matrix4D& src, const Matrix4D& other)
+        {
+            constexpr int RR = R - 1;
+            constexpr int CC = C - 1;
+            
+            dst.m[RR * Matrix4D::COLUMN + CC] = multiple<RR, CC, Matrix4D::COLUMN>::f(src, other);
+            assign<R, CC>::f(dst, src, other);
+        }
+    };
+    
+    template<int R>
+    struct assign<R, 0>{
+        inline static void f(Matrix4D&, const Matrix4D&, const Matrix4D&)
+        {
+            
+        }
+    };
+}
+
 
 inline Matrix4D Matrix4D::operator-() const
 {
@@ -37,30 +72,14 @@ inline Matrix4D Matrix4D::operator-(const Matrix4D& other) const
 inline Matrix4D Matrix4D::operator*(const Matrix4D& other) const
 {
     Matrix4D result;
-    
-    result.m11 = m11 * other.m11 + m12 * other.m21 + m13 * other.m31 + m14 * other.m41;
-    result.m12 = m11 * other.m12 + m12 * other.m22 + m13 * other.m32 + m14 * other.m42;
-    result.m13 = m11 * other.m13 + m12 * other.m23 + m13 * other.m33 + m14 * other.m43;
-    result.m14 = m11 * other.m14 + m12 * other.m24 + m13 * other.m34 + m14 * other.m44;
-    
-    result.m21 = m21 * other.m11 + m22 * other.m21 + m23 * other.m31 + m24 * other.m41;
-    result.m22 = m21 * other.m12 + m22 * other.m22 + m23 * other.m32 + m24 * other.m42;
-    result.m23 = m21 * other.m13 + m22 * other.m23 + m23 * other.m33 + m24 * other.m43;
-    result.m24 = m21 * other.m14 + m22 * other.m24 + m23 * other.m34 + m24 * other.m44;
-    
-    result.m31 = m31 * other.m11 + m32 * other.m21 + m33 * other.m31 + m34 * other.m41;
-    result.m32 = m31 * other.m12 + m32 * other.m22 + m33 * other.m32 + m34 * other.m42;
-    result.m33 = m31 * other.m13 + m32 * other.m23 + m33 * other.m33 + m34 * other.m43;
-    result.m34 = m31 * other.m14 + m32 * other.m24 + m33 * other.m34 + m34 * other.m44;
-    
-    result.m41 = m41 * other.m11 + m42 * other.m21 + m43 * other.m31 + m44 * other.m41;
-    result.m42 = m41 * other.m12 + m42 * other.m22 + m43 * other.m32 + m44 * other.m42;
-    result.m43 = m41 * other.m13 + m42 * other.m23 + m43 * other.m33 + m44 * other.m43;
-    result.m44 = m41 * other.m14 + m42 * other.m24 + m43 * other.m34 + m44 * other.m44;
+
+    assign<1, COLUMN>::f(result, *this, other);
+    assign<2, COLUMN>::f(result, *this, other);
+    assign<3, COLUMN>::f(result, *this, other);
+    assign<4, COLUMN>::f(result, *this, other);
     
     return result;
 }
-
 
 inline Matrix4D& Matrix4D::operator+=(const Matrix4D& other)
 {

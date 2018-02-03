@@ -13,15 +13,47 @@
 
 namespace live
 {
-    class Vec2
+    template<int N, typename T>
+    class _Vec_ : Uncopyable
+    {
+        template<int NN, typename TT> friend struct plus;
+        template<int NN, typename TT> friend struct minus;
+        template<int NN, typename TT> friend struct dot;
+    public:
+        template<typename... Args>
+        _Vec_(Args&&... args) : v { args... } {}
+        virtual ~_Vec_() = default;
+
+        inline T operator+(const T& other) const;
+        inline T operator-(const T& other) const;
+        inline float operator*(const T& other) const;
+    protected:
+        float v[N];
+        
+        DEFINE_DEFAULT_MOVE_CONSTRUCTOR(_Vec_);
+    };
+    
+    class Vec3 : public _Vec_<3, Vec3>
     {
     public:
-        union {
-            int x, y;
-        };
+        Vec3() : _Vec_(0.0f, 0.0f, 0.0f) {}
+        Vec3(float _x, float _y, float _z) : _Vec_(_x, _y, _z) {}
+        inline Vec3 cross(const Vec3& other) const;
+        float& x = v[0];
+        float& y = v[1];
+        float& z = v[2];
     };
-    class Vec3;
-    class Vec4;
+    
+    class Vec4 : public _Vec_<4, Vec4>
+    {
+    public:
+        Vec4() : _Vec_(0.0f, 0.0f, 0.0f, 0.0f) {}
+        Vec4(float _x, float _y, float _z, float _w) : _Vec_(_x, _y, _z, _w) {}
+        float& x = v[0];
+        float& y = v[1];
+        float& z = v[2];
+        float& w = v[3];
+    };
     
     class Position
     {
@@ -45,8 +77,6 @@ namespace live
     
     class Circle
     {
-    public:
-        
     };
 
     class Matrix4D : Uncopyable
@@ -91,13 +121,8 @@ namespace live
         inline Matrix4D& operator-=(const Matrix4D& other);
         inline Matrix4D& operator*=(const Matrix4D& other);
         
-        inline Matrix4D& operator*(const Vec2& vec) const;
         inline Matrix4D& operator*(const Vec3& vec) const;
         inline Matrix4D& operator*(const Vec4& vec) const;
-        
-        Matrix4D operator+() const = delete;
-        Matrix4D operator/(const Matrix4D& other) = delete;
-        Matrix4D& operator/=(const Matrix4D& other) = delete;
     public:
         Matrix4D transpose() const;
         Matrix4D inverse() const;
@@ -108,9 +133,8 @@ namespace live
         DEFINE_DEFAULT_MOVE_CONSTRUCTOR(Matrix4D);
     };
     
+    #include "Vec.inl"
     #include "Matrix4D.inl"
-    
-    
 }
 
 #endif /* defined(__LiveEngine__Rect__) */

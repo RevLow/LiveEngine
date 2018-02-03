@@ -16,6 +16,7 @@
 		2E06AF2B20131C8E00197838 /* Node.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2E06AF2920131C8E00197838 /* Node.cpp */; };
 		2EB2BE862021F33D00772B0F /* Component.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2EB2BE842021F33D00772B0F /* Component.cpp */; };
 		2EB2BE892022039100772B0F /* BaseType.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2EB2BE882022039100772B0F /* BaseType.cpp */; };
+		2EB2BE8C2025E68E00772B0F /* Matrix4D.inl in Resources */ = {isa = PBXBuildFile; fileRef = 2EB2BE8B2025E68E00772B0F /* Matrix4D.inl */; };
 		2ED2AD002003465E007409F5 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2ED2ACFF2003465E007409F5 /* Foundation.framework */; };
 		2ED2AD052003465E007409F5 /* LiveEngine.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 2ED2AD042003465E007409F5 /* LiveEngine.h */; };
 		2ED2AD072003465E007409F5 /* LiveEngine.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2ED2AD062003465E007409F5 /* LiveEngine.cpp */; };
@@ -73,6 +74,8 @@
 		2EB2BE842021F33D00772B0F /* Component.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Component.cpp; path = components/Component.cpp; sourceTree = "<group>"; };
 		2EB2BE852021F33D00772B0F /* Component.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Component.h; path = components/Component.h; sourceTree = "<group>"; };
 		2EB2BE882022039100772B0F /* BaseType.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = BaseType.cpp; path = base/BaseType.cpp; sourceTree = "<group>"; };
+		2EB2BE8B2025E68E00772B0F /* Matrix4D.inl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = Matrix4D.inl; path = base/Matrix4D.inl; sourceTree = "<group>"; };
+		2EB2BE8D2025E80F00772B0F /* Vec.inl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = Vec.inl; path = base/Vec.inl; sourceTree = "<group>"; };
 		2ED2ACFC2003465E007409F5 /* libLiveEngine.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libLiveEngine.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		2ED2ACFF2003465E007409F5 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		2ED2AD032003465E007409F5 /* LiveEngine-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "LiveEngine-Prefix.pch"; sourceTree = "<group>"; };
@@ -148,9 +151,11 @@
 		2E06AEBB20036A1000197838 /* base */ = {
 			isa = PBXGroup;
 			children = (
+				2EB2BE8B2025E68E00772B0F /* Matrix4D.inl */,
 				2E06AEBD20036A2800197838 /* BaseType.h */,
 				2E06AF0F200B05E700197838 /* Uncopyable.h */,
 				2EB2BE882022039100772B0F /* BaseType.cpp */,
+				2EB2BE8D2025E80F00772B0F /* Vec.inl */,
 			);
 			name = base;
 			sourceTree = "<group>";
@@ -350,6 +355,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2EB2BE8C2025E68E00772B0F /* Matrix4D.inl in Resources */,
 				2ED2AD1A2003465E007409F5 /* InfoPlist.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
