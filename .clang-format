@@ -1,0 +1,12 @@
+BasedOnStyle: LLVM
+IndentWidth: 4
+
+NamespaceIndentation: All
+PointerAlignment: Left
+BreakBeforeBraces: Custom
+BraceWrapping:
+    AfterNamespace: true
+    AfterEnum: true
+    AfterClass: true
+    AfterFunction: true
+    AfterControlStatement: true

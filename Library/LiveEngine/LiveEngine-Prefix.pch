@@ -1,0 +1,55 @@
+//
+//  Prefix header
+//
+//  The contents of this file are implicitly included at the beginning of every source file.
+//
+
+#ifdef __OBJC__
+    #import <Foundation/Foundation.h>
+#endif
+
+#ifdef __cplusplus
+    #include <memory>
+    #include <vector>
+    #include <array>
+    #include <deque>
+#endif
+
+
+#define DEFINE_SINGLETON(TYPE_)\
+private:\
+    using self_type = TYPE_;\
+    using unique_ptr = std::unique_ptr<self_type>;\
+public:\
+    using singleton = const unique_ptr &;\
+    static singleton getInstance() {\
+        return ref();\
+    }\
+    static void create() {\
+        if (!ref()) ref() = make_unique();\
+    }\
+    static void destroy() {\
+        ref().reset();\
+    }\
+private:\
+    template <typename... Args>\
+    static unique_ptr make_unique(Args&&... args) {\
+        struct temp : self_type { temp() : self_type() {} };\
+        return std::move(unique_ptr(new temp(std::forward<Args>(args)...)));\
+    }\
+    static unique_ptr &ref() {\
+        static unique_ptr p = make_unique();\
+        return p;\
+    }
+
+
+#define DEFINE_DEFAULT_MOVE_CONSTRUCTOR(_TYPE)\
+_TYPE(_TYPE&&) noexcept {};\
+_TYPE& operator=(_TYPE&& other) noexcept\
+{\
+    if(this != &other )\
+    {\
+        return other;\
+    }\
+    return *this;\
+};
