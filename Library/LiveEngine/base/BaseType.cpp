@@ -154,3 +154,39 @@ m { 0.0f, 0.0f, 0.0f, 0.0f,
     0.0f, 0.0f, 0.0f, 0.0f,
     0.0f, 0.0f, 0.0f, 0.0f }
 {}
+Matrix4D Matrix4D::inverse() const
+{
+    float A00 =  SubMatrix<0, 0>::create(*this).determinant() / determinant();
+    float A01 = -SubMatrix<1, 0>::create(*this).determinant() / determinant();
+    float A02 =  SubMatrix<2, 0>::create(*this).determinant() / determinant();
+    float A03 = -SubMatrix<3, 0>::create(*this).determinant() / determinant();
+
+    float A10 = -SubMatrix<0, 1>::create(*this).determinant() / determinant();
+    float A11 =  SubMatrix<1, 1>::create(*this).determinant() / determinant();
+    float A12 = -SubMatrix<2, 1>::create(*this).determinant() / determinant();
+    float A13 =  SubMatrix<3, 1>::create(*this).determinant() / determinant();
+    
+    float A20 =  SubMatrix<0, 2>::create(*this).determinant() / determinant();
+    float A21 = -SubMatrix<1, 2>::create(*this).determinant() / determinant();
+    float A22 =  SubMatrix<2, 2>::create(*this).determinant() / determinant();
+    float A23 = -SubMatrix<3, 2>::create(*this).determinant() / determinant();
+    
+    float A30 = -SubMatrix<0, 3>::create(*this).determinant() / determinant();
+    float A31 =  SubMatrix<1, 3>::create(*this).determinant() / determinant();
+    float A32 = -SubMatrix<2, 3>::create(*this).determinant() / determinant();
+    float A33 =  SubMatrix<3, 3>::create(*this).determinant() / determinant();
+    
+    return { A00, A01, A02, A03,
+             A10, A11, A12, A13,
+             A20, A21, A22, A23,
+             A30, A31, A32, A33 };
+}
+
+
+const float Matrix4D::determinant() const
+{
+    return   m11 * SubMatrix<0, 0>::create(*this).determinant()
+           - m21 * SubMatrix<1, 0>::create(*this).determinant()
+           + m31 * SubMatrix<2, 0>::create(*this).determinant()
+           - m41 * SubMatrix<3, 0>::create(*this).determinant();
+}
