@@ -53,8 +53,8 @@ namespace  {
     template<int I, int J>
     class SubMatrix
     {
-        static constexpr int ROW = 3;
-        static constexpr int COLUMN = 3;
+        static constexpr uint8_t ROW = 3;
+        static constexpr uint8_t COLUMN = 3;
         
         template<int II, int SrcRow>
         struct func1
@@ -125,7 +125,7 @@ namespace  {
         {
             static void f(SubMatrix<I, J>& dst, const Matrix4D& src)
             {
-                dst.m[SrcRow * ROW + SrcCol] = src.m[II * ROW + JJ];
+                dst.m[SrcRow * ROW + SrcCol] = src.m[II * 4 + JJ];
                 func2<II, JJ+1, SrcRow, SrcCol+1>::f(dst, src);
             }
         };
@@ -144,7 +144,7 @@ namespace  {
                     + m[2] * (m[3] * m[7] - m[4] * m[6]);
         }
 
-        float m[ROW *COLUMN];
+        float m[ROW * COLUMN];
     };
 }
 
