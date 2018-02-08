@@ -82,8 +82,8 @@ namespace live
     class Matrix4D : Uncopyable
     {
     public:
-        static constexpr int ROW = 4;
-        static constexpr int COLUMN = 4;
+        static constexpr uint8_t ROW = 4;
+        static constexpr uint8_t COLUMN = 4;
         static Matrix4D Identity()
         {
             return {1.0f, 0.0f, 0.0f, 0.0f,
@@ -106,7 +106,7 @@ namespace live
         Matrix4D();
         
         template<typename... Args>
-        Matrix4D(Args&&... args) : m { args... }
+        Matrix4D(Args&&... args) : m { static_cast<float>(args)... }
         {
         }
         
@@ -128,9 +128,9 @@ namespace live
         Matrix4D inverse() const;
         float eigenValue() const;
         Vec4 eigenVector() const;
-        float determinant() const;
-
         DEFINE_DEFAULT_MOVE_CONSTRUCTOR(Matrix4D);
+        const float determinant() const;
+    
     };
     
     #include "Vec.inl"
