@@ -121,8 +121,8 @@ namespace live
         inline Matrix4D& operator-=(const Matrix4D& other);
         inline Matrix4D& operator*=(const Matrix4D& other);
         
-        inline Matrix4D& operator*(const Vec3& vec) const;
-        inline Matrix4D& operator*(const Vec4& vec) const;
+        inline Vec4 operator*(const Vec3& vec) const;
+        inline Vec4 operator*(const Vec4& vec) const;
     public:
         Matrix4D transpose() const;
         Matrix4D inverse() const;
