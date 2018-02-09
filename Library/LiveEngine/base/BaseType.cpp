@@ -146,6 +146,25 @@ namespace  {
 
         float m[ROW * COLUMN];
     };
+
+    template<int I>
+    struct transposeImpl
+    {
+        static void f(Matrix4D& dst, const Matrix4D& src)
+        {
+            dst.m[I] = src.m[I * Matrix4D::ROW];
+            dst.m[1 * Matrix4D::ROW + I] = src.m[I * Matrix4D::ROW + 1];
+            dst.m[2 * Matrix4D::ROW + I] = src.m[I * Matrix4D::ROW + 2];
+            dst.m[3 * Matrix4D::ROW + I] = src.m[I * Matrix4D::ROW + 3];
+            transposeImpl<I+1>::f(dst, src);
+        }
+    };
+    template<>
+    struct transposeImpl<4>
+    {
+        static void f(Matrix4D& dst, const Matrix4D& src) {}
+    };
+
 }
 
 Matrix4D::Matrix4D() :
@@ -154,6 +173,19 @@ m { 0.0f, 0.0f, 0.0f, 0.0f,
     0.0f, 0.0f, 0.0f, 0.0f,
     0.0f, 0.0f, 0.0f, 0.0f }
 {}
+
+Matrix4D Matrix4D::transpose() const
+{
+    Matrix4D result;
+
+    transposeImpl<0>::f(result, *this);
+    transposeImpl<1>::f(result, *this);
+    transposeImpl<2>::f(result, *this);
+    transposeImpl<3>::f(result, *this);
+
+    return result;
+}
+
 Matrix4D Matrix4D::inverse() const
 {
     float A00 =  SubMatrix<0, 0>::create(*this).determinant() / determinant();

@@ -136,4 +136,36 @@
 }
 
 
+-(void)testMatrix4DTranspose
+{
+    live::Matrix4D mat = {
+        3.0f, 1.0f, 1.0f, 2.0f,
+        5.0f, 1.0f, 3.0f, 4.0f,
+        2.0f, 0.0f, 1.0f, 0.0f,
+        1.0f, 3.0f, 2.0f, 1.0f
+    };
+
+    live::Matrix4D tMat = mat.transpose();
+
+    XCTAssertEqual(roundf(tMat.m11), roundf(mat.m11), "Fail transpose");
+    XCTAssertEqual(roundf(tMat.m12), roundf(mat.m21), "Fail transpose");
+    XCTAssertEqual(roundf(tMat.m13), roundf(mat.m31), "Fail transpose");
+    XCTAssertEqual(roundf(tMat.m14), roundf(mat.m41), "Fail transpose");
+
+    XCTAssertEqual(roundf(tMat.m21), roundf(mat.m12), "Fail transpose");
+    XCTAssertEqual(roundf(tMat.m22), roundf(mat.m22), "Fail transpose");
+    XCTAssertEqual(roundf(tMat.m23), roundf(mat.m32), "Fail transpose");
+    XCTAssertEqual(roundf(tMat.m24), roundf(mat.m42), "Fail transpose");
+
+    XCTAssertEqual(roundf(tMat.m31), roundf(mat.m13), "Fail transpose");
+    XCTAssertEqual(roundf(tMat.m32), roundf(mat.m23), "Fail transpose");
+    XCTAssertEqual(roundf(tMat.m33), roundf(mat.m33), "Fail transpose");
+    XCTAssertEqual(roundf(tMat.m34), roundf(mat.m43), "Fail transpose");
+
+    XCTAssertEqual(roundf(tMat.m41), roundf(mat.m14), "Fail transpose");
+    XCTAssertEqual(roundf(tMat.m42), roundf(mat.m24), "Fail transpose");
+    XCTAssertEqual(roundf(tMat.m43), roundf(mat.m34), "Fail transpose");
+    XCTAssertEqual(roundf(tMat.m44), roundf(mat.m44), "Fail transpose");
+}
+
 @end
