@@ -101,22 +101,22 @@ inline Matrix4D& Matrix4D::operator*=(const Matrix4D& other)
 
 inline Vec4 Matrix4D::operator*(const Vec3& vec) const
 {
-    float x = m[0] * vec.x + m[1] * vec.y + m[2] * vec.z + m[3];
-    float y = m[4] * vec.x + m[5] * vec.y + m[6] * vec.z + m[7];
-    float z = m[8] * vec.x + m[9] * vec.y + m[10] * vec.z + m[11];
-    float w = m[12] * vec.x + m[13] * vec.y + m[14] * vec.z + m[15];
+    float x = m[0] * vec.x() + m[1] * vec.y() + m[2] * vec.z() + m[3];
+    float y = m[4] * vec.x() + m[5] * vec.y() + m[6] * vec.z() + m[7];
+    float z = m[8] * vec.x() + m[9] * vec.y() + m[10] * vec.z() + m[11];
+    float w = m[12] * vec.x() + m[13] * vec.y() + m[14] * vec.z() + m[15];
 
-    return Vec4(x, y, z, w);
+    return {x, y, z, w};
 }
 
 inline Vec4 Matrix4D::operator*(const Vec4& vec) const
 {
-    float x = m[0] * vec.x + m[1] * vec.y + m[2] * vec.z + m[3] * vec.w;
-    float y = m[4] * vec.x + m[5] * vec.y + m[6] * vec.z + m[7] * vec.w;
-    float z = m[8] * vec.x + m[9] * vec.y + m[10] * vec.z + m[11] * vec.w;
-    float w = m[12] * vec.x + m[13] * vec.y + m[14] * vec.z + m[15] * vec.w;
+    float x = m[0] * vec.x() + m[1] * vec.y() + m[2] * vec.z() + m[3] * vec.w();
+    float y = m[4] * vec.x() + m[5] * vec.y() + m[6] * vec.z() + m[7] * vec.w();
+    float z = m[8] * vec.x() + m[9] * vec.y() + m[10] * vec.z() + m[11] * vec.w();
+    float w = m[12] * vec.x() + m[13] * vec.y() + m[14] * vec.z() + m[15] * vec.w();
     
-    return Vec4(x, y, z, w);
+    return {x, y, z, w};
 }
 
 

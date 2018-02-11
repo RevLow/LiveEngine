@@ -91,7 +91,7 @@ namespace live
     {
     };
 
-    class Matrix4D : Uncopyable
+    class Matrix4D
     {
     public:
         static constexpr uint8_t ROW = 4;
@@ -104,21 +104,10 @@ namespace live
                     0.0f, 0.0f, 0.0f, 1.0f};
         }
     public:
-        union {
-            struct {
-                float m11, m12, m13, m14,
-                      m21, m22, m23, m24,
-                      m31, m32, m33, m34,
-                      m41, m42, m43, m44;
-            };
-            
-            float m[ROW * COLUMN];
-        };
-        
         Matrix4D();
         
         template<typename... Args>
-        Matrix4D(Args&&... args) : m { static_cast<float>(args)... }
+        Matrix4D(float head, Args&&... args) : m { head, static_cast<float>(args)... }
         {
         }
         
@@ -142,7 +131,30 @@ namespace live
         Vec4 eigenVector() const;
         DEFINE_DEFAULT_MOVE_CONSTRUCTOR(Matrix4D);
         const float determinant() const;
-    
+    public:
+        union {
+            struct {
+                float m11, m12, m13, m14,
+                m21, m22, m23, m24,
+                m31, m32, m33, m34,
+                m41, m42, m43, m44;
+            };
+            
+            float m[ROW * COLUMN];
+        };
+        
+        Matrix4D(Matrix4D&& mat) noexcept
+        {
+            *this = std::move(mat);
+        };
+        Matrix4D& operator=(Matrix4D&& other) noexcept
+        {
+            if(this != &other )
+            {
+                *this = std::move(other);
+            }
+            return *this;
+        };
     };
     
     #include "Vec.inl"
