@@ -10,22 +10,52 @@
 #define __LiveEngine__Node__
 
 #include "../base/Uncopyable.h"
-#include "../components/Component.h"
+#include "../base/observer/Observer.h"
+#include "../base/BaseType.h"
 
 namespace live
 {
     class Visitor;
-    class Node : public Uncopyable
+    class Node : public observer::Subject
     {
       public:
-        virtual void addComponent(std::unique_ptr<Component>&& component) final;
-        virtual void addChild(std::unique_ptr<Node>&& node) final;
+        Node();
+        
+        virtual void addChild(std::unique_ptr<Node> node) final;
         virtual void traversal(const Visitor& visitor);
         virtual void action(const Visitor& visitor);
+
+        virtual void transform(Matrix4D&& mat);
+        
+        virtual void translate(const Vec3& pos) final;
+        virtual void translate(Vec3&& pos) final;
+        virtual void translateX(float value) final;
+        virtual void translateY(float value) final;
+        virtual void translateZ(float value) final;
+
+        virtual void rotate(const Vec3& r) final;
+        virtual void rotate(Vec3&& r) final;
+        virtual void rotateX(float value) final;
+        virtual void rotateY(float value) final;
+        virtual void rotateZ(float value) final;
+
+        virtual void scale(const Vec3& s) final;
+        virtual void scale(Vec3&& s) final;
+        virtual void scaleX(float value) final;
+        virtual void scaleY(float value) final;
+        virtual void scaleZ(float value) final;
       private:
-        int _layerOrder;
-        std::vector<std::unique_ptr<Node>> _nodes;
-        std::vector<std::unique_ptr<Component>> _components;
+        int8_t _layerOrder;
+        uint8_t _opacity;
+        bool _dirty;
+        Vec3 _position;
+        Vec3 _rotation;
+        Vec3 _scale;
+
+        Matrix4D _viewMatrix;
+        std::vector<std::unique_ptr<Node>> _child;
+        
+        DEFINE_DEFAULT_MOVE_CONSTRUCTOR(Node);
     };
 }
 

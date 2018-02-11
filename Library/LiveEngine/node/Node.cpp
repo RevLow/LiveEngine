@@ -10,46 +10,117 @@
 
 using namespace live;
 
-void Node::addComponent(std::unique_ptr<Component>&& component)
+Node::Node()
+    : _viewMatrix(Matrix4D::Identity()), _dirty(false),
+      _position(0.0f, 0.0f, 0.0f), _rotation(0.0f, 0.0f, 0.0f),
+      _scale(1.0f, 1.0f, 1.0f)
 {
-    if (component != nullptr)
-    {
-        _components.emplace_back(std::move(component));
-    }
 }
 
-void Node::addChild(std::unique_ptr<Node>&& node)
+void Node::addChild(std::unique_ptr<Node> node)
 {
     if (node != nullptr)
     {
-        _nodes.emplace_back(std::move(node));
+        _child.emplace_back(std::move(node));
     }
 }
 
 void Node::traversal(const live::Visitor& visitor)
 {
-    std::sort(_nodes.begin(), _nodes.end(),
-    [](const std::unique_ptr<Node>& lhs, const std::unique_ptr<Node>& rhs)
+    std::sort(
+        _child.begin(), _child.end(),
+        [](const std::unique_ptr<Node>& lhs, const std::unique_ptr<Node>& rhs) {
+            return lhs->_layerOrder < rhs->_layerOrder;
+        });
+
+    auto it = _child.begin();
+    for (; it != _child.end(); it++)
     {
-        return lhs->_layerOrder < rhs->_layerOrder;
-    });
-    
-    auto it = _nodes.begin();
-    for(;it != _nodes.end();it++)
-    {
-        if((*it)->_layerOrder >= _layerOrder) break;
+        if ((*it)->_layerOrder >= _layerOrder)
+            break;
         (*it)->traversal(visitor);
     }
-    
+
     action(visitor);
-    
-    for (; it != _nodes.end(); it++)
+
+    for (; it != _child.end(); it++)
     {
         (*it)->traversal(visitor);
     }
 }
 
-void Node::action(const live::Visitor& visitor)
+void Node::action(const live::Visitor& visitor) {}
+
+#pragma mark TRANSFORMATION
+
+void Node::transform(Matrix4D&& mat)
 {
-    
+    _viewMatrix = std::move(mat);
 }
+
+void Node::translate(const Vec3& pos)
+{
+    _position = pos;
+    _dirty = true;
+}
+
+void Node::translate(Vec3&& pos)
+{
+    _position = std::move(pos);
+    _dirty = true;
+}
+
+void Node::translateX(float value)
+{
+    translate({value, _position.y(), _position.z()});
+}
+void Node::translateY(float value)
+{
+    translate({_position.x(), value, _position.z()});
+}
+void Node::translateZ(float value)
+{
+    translate({_position.x(), _position.y(), value});
+}
+
+void Node::rotate(const Vec3& r)
+{
+    _rotation = r;
+    _dirty = true;
+}
+
+void Node::rotate(Vec3&& r)
+{
+    _rotation = std::move(r);
+    _dirty = true;
+}
+
+
+void Node::rotateX(float value)
+{
+    rotate({value, _rotation.y(), _rotation.z()});
+}
+void Node::rotateY(float value)
+{
+    rotate({_rotation.x(), value, _rotation.z()});
+}
+void Node::rotateZ(float value)
+{
+    rotate({_rotation.x(), _rotation.y(), value});
+}
+
+void Node::scale(const Vec3& s)
+{
+    _scale = s;
+    _dirty = true;
+}
+
+void Node::scale(Vec3&& s)
+{
+    _scale = std::move(s);
+    _dirty = true;
+}
+
+void Node::scaleX(float value) { scale({value, _scale.y(), _scale.z()}); }
+void Node::scaleY(float value) { scale({_scale.x(), value, _scale.z()}); }
+void Node::scaleZ(float value) { scale({_scale.x(), _scale.y(), value}); }
