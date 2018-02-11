@@ -10,11 +10,16 @@
 #define __LiveEngine__Component__
 
 #include "../base/Uncopyable.h"
+#include "../base/observer/Observer.h"
 
 namespace live {
-    class Component : public Uncopyable
+    class NodeController : public Uncopyable<NodeController>, public observer::Observer
     {
-        
+    public:
+        virtual void notify() override
+        {
+            std::cout << "Notifyed" << std::endl;
+        }
     };
 }
 

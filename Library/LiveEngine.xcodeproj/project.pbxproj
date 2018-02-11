@@ -14,9 +14,10 @@
 		2E06AF16200B41F000197838 /* RenderTask.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2E06AF14200B41F000197838 /* RenderTask.cpp */; };
 		2E06AF19200B471100197838 /* ApplicationTest.mm in Sources */ = {isa = PBXBuildFile; fileRef = 2E06AF18200B471100197838 /* ApplicationTest.mm */; };
 		2E06AF2B20131C8E00197838 /* Node.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2E06AF2920131C8E00197838 /* Node.cpp */; };
-		2EB2BE862021F33D00772B0F /* Component.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2EB2BE842021F33D00772B0F /* Component.cpp */; };
+		2EB2BE862021F33D00772B0F /* NodeController.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2EB2BE842021F33D00772B0F /* NodeController.cpp */; };
 		2EB2BE892022039100772B0F /* BaseType.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2EB2BE882022039100772B0F /* BaseType.cpp */; };
 		2EB2BE8C2025E68E00772B0F /* Matrix4D.inl in Resources */ = {isa = PBXBuildFile; fileRef = 2EB2BE8B2025E68E00772B0F /* Matrix4D.inl */; };
+		2ECAE357202DF7650028D506 /* Observer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2ECAE355202DF7650028D506 /* Observer.cpp */; };
 		2ED2AD002003465E007409F5 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2ED2ACFF2003465E007409F5 /* Foundation.framework */; };
 		2ED2AD052003465E007409F5 /* LiveEngine.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 2ED2AD042003465E007409F5 /* LiveEngine.h */; };
 		2ED2AD072003465E007409F5 /* LiveEngine.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2ED2AD062003465E007409F5 /* LiveEngine.cpp */; };
@@ -71,11 +72,13 @@
 		2E06AF18200B471100197838 /* ApplicationTest.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = ApplicationTest.mm; path = LiveEngine/platform/ApplicationTest.mm; sourceTree = "<group>"; };
 		2E06AF2920131C8E00197838 /* Node.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Node.cpp; path = node/Node.cpp; sourceTree = "<group>"; };
 		2E06AF2A20131C8E00197838 /* Node.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Node.h; path = node/Node.h; sourceTree = "<group>"; };
-		2EB2BE842021F33D00772B0F /* Component.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Component.cpp; path = components/Component.cpp; sourceTree = "<group>"; };
-		2EB2BE852021F33D00772B0F /* Component.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Component.h; path = components/Component.h; sourceTree = "<group>"; };
+		2EB2BE842021F33D00772B0F /* NodeController.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = NodeController.cpp; path = controller/NodeController.cpp; sourceTree = "<group>"; };
+		2EB2BE852021F33D00772B0F /* NodeController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NodeController.h; path = controller/NodeController.h; sourceTree = "<group>"; };
 		2EB2BE882022039100772B0F /* BaseType.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = BaseType.cpp; path = base/BaseType.cpp; sourceTree = "<group>"; };
 		2EB2BE8B2025E68E00772B0F /* Matrix4D.inl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = Matrix4D.inl; path = base/Matrix4D.inl; sourceTree = "<group>"; };
 		2EB2BE8D2025E80F00772B0F /* Vec.inl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = Vec.inl; path = base/Vec.inl; sourceTree = "<group>"; };
+		2ECAE355202DF7650028D506 /* Observer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Observer.cpp; path = base/observer/Observer.cpp; sourceTree = "<group>"; };
+		2ECAE356202DF7650028D506 /* Observer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Observer.h; path = base/observer/Observer.h; sourceTree = "<group>"; };
 		2ED2ACFC2003465E007409F5 /* libLiveEngine.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libLiveEngine.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		2ED2ACFF2003465E007409F5 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		2ED2AD032003465E007409F5 /* LiveEngine-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "LiveEngine-Prefix.pch"; sourceTree = "<group>"; };
@@ -151,6 +154,7 @@
 		2E06AEBB20036A1000197838 /* base */ = {
 			isa = PBXGroup;
 			children = (
+				2ECAE354202DF7450028D506 /* observer */,
 				2EB2BE8B2025E68E00772B0F /* Matrix4D.inl */,
 				2E06AEBD20036A2800197838 /* BaseType.h */,
 				2E06AF0F200B05E700197838 /* Uncopyable.h */,
@@ -193,13 +197,22 @@
 			name = node;
 			sourceTree = "<group>";
 		};
-		2EB2BE832021F32000772B0F /* components */ = {
+		2EB2BE832021F32000772B0F /* controller */ = {
 			isa = PBXGroup;
 			children = (
-				2EB2BE842021F33D00772B0F /* Component.cpp */,
-				2EB2BE852021F33D00772B0F /* Component.h */,
+				2EB2BE842021F33D00772B0F /* NodeController.cpp */,
+				2EB2BE852021F33D00772B0F /* NodeController.h */,
 			);
-			name = components;
+			name = controller;
+			sourceTree = "<group>";
+		};
+		2ECAE354202DF7450028D506 /* observer */ = {
+			isa = PBXGroup;
+			children = (
+				2ECAE355202DF7650028D506 /* Observer.cpp */,
+				2ECAE356202DF7650028D506 /* Observer.h */,
+			);
+			name = observer;
 			sourceTree = "<group>";
 		};
 		2ED2ACF32003465E007409F5 = {
@@ -234,7 +247,7 @@
 		2ED2AD012003465E007409F5 /* LiveEngine */ = {
 			isa = PBXGroup;
 			children = (
-				2EB2BE832021F32000772B0F /* components */,
+				2EB2BE832021F32000772B0F /* controller */,
 				2E06AF1C200B91EC00197838 /* node */,
 				2E06AEBB20036A1000197838 /* base */,
 				2E06AEB420035DC200197838 /* render */,
@@ -368,7 +381,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				2ED2AD2820034891007409F5 /* Application.cpp in Sources */,
-				2EB2BE862021F33D00772B0F /* Component.cpp in Sources */,
+				2ECAE357202DF7650028D506 /* Observer.cpp in Sources */,
+				2EB2BE862021F33D00772B0F /* NodeController.cpp in Sources */,
 				2E06AEC12003898C00197838 /* EAGLViewController.mm in Sources */,
 				2E06AEB820035F1400197838 /* EAGLView.mm in Sources */,
 				2ED2AD072003465E007409F5 /* LiveEngine.cpp in Sources */,
