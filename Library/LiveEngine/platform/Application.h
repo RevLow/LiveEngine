@@ -15,7 +15,7 @@
 
 namespace live
 {
-    class Application : public Uncopyable
+    class Application : Uncopyable<Application>
     {
         DEFINE_SINGLETON(Application)
       public:

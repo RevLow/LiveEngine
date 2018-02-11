@@ -13,14 +13,13 @@
 
 namespace live
 {
-    class RenderCommand : Uncopyable
+    class RenderCommand
     {
       public:
         RenderCommand() = default;
         virtual ~RenderCommand() = default;
 
-        RenderCommand(RenderCommand&&) = default;
-        RenderCommand& operator=(RenderCommand&&) = default;
+        DEFINE_DEFAULT_MOVE_CONSTRUCTOR(RenderCommand);
     };
 }
 

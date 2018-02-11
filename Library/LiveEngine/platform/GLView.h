@@ -13,7 +13,7 @@
 
 namespace live
 {
-    class GLView : public Uncopyable
+    class GLView
     {
       public:
         GLView(){};

@@ -13,7 +13,7 @@
 
 namespace live
 {
-    class ITask : Uncopyable
+    class ITask
     {
       public:
         ITask() = default;
