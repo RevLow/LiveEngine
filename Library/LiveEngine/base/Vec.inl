@@ -73,10 +73,10 @@ inline float _Vec_<N, T>::operator*(const T &other) const
 inline Vec3 Vec3::cross(const live::Vec3 &other) const
 {
     Vec3 vec;
-    
-    vec.x = y * other.z - z * other.y;
-    vec.y = z * other.x - x * other.z;
-    vec.z = x * other.y - y * other.x;
+
+    vec.setX(y() * other.z() - z() * other.y());
+    vec.setY(z() * other.x() - x() * other.z());
+    vec.setZ(x() * other.y() - y() * other.x());
 
     return vec;
 }

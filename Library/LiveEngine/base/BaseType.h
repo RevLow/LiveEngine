@@ -14,45 +14,57 @@
 namespace live
 {
     template<int N, typename T>
-    class _Vec_ : Uncopyable
+    class _Vec_
     {
         template<int NN, typename TT> friend struct plus;
         template<int NN, typename TT> friend struct minus;
         template<int NN, typename TT> friend struct dot;
     public:
-        template<typename... Args>
-        _Vec_(Args&&... args) : v { args... } {}
+        template<typename ...Args>
+        _Vec_(float f, Args&&... args) : v { f, args... } {}
+        
         virtual ~_Vec_() = default;
 
         inline T operator+(const T& other) const;
         inline T operator-(const T& other) const;
         inline float operator*(const T& other) const;
-    protected:
-        float v[N];
+        inline T operator+=(const T& other) const;
+        inline T operator-=(const T& other) const;
         
-        DEFINE_DEFAULT_MOVE_CONSTRUCTOR(_Vec_);
+        float v[N];
     };
     
-    class Vec3 : public _Vec_<3, Vec3>
+    class Vec3 : _Vec_<3, Vec3>
     {
     public:
-        Vec3() : _Vec_(0.0f, 0.0f, 0.0f) {}
-        Vec3(float _x, float _y, float _z) : _Vec_(_x, _y, _z) {}
+        Vec3() : _Vec_<3, live::Vec3>(0.0f, 0.0f, 0.0f){}
+        Vec3(float _x, float _y, float _z) : _Vec_<3, live::Vec3>(_x, _y, _z) {}
         inline Vec3 cross(const Vec3& other) const;
-        float& x = v[0];
-        float& y = v[1];
-        float& z = v[2];
+
+        float x() const { return v[0]; }
+        float y() const { return v[1]; }
+        float z() const { return v[2]; }
+        
+        void setX(float value) { v[0] = value; }
+        void setY(float value) { v[1] = value; }
+        void setZ(float value) { v[2] = value; }
     };
     
-    class Vec4 : public _Vec_<4, Vec4>
+    class Vec4 : _Vec_<4, Vec4>
     {
     public:
-        Vec4() : _Vec_(0.0f, 0.0f, 0.0f, 0.0f) {}
-        Vec4(float _x, float _y, float _z, float _w) : _Vec_(_x, _y, _z, _w) {}
-        float& x = v[0];
-        float& y = v[1];
-        float& z = v[2];
-        float& w = v[3];
+        Vec4() : _Vec_<4, live::Vec4>(0.0f, 0.0f, 0.0f, 0.0f) {}
+        Vec4(float _x, float _y, float _z, float _w) : _Vec_<4, live::Vec4>(_x, _y, _z, _w) {}
+
+        float x() const { return v[0]; }
+        float y() const { return v[1]; }
+        float z() const { return v[2]; }
+        float w() const { return v[3]; }
+        
+        void setX(float value) { v[0] = value; }
+        void setY(float value) { v[1] = value; }
+        void setZ(float value) { v[2] = value; }
+        void setW(float value) { v[2] = value; }
     };
     
     class Position
