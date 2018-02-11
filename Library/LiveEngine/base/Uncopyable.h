@@ -11,17 +11,15 @@
 
 namespace live
 {
+    template<typename T>
     class Uncopyable
     {
-      public:
+      protected:
         Uncopyable() = default;
         ~Uncopyable() = default;
 
-      protected:
         Uncopyable(const Uncopyable&) = delete;
-        Uncopyable(Uncopyable&&) = delete;
-        Uncopyable& operator=(const Uncopyable&) = delete;
-        Uncopyable& operator=(Uncopyable&&) = delete;
+        T& operator=(const T&) = delete;
     };
 }
 
