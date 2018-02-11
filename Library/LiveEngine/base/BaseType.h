@@ -129,7 +129,6 @@ namespace live
         Matrix4D inverse() const;
         float eigenValue() const;
         Vec4 eigenVector() const;
-        DEFINE_DEFAULT_MOVE_CONSTRUCTOR(Matrix4D);
         const float determinant() const;
     public:
         union {
