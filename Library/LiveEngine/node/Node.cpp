@@ -60,7 +60,7 @@ void Node::traversal(const live::Visitor& visitor)
     }
 }
 
-void Node::action(const live::Visitor& visitor) {}
+void Node::drawCall(const live::Visitor& visitor) {}
 
 #pragma mark TRANSFORMATION
 
@@ -132,7 +132,7 @@ void Node::scale(const Vec3& s)
 {
     _scale = s;
     TransformAction action(ACTION_KEY::SCALE, _scale);
-    notifyAll(&action);
+    notifyAll(action);
     _dirty = true;
 }
 
@@ -140,7 +140,7 @@ void Node::scale(Vec3&& s)
 {
     _scale = std::move(s);
     TransformAction action(ACTION_KEY::SCALE, _scale);
-    notifyAll(&action);
+    notifyAll(action);
     _dirty = true;
 }
 

@@ -34,7 +34,7 @@ namespace live
         
         virtual void addChild(std::unique_ptr<Node> node) final;
         virtual void traversal(const Visitor& visitor);
-        virtual void action(const Visitor& visitor);
+        virtual void drawCall(const Visitor& visitor);
 
         virtual void transform(Matrix4D&& mat);
         
