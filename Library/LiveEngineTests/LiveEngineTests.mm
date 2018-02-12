@@ -27,6 +27,48 @@
     [super tearDown];
 }
 
+-(void) testVecPlus
+{
+    live::Vec3 v1 = {0.0f, 1.0f, 2.0f};
+    live::Vec3 v2 = {1.0f, 2.0f, 3.0f};
+    live::Vec3 result = v1 + v2;
+    
+    XCTAssertEqual(result.x(), 1.0f, "x value is failed");
+    XCTAssertEqual(result.y(), 3.0f, "y value is failed");
+    XCTAssertEqual(result.z(), 5.0f, "z value is failed");
+}
+
+-(void) testVecMinus
+{
+    live::Vec3 v1 = {0.0f, 1.0f, 2.0f};
+    live::Vec3 v2 = {1.0f, 2.0f, 3.0f};
+    live::Vec3 result = v1 - v2;
+    
+    XCTAssertEqual(result.x(), -1.0f, "x value is failed");
+    XCTAssertEqual(result.y(), -1.0f, "y value is failed");
+    XCTAssertEqual(result.z(), -1.0f, "z value is failed");
+}
+
+-(void) testVecDot
+{
+    live::Vec3 v1 = {0.0f, 1.0f, 2.0f};
+    live::Vec3 v2 = {1.0f, 2.0f, 3.0f};
+    float dot = v1 * v2;
+    
+    XCTAssertEqual(roundf(dot), 8.0f, "dot value is failed");
+}
+
+-(void) testVecCross
+{
+    live::Vec3 v1 = {0.0f, 1.0f, 2.0f};
+    live::Vec3 v2 = {1.0f, 2.0f, 3.0f};
+    live::Vec3 result = v1.cross(v2);
+    
+    XCTAssertEqual(roundf(result.x()), -1.0f, "x value is failed");
+    XCTAssertEqual(roundf(result.y()), 2.0f, "y value is failed");
+    XCTAssertEqual(roundf(result.z()), -1.0f, "z value is failed");
+}
+
 - (void)testMatrix4DOperationDot
 {
     live::Matrix4D mat = {

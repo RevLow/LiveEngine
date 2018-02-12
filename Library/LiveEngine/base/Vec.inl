@@ -1,72 +1,75 @@
 namespace {
-    template<int NN, typename TT>
+    template<int N, int NN>
     struct plus
     {
-        inline static void f(TT& dst, const TT& src, const TT& other)
+        inline static void f(_Vec_<N>& dst, const _Vec_<N>& src, const _Vec_<N>& other)
         {
-            dst.v[NN-1] = src.v[NN - 1] + other.v[NN - 1];
-            plus<NN - 1, TT>::f(dst, other);
+            dst._v[NN-1] = src._v[NN - 1] + other._v[NN - 1];
+            plus<N, NN - 1>::f(dst, src, other);
         }
     };
-    template<typename TT>
-    struct plus<0, TT>
+    template<int N>
+    struct plus<N, 0>
     {
-        inline static void f(TT& dst, const TT& src, const TT& other) {}
+        inline static void f(_Vec_<N>& dst, const _Vec_<N>& src, const _Vec_<N>& other) {}
     };
     
-    template<int NN, typename TT>
+    template<int N, int NN>
     struct minus
     {
-        inline static void f(TT& dst, const TT& src, const TT& other)
+        inline static void f(_Vec_<N>& dst, const _Vec_<N>& src, const _Vec_<N>& other)
         {
-            dst.v[NN-1] = src.v[NN - 1] - other.v[NN - 1];
-            minus<NN - 1, TT>::f(dst, other);
+            dst._v[NN-1] = src._v[NN - 1] - other._v[NN - 1];
+            minus<N, NN - 1>::f(dst, src, other);
         }
     };
-    template<typename TT>
-    struct minus<0, TT>
+    template<int N>
+    struct minus<N, 0>
     {
-        inline static void f(TT& dst, const TT& src, const TT& other) {}
+        inline static void f(_Vec_<N>& dst, const _Vec_<N>& src, const _Vec_<N>& other){}
     };
     
-    template<int NN, typename TT>
+    template<int N, int NN>
     struct dot
     {
-        inline static float f(const TT& src, const TT& other)
+        inline static float f(const _Vec_<N>& src, const _Vec_<N>& other)
         {
-            return src.v[NN - 1] * other.v[NN - 1] + dot<NN-1, TT>(src, other);
+            return src._v[NN - 1] * other._v[NN - 1] + dot<N, NN-1>::f(src, other);
         }
     };
-    template<typename TT>
-    struct dot<0, TT>
+    template<int N>
+    struct dot<N, 0>
     {
-        inline static float f(const TT& src, const TT& other)
+        inline static float f(const _Vec_<N>& src, const _Vec_<N>& other)
         {
             return 0.0f;
         }
     };
 }
 
-template<int N, typename T>
-inline T _Vec_<N, T>::operator+(const T& other) const
+template<int N>
+template<typename DerivedClass>
+inline DerivedClass _Vec_<N>::operator+(const DerivedClass& other) const
 {
-    T vec;
-    plus<N, T>::f(vec, *this, other);
+    _Vec_<N> vec;
+    plus<N, N>::f(vec, *this, other);
+
     return vec;
 }
 
-template<int N, typename T>
-inline T _Vec_<N, T>::operator-(const T &other) const
+template<int N>
+template <typename DerivedClass>
+inline DerivedClass _Vec_<N>::operator-(const DerivedClass &other) const
 {
-    T vec;
-    minus<N, T>::f(vec, *this, other);
+    _Vec_<N> vec;
+    minus<N, N>::f(vec, *this, other);
     return vec;
 }
 
-template<int N, typename T>
-inline float _Vec_<N, T>::operator*(const T &other) const
+template<int N>
+inline float _Vec_<N>::operator*(const _Vec_<N> &other) const
 {
-    return dot<N, T>::f(*this, other);
+    return dot<N, N>::f(*this, other);
 }
 
 
