@@ -10,16 +10,23 @@
 #define __LiveEngine__Component__
 
 #include "../base/Uncopyable.h"
-#include "../base/observer/Observer.h"
+#include "../node/Node.h"
 
 namespace live {
     class NodeController : public Uncopyable<NodeController>, public observer::Observer
     {
     public:
-        virtual void notify() override
-        {
-            std::cout << "Notifyed" << std::endl;
-        }
+        /**
+         *  監視オブジェクトからの通知メソッド
+         *
+         *  @param action     実行されたアクション
+         */
+        virtual void on(const observer::Action& action) override;
+        
+        // 各イベントハンドラ
+        virtual void onNodeTranslate(const Vec3& value) = 0;
+        virtual void onNodeRation(const Vec3& value) = 0;
+        virtual void onNodeScale(const Vec3& value) = 0;
     };
 }
 

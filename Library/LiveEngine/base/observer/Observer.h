@@ -13,6 +13,11 @@ namespace live
 {
     namespace observer
     {
+        struct Action
+        {
+            uint32_t actionId = 0;
+        };
+        
         class Subject;
         
         class Observer
@@ -21,11 +26,12 @@ namespace live
             friend class Subject;
             Observer() : subject(nullptr) {}
             
-            void observe(std::unique_ptr<Subject> sub)
+            void bind(std::unique_ptr<Subject> sub)
             {
                 subject = std::move(sub);
             }
-            virtual void notify() = 0;
+
+            virtual void on(const Action& action) = 0;
         protected:
             std::unique_ptr<Subject> subject;
         };
@@ -33,15 +39,17 @@ namespace live
         class Subject
         {
         public:
-            void notifyAll()
+            void notifyAll(const Action& action)
             {
-                std::for_each(observers.begin(), observers.end(), [](std::unique_ptr<Observer>& observer){
-                    observer->notify();
+                std::for_each(observers.begin(), observers.end(), [&](std::unique_ptr<Observer>& observer){
+                    observer->on(action);
                 });
             }
-        private:
+        protected:
             std::vector<std::unique_ptr<Observer>> observers;
         };
+        
+
     }
 }
 

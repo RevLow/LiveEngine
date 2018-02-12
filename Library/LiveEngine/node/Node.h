@@ -16,6 +16,17 @@
 namespace live
 {
     class Visitor;
+    typedef struct _transformAction : observer::Action
+    {
+        _transformAction(uint8_t _key, Vec3 _value) : key(_key), value(_value)
+        {
+            actionId = 1;
+        }
+        
+        uint8_t key;
+        Vec3 value;
+    } TransformAction;
+    
     class Node : public observer::Subject
     {
       public:

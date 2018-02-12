@@ -7,8 +7,19 @@
 //
 
 #include "Node.h"
+#include "../controller/NodeController.h"
 
 using namespace live;
+
+namespace {
+    enum ACTION_KEY
+    {
+        TRANSLATION = 1,
+        ROTATION = 2,
+        SCALE = 3
+    };
+}
+
 
 Node::Node()
     : _viewMatrix(Matrix4D::Identity()), _dirty(false),
@@ -41,7 +52,7 @@ void Node::traversal(const live::Visitor& visitor)
         (*it)->traversal(visitor);
     }
 
-    action(visitor);
+    drawCall(visitor);
 
     for (; it != _child.end(); it++)
     {
@@ -61,12 +72,16 @@ void Node::transform(Matrix4D&& mat)
 void Node::translate(const Vec3& pos)
 {
     _position = pos;
+    TransformAction action(ACTION_KEY::TRANSLATION, _position);
+    notifyAll(action);
     _dirty = true;
 }
 
 void Node::translate(Vec3&& pos)
 {
     _position = std::move(pos);
+    TransformAction action(ACTION_KEY::TRANSLATION, _position);
+    notifyAll(action);
     _dirty = true;
 }
 
@@ -86,12 +101,16 @@ void Node::translateZ(float value)
 void Node::rotate(const Vec3& r)
 {
     _rotation = r;
+    TransformAction action(ACTION_KEY::ROTATION, _rotation);
+    notifyAll(action);
     _dirty = true;
 }
 
 void Node::rotate(Vec3&& r)
 {
     _rotation = std::move(r);
+    TransformAction action(ACTION_KEY::ROTATION, _rotation);
+    notifyAll(action);
     _dirty = true;
 }
 
@@ -112,12 +131,16 @@ void Node::rotateZ(float value)
 void Node::scale(const Vec3& s)
 {
     _scale = s;
+    TransformAction action(ACTION_KEY::SCALE, _scale);
+    notifyAll(&action);
     _dirty = true;
 }
 
 void Node::scale(Vec3&& s)
 {
     _scale = std::move(s);
+    TransformAction action(ACTION_KEY::SCALE, _scale);
+    notifyAll(&action);
     _dirty = true;
 }
 
