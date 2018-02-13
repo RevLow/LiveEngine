@@ -13,7 +13,6 @@
 #include "../node/Node.h"
 
 namespace live {
-    class NodeController : public Uncopyable<NodeController>, public observer::Observer
     class NodeController : public Uncopyable<NodeController>, public observer::Observer<Node>
     {
     public:
@@ -22,12 +21,12 @@ namespace live {
          *
          *  @param action     実行されたアクション
          */
-        virtual void on(const observer::Action& action) override;
-        
+        virtual void notify(const Node& sender, const observer::Action& action) override;
+
         // 各イベントハンドラ
-        virtual void onNodeTranslate(const Vec3& value) = 0;
-        virtual void onNodeRation(const Vec3& value) = 0;
-        virtual void onNodeScale(const Vec3& value) = 0;
+        virtual void onNodeTranslate(const Vec3& value) {};
+        virtual void onNodeRation(const Vec3& value) {};
+        virtual void onNodeScale(const Vec3& value) {};
     };
 }
 

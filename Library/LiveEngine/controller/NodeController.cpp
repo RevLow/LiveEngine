@@ -10,12 +10,32 @@
 
 using namespace live;
 
-void NodeController::on(const observer::Action& action)
+namespace  {
+    void dispatch(NodeController* self, uint8_t actionKey, const Vec3& value)
+    {
+        switch (actionKey)
+        {
+            case live::ACTION_KEY::TRANSLATION:
+                self->onNodeTranslate(value);
+                break;
+            case live::ACTION_KEY::ROTATION:
+                self->onNodeRation(value);
+                break;
+            case live::ACTION_KEY::SCALE:
+                self->onNodeScale(value);
+                break;
+            default:
+                break;
+        }
+    }
+}
+
+
+void NodeController::notify(const Node& sender, const observer::Action& action)
 {
-    std::cout << "actiond by " << action.actionId << std::endl;
     if(action.actionId == 1)
     {
         const TransformAction& transaction = static_cast<const TransformAction&>(action);
-        std::cout << "key: " << transaction.key << ", value: x=" << transaction.value.x() << ", y=" << transaction.value.y() << std::endl;
+        dispatch(this, transaction.key, transaction.value);
     }
 }

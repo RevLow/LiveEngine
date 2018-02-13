@@ -11,18 +11,8 @@
 
 using namespace live;
 
-namespace {
-    enum ACTION_KEY
-    {
-        TRANSLATION = 1,
-        ROTATION = 2,
-        SCALE = 3
-    };
-}
-
-
 Node::Node()
-    : _viewMatrix(Matrix4D::Identity()), _dirty(false),
+    : _modelMatrix(Matrix4D::Identity()), _dirty(false),
       _position(0.0f, 0.0f, 0.0f), _rotation(0.0f, 0.0f, 0.0f),
       _scale(1.0f, 1.0f, 1.0f)
 {
@@ -36,8 +26,10 @@ void Node::addChild(std::unique_ptr<Node> node)
     }
 }
 
-void Node::traversal(const live::Visitor& visitor)
+void Node::traversal(const Matrix4D& parentMatrix, const Visitor& visitor)
 {
+    //computeMatrix(visitor.parent);
+    
     std::sort(
         _child.begin(), _child.end(),
         [](const std::unique_ptr<Node>& lhs, const std::unique_ptr<Node>& rhs) {
@@ -49,24 +41,29 @@ void Node::traversal(const live::Visitor& visitor)
     {
         if ((*it)->_layerOrder >= _layerOrder)
             break;
-        (*it)->traversal(visitor);
+        (*it)->traversal(parentMatrix, visitor);
     }
 
     drawCall(visitor);
 
     for (; it != _child.end(); it++)
     {
-        (*it)->traversal(visitor);
+        (*it)->traversal(parentMatrix, visitor);
     }
 }
 
-void Node::drawCall(const live::Visitor& visitor) {}
+void Node::drawCall(const live::Visitor& visitor) {
+    if (_dirty)
+    {
+        
+    }
+}
 
 #pragma mark TRANSFORMATION
 
 void Node::transform(Matrix4D&& mat)
 {
-    _viewMatrix = std::move(mat);
+    _modelMatrix = std::move(mat);
 }
 
 void Node::translate(const Vec3& pos)
@@ -133,6 +130,7 @@ void Node::scale(const Vec3& s)
     _scale = s;
     TransformAction action(ACTION_KEY::SCALE, _scale);
     notifyAll(action);
+    //notifyAll(action);
     _dirty = true;
 }
 
@@ -147,3 +145,8 @@ void Node::scale(Vec3&& s)
 void Node::scaleX(float value) { scale({value, _scale.y(), _scale.z()}); }
 void Node::scaleY(float value) { scale({_scale.x(), value, _scale.z()}); }
 void Node::scaleZ(float value) { scale({_scale.x(), _scale.y(), value}); }
+
+Matrix4D Node::computeMatrix(const Matrix4D& parent)
+{
+    return Matrix4D::Identity();
+}

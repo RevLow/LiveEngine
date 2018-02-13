@@ -27,14 +27,20 @@ namespace live
         Vec3 value;
     } TransformAction;
     
-    class Node : public observer::Subject
+    enum ACTION_KEY
+    {
+        TRANSLATION = 1,
+        ROTATION = 2,
+        SCALE = 3
+    };
+    
     class Node : public observer::Subject<Node>
     {
       public:
         Node();
         
         virtual void addChild(std::unique_ptr<Node> node) final;
-        virtual void traversal(const Visitor& visitor);
+        virtual void traversal(const Matrix4D& parentMatrix, const Visitor& visitor);
         virtual void drawCall(const Visitor& visitor);
 
         virtual void transform(Matrix4D&& mat);
@@ -56,17 +62,25 @@ namespace live
         virtual void scaleX(float value) final;
         virtual void scaleY(float value) final;
         virtual void scaleZ(float value) final;
+        
+        const Vec3& position() const { return _position; }
+        const Vec3& rotation() const { return _rotation; }
+        const Vec3& scale() const { return _scale; }
+      protected:
+        virtual Matrix4D computeMatrix(const Matrix4D& parent);
+
       private:
         int8_t _layerOrder;
         uint8_t _opacity;
         bool _dirty;
+        
         Vec3 _position;
         Vec3 _rotation;
         Vec3 _scale;
-
-        Matrix4D _viewMatrix;
-        std::vector<std::unique_ptr<Node>> _child;
         
+        Matrix4D _modelMatrix;
+        std::vector<std::unique_ptr<Node>> _child;
+
         DEFINE_DEFAULT_MOVE_CONSTRUCTOR(Node);
     };
 }
