@@ -210,4 +210,40 @@
     XCTAssertEqual(roundf(tMat.m44), roundf(mat.m44), "Fail transpose");
 }
 
+-(void) testMatrix4DDotVec3
+{
+    live::Matrix4D mat = {
+        3.0f, 1.0f, 1.0f, 2.0f,
+        5.0f, 1.0f, 3.0f, 4.0f,
+        2.0f, 0.0f, 1.0f, 0.0f,
+        1.0f, 3.0f, 2.0f, 1.0f
+    };
+
+    live::Vec3 v = { 1.0f, 0.0f, 2.0f };
+    live::Vec4 result = mat * v;
+    
+    XCTAssertEqual(roundf(result.x()), 7.0f,  "Fail x");
+    XCTAssertEqual(roundf(result.y()), 15.0f, "Fail y");
+    XCTAssertEqual(roundf(result.z()), 4.0f,  "Fail z");
+    XCTAssertEqual(roundf(result.w()), 6.0f,  "Fail w");
+}
+
+-(void) testMatrix4DDotVec4
+{
+    live::Matrix4D mat = {
+        3.0f, 1.0f, 1.0f, 2.0f,
+        5.0f, 1.0f, 3.0f, 4.0f,
+        2.0f, 0.0f, 1.0f, 0.0f,
+        1.0f, 3.0f, 2.0f, 1.0f
+    };
+    
+    live::Vec4 v = { 1.0f, 0.0f, 2.0f, 2.0f };
+    live::Vec4 result = mat * v;
+    
+    XCTAssertEqual(roundf(result.x()), 9.0f,  "Fail x");
+    XCTAssertEqual(roundf(result.y()), 19.0f, "Fail y");
+    XCTAssertEqual(roundf(result.z()), 4.0f,  "Fail z");
+    XCTAssertEqual(roundf(result.w()), 7.0f,  "Fail w");
+}
+
 @end
