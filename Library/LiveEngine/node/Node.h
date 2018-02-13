@@ -28,6 +28,7 @@ namespace live
     } TransformAction;
     
     class Node : public observer::Subject
+    class Node : public observer::Subject<Node>
     {
       public:
         Node();

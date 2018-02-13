@@ -19,7 +19,7 @@
 		2EB2BE862021F33D00772B0F /* NodeController.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2EB2BE842021F33D00772B0F /* NodeController.cpp */; };
 		2EB2BE892022039100772B0F /* BaseType.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2EB2BE882022039100772B0F /* BaseType.cpp */; };
 		2EB2BE8C2025E68E00772B0F /* Matrix4D.inl in Resources */ = {isa = PBXBuildFile; fileRef = 2EB2BE8B2025E68E00772B0F /* Matrix4D.inl */; };
-		2ECAE357202DF7650028D506 /* Observer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2ECAE355202DF7650028D506 /* Observer.cpp */; };
+		2ECAE357202DF7650028D506 /* Observers.inl in Sources */ = {isa = PBXBuildFile; fileRef = 2ECAE355202DF7650028D506 /* Observers.inl */; };
 		2ED2AD002003465E007409F5 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2ED2ACFF2003465E007409F5 /* Foundation.framework */; };
 		2ED2AD052003465E007409F5 /* LiveEngine.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 2ED2AD042003465E007409F5 /* LiveEngine.h */; };
 		2ED2AD072003465E007409F5 /* LiveEngine.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2ED2AD062003465E007409F5 /* LiveEngine.cpp */; };
@@ -81,7 +81,7 @@
 		2EB2BE882022039100772B0F /* BaseType.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = BaseType.cpp; path = base/BaseType.cpp; sourceTree = "<group>"; };
 		2EB2BE8B2025E68E00772B0F /* Matrix4D.inl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = Matrix4D.inl; path = base/Matrix4D.inl; sourceTree = "<group>"; };
 		2EB2BE8D2025E80F00772B0F /* Vec.inl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = Vec.inl; path = base/Vec.inl; sourceTree = "<group>"; };
-		2ECAE355202DF7650028D506 /* Observer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Observer.cpp; path = base/observer/Observer.cpp; sourceTree = "<group>"; };
+		2ECAE355202DF7650028D506 /* Observers.inl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = Observers.inl; path = base/observer/Observers.inl; sourceTree = "<group>"; };
 		2ECAE356202DF7650028D506 /* Observer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Observer.h; path = base/observer/Observer.h; sourceTree = "<group>"; };
 		2ED2ACFC2003465E007409F5 /* libLiveEngine.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libLiveEngine.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		2ED2ACFF2003465E007409F5 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -231,7 +231,7 @@
 		2ECAE354202DF7450028D506 /* observer */ = {
 			isa = PBXGroup;
 			children = (
-				2ECAE355202DF7650028D506 /* Observer.cpp */,
+				2ECAE355202DF7650028D506 /* Observers.inl */,
 				2ECAE356202DF7650028D506 /* Observer.h */,
 			);
 			name = observer;
@@ -403,7 +403,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				2ED2AD2820034891007409F5 /* Application.cpp in Sources */,
-				2ECAE357202DF7650028D506 /* Observer.cpp in Sources */,
+				2ECAE357202DF7650028D506 /* Observers.inl in Sources */,
 				2EB2BE862021F33D00772B0F /* NodeController.cpp in Sources */,
 				2E06AEC12003898C00197838 /* EAGLViewController.mm in Sources */,
 				2E06AEB820035F1400197838 /* EAGLView.mm in Sources */,

@@ -14,6 +14,7 @@
 
 namespace live {
     class NodeController : public Uncopyable<NodeController>, public observer::Observer
+    class NodeController : public Uncopyable<NodeController>, public observer::Observer<Node>
     {
     public:
         /**
