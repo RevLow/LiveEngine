@@ -1,7 +1,7 @@
 #define PLUS(ELEM) ELEM+other.ELEM
 #define MINUS(ELEM) ELEM-other.ELEM
 
-namespace {
+namespace __MATRIX_OPERATION__ {
     template<int R, int C, int N>
     struct multiple{
         inline static float f(const Matrix4D& src, const Matrix4D& other)
@@ -73,10 +73,10 @@ inline Matrix4D Matrix4D::operator*(const Matrix4D& other) const
 {
     Matrix4D result;
 
-    assign<1, COLUMN>::f(result, *this, other);
-    assign<2, COLUMN>::f(result, *this, other);
-    assign<3, COLUMN>::f(result, *this, other);
-    assign<4, COLUMN>::f(result, *this, other);
+    __MATRIX_OPERATION__::assign<1, COLUMN>::f(result, *this, other);
+    __MATRIX_OPERATION__::assign<2, COLUMN>::f(result, *this, other);
+    __MATRIX_OPERATION__::assign<3, COLUMN>::f(result, *this, other);
+    __MATRIX_OPERATION__::assign<4, COLUMN>::f(result, *this, other);
     
     return result;
 }

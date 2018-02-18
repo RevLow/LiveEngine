@@ -1,4 +1,4 @@
-namespace {
+namespace __VEC_OPERATION__ {
     template<int N, int NN>
     struct plus
     {
@@ -52,7 +52,7 @@ template<typename DerivedClass>
 inline DerivedClass _Vec_<N>::operator+(const DerivedClass& other) const
 {
     _Vec_<N> vec;
-    plus<N, N>::f(vec, *this, other);
+    __VEC_OPERATION__::plus<N, N>::f(vec, *this, other);
 
     return vec;
 }
@@ -62,14 +62,14 @@ template <typename DerivedClass>
 inline DerivedClass _Vec_<N>::operator-(const DerivedClass &other) const
 {
     _Vec_<N> vec;
-    minus<N, N>::f(vec, *this, other);
+    __VEC_OPERATION__::minus<N, N>::f(vec, *this, other);
     return vec;
 }
 
 template<int N>
 inline float _Vec_<N>::operator*(const _Vec_<N> &other) const
 {
-    return dot<N, N>::f(*this, other);
+    return __VEC_OPERATION__::dot<N, N>::f(*this, other);
 }
 
 
