@@ -38,8 +38,11 @@ namespace live
     {
       public:
         Node();
+        virtual ~Node();
+        Node(const Node& other) = default;
+        Node& operator=(const Node& other) = default;
         
-        virtual void addChild(std::unique_ptr<Node> node) final;
+        virtual void addChild(std::shared_ptr<Node> childNode) final;
         virtual void traversal(const Matrix4D& parentMatrix, const Visitor& visitor);
         virtual void drawCall(const Visitor& visitor);
 
@@ -79,9 +82,7 @@ namespace live
         Vec3 _scale;
         
         Matrix4D _modelMatrix;
-        std::vector<std::unique_ptr<Node>> _child;
-
-        DEFINE_DEFAULT_MOVE_CONSTRUCTOR(Node);
+        std::vector<std::shared_ptr<Node>> _child;
     };
 }
 

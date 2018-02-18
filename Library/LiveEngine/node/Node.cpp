@@ -18,11 +18,16 @@ Node::Node()
 {
 }
 
-void Node::addChild(std::unique_ptr<Node> node)
+Node::~Node()
+{
+    std::vector<std::shared_ptr<Node>>().swap(_child);
+}
+
+void Node::addChild(std::shared_ptr<Node> node)
 {
     if (node != nullptr)
     {
-        _child.emplace_back(std::move(node));
+        _child.emplace_back(node);
     }
 }
 
@@ -32,7 +37,7 @@ void Node::traversal(const Matrix4D& parentMatrix, const Visitor& visitor)
     
     std::sort(
         _child.begin(), _child.end(),
-        [](const std::unique_ptr<Node>& lhs, const std::unique_ptr<Node>& rhs) {
+        [](const std::shared_ptr<Node>& lhs, const std::shared_ptr<Node>& rhs) {
             return lhs->_layerOrder < rhs->_layerOrder;
         });
 

@@ -16,6 +16,9 @@ namespace live {
     class NodeController : public Uncopyable<NodeController>, public observer::Observer<Node>
     {
     public:
+        NodeController(std::shared_ptr<Node> n) { node = n; };
+        virtual ~NodeController() {};
+        
         /**
          *  監視オブジェクトからの通知メソッド
          *
@@ -27,6 +30,13 @@ namespace live {
         virtual void onNodeTranslate(const Vec3& value) {};
         virtual void onNodeRation(const Vec3& value) {};
         virtual void onNodeScale(const Vec3& value) {};
+        
+        std::shared_ptr<Node> getTargetNode() const
+        {
+            return node.lock();
+        }
+    private:
+        std::weak_ptr<Node> node;
     };
 }
 
