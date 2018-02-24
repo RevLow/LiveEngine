@@ -10,23 +10,6 @@
 
 using namespace live;
 
-/*
- 以下のプログラムをテンプレートで実装
- 
- for(int II=0, int SrcRow=0;II < 3;II++)
- {
-    if(II == I) continue;
-    for(int JJ=0, int SrcCol=0;JJ < 3;JJ++)
-    {
-        if(JJ == J) continue;
-        dst.m[SrcRow * ROW + SrcCol] = src.m[II * ROW + JJ];
-        SrcCol++;
-    }
- 
-    SrcRow++;
- }
- */
-
 namespace  {
     template<bool Cond, typename Then, typename Else>
     struct if_;
@@ -125,7 +108,7 @@ namespace  {
         {
             static void f(SubMatrix<I, J>& dst, const Matrix4D& src)
             {
-                dst.m[SrcRow * ROW + SrcCol] = src.m[II * 4 + JJ];
+                dst.m[SrcCol * ROW + SrcRow] = src.m[JJ * 4 + II];
                 func2<II, JJ+1, SrcRow, SrcCol+1>::f(dst, src);
             }
         };
@@ -139,9 +122,9 @@ namespace  {
         
         constexpr float determinant() const
         {
-            return    m[0] * (m[4] * m[8] - m[5] * m[7])
-                    - m[1] * (m[3] * m[8] - m[5] * m[6])
-                    + m[2] * (m[3] * m[7] - m[4] * m[6]);
+            return    m[0] * (m[4] * m[8] - m[7] * m[5])
+                    - m[3] * (m[1] * m[8] - m[7] * m[2])
+                    + m[6] * (m[1] * m[5] - m[4] * m[2]);
         }
 
         float m[ROW * COLUMN];
@@ -152,10 +135,10 @@ namespace  {
     {
         static void f(Matrix4D& dst, const Matrix4D& src)
         {
-            dst.m[I] = src.m[I * Matrix4D::ROW];
-            dst.m[1 * Matrix4D::ROW + I] = src.m[I * Matrix4D::ROW + 1];
-            dst.m[2 * Matrix4D::ROW + I] = src.m[I * Matrix4D::ROW + 2];
-            dst.m[3 * Matrix4D::ROW + I] = src.m[I * Matrix4D::ROW + 3];
+            dst.m[I * Matrix4D::ROW] = src.m[I];
+            dst.m[I * Matrix4D::ROW + 1] = src.m[1 * Matrix4D::ROW + I];
+            dst.m[I * Matrix4D::ROW + 2] = src.m[2 * Matrix4D::ROW + I];
+            dst.m[I * Matrix4D::ROW + 3] = src.m[3 * Matrix4D::ROW + I];
             transposeImpl<I+1>::f(dst, src);
         }
     };
@@ -179,9 +162,6 @@ Matrix4D Matrix4D::transpose() const
     Matrix4D result;
 
     transposeImpl<0>::f(result, *this);
-    transposeImpl<1>::f(result, *this);
-    transposeImpl<2>::f(result, *this);
-    transposeImpl<3>::f(result, *this);
 
     return result;
 }
@@ -208,10 +188,10 @@ Matrix4D Matrix4D::inverse() const
     float A32 = -SubMatrix<2, 3>::create(*this).determinant() / determinant();
     float A33 =  SubMatrix<3, 3>::create(*this).determinant() / determinant();
     
-    return { A00, A01, A02, A03,
-             A10, A11, A12, A13,
-             A20, A21, A22, A23,
-             A30, A31, A32, A33 };
+    return { A00, A10, A20, A30,
+             A01, A11, A21, A31,
+             A02, A12, A22, A32,
+             A03, A13, A23, A33 };
 }
 
 

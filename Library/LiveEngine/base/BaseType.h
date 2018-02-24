@@ -37,7 +37,20 @@ namespace live
         inline _Vec_<N> operator+=(const _Vec_<N>& other) const;
         inline _Vec_<N> operator-=(const _Vec_<N>& other) const;
 
-        float _v[N];
+        bool isZero() const
+        {
+            for (float* vPtr = _v; vPtr != &_v[N-1]; vPtr++)
+            {
+                if(std::round(*vPtr) != 0.0f)
+                {
+                    return false;
+                }
+            }
+            
+            return true;
+        }
+        
+        mutable float _v[N];
     };
 
     class Vec2 : public _Vec_<2>
@@ -152,10 +165,10 @@ namespace live
       public:
         union {
             struct {
-                float m11, m12, m13, m14,
-                      m21, m22, m23, m24,
-                      m31, m32, m33, m34,
-                      m41, m42, m43, m44;
+                float m11, m21, m31, m41,
+                      m12, m22, m32, m42,
+                      m13, m23, m33, m43,
+                      m14, m24, m34, m44;
             };
 
             float m[ROW * COLUMN];
@@ -166,7 +179,7 @@ namespace live
         {
             if (this != &other)
             {
-                *this = std::move(other);
+                memcpy(this->m, other.m, sizeof(float) * ROW * COLUMN);
             }
             return *this;
         };
