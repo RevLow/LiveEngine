@@ -16,6 +16,7 @@
 		2E06AF2B20131C8E00197838 /* Node.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2E06AF2920131C8E00197838 /* Node.cpp */; };
 		2E7744D7203184B900671C73 /* BaseTypeTests.mm in Sources */ = {isa = PBXBuildFile; fileRef = 2E7744D6203184B900671C73 /* BaseTypeTests.mm */; };
 		2E7744DA2031D27500671C73 /* NodeTests.mm in Sources */ = {isa = PBXBuildFile; fileRef = 2E7744D92031D27500671C73 /* NodeTests.mm */; };
+		2E7744E12039589800671C73 /* Sprite.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2E7744DF2039589800671C73 /* Sprite.cpp */; };
 		2EB2BE862021F33D00772B0F /* NodeController.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2EB2BE842021F33D00772B0F /* NodeController.cpp */; };
 		2EB2BE892022039100772B0F /* BaseType.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2EB2BE882022039100772B0F /* BaseType.cpp */; };
 		2EB2BE8C2025E68E00772B0F /* Matrix4D.inl in Resources */ = {isa = PBXBuildFile; fileRef = 2EB2BE8B2025E68E00772B0F /* Matrix4D.inl */; };
@@ -76,6 +77,8 @@
 		2E06AF2A20131C8E00197838 /* Node.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Node.h; path = node/Node.h; sourceTree = "<group>"; };
 		2E7744D6203184B900671C73 /* BaseTypeTests.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = BaseTypeTests.mm; path = LiveEngine/base/BaseTypeTests.mm; sourceTree = "<group>"; };
 		2E7744D92031D27500671C73 /* NodeTests.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = NodeTests.mm; path = LiveEngine/node/NodeTests.mm; sourceTree = "<group>"; };
+		2E7744DF2039589800671C73 /* Sprite.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Sprite.cpp; path = 2d/Sprite.cpp; sourceTree = "<group>"; };
+		2E7744E02039589800671C73 /* Sprite.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Sprite.h; path = 2d/Sprite.h; sourceTree = "<group>"; };
 		2EB2BE842021F33D00772B0F /* NodeController.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = NodeController.cpp; path = controller/NodeController.cpp; sourceTree = "<group>"; };
 		2EB2BE852021F33D00772B0F /* NodeController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NodeController.h; path = controller/NodeController.h; sourceTree = "<group>"; };
 		2EB2BE882022039100772B0F /* BaseType.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = BaseType.cpp; path = base/BaseType.cpp; sourceTree = "<group>"; };
@@ -219,6 +222,15 @@
 			name = node;
 			sourceTree = "<group>";
 		};
+		2E7744DE2039586B00671C73 /* 2d */ = {
+			isa = PBXGroup;
+			children = (
+				2E7744DF2039589800671C73 /* Sprite.cpp */,
+				2E7744E02039589800671C73 /* Sprite.h */,
+			);
+			name = 2d;
+			sourceTree = "<group>";
+		};
 		2EB2BE832021F32000772B0F /* controller */ = {
 			isa = PBXGroup;
 			children = (
@@ -269,6 +281,7 @@
 		2ED2AD012003465E007409F5 /* LiveEngine */ = {
 			isa = PBXGroup;
 			children = (
+				2E7744DE2039586B00671C73 /* 2d */,
 				2EB2BE832021F32000772B0F /* controller */,
 				2E06AF1C200B91EC00197838 /* node */,
 				2E06AEBB20036A1000197838 /* base */,
@@ -404,6 +417,7 @@
 			files = (
 				2ED2AD2820034891007409F5 /* Application.cpp in Sources */,
 				2ECAE357202DF7650028D506 /* Observers.inl in Sources */,
+				2E7744E12039589800671C73 /* Sprite.cpp in Sources */,
 				2EB2BE862021F33D00772B0F /* NodeController.cpp in Sources */,
 				2E06AEC12003898C00197838 /* EAGLViewController.mm in Sources */,
 				2E06AEB820035F1400197838 /* EAGLView.mm in Sources */,

@@ -111,11 +111,31 @@ namespace live
         Vec2 uv = {0.0f, 0.0f};
         Vec4 color = {1.0f, 1.0f, 1.0f, 1.0f};
     };
+    
+    class Shape
+    {
+    public:
+        virtual const bool isContain(const Vec3&) const = 0;
+    };
 
-    class Rect
+    class Triangle : public Shape
+    {
+    public:
+        Vertex vertices[3];
+        virtual const bool isContain(const Vec3&) const
+        {
+            return true;
+        }
+    };
+    
+    class Rect : public Shape
     {
       public:
-        Vertex vert[4];
+        Triangle triangles[2];
+        virtual const inline bool isContain(const Vec3& v) const
+        {
+            return triangles[0].isContain(v) || triangles[1].isContain(v);
+        }
     };
 
     class Matrix4D
