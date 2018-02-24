@@ -10,6 +10,14 @@
 #include "../../../LiveEngine/node/Node.h"
 #include "../../../LiveEngine/controller/NodeController.h"
 
+namespace {
+    inline float RADIAN_TO_PI(float radian)
+    {
+        return radian * (M_PI / 180.0f);
+    }
+}
+
+
 class MockController : public live::NodeController
 {
 public:
@@ -47,6 +55,16 @@ public:
     bool isTranslateCall = false;
     bool isRotateCall = false;
     bool isScaleCall = false;
+};
+
+class MockNode : public live::Node
+{
+public:
+    live::Matrix4D& calculateModelMatrix()
+    {
+        computeModelMatrix();
+        return _modelMatrix;
+    }
 };
 
 @interface NodeTests : XCTestCase
@@ -115,6 +133,68 @@ public:
     XCTAssertEqual(child.use_count(), 1, "Reference count is not 1");
     n->addChild(child);
     XCTAssertEqual(child.use_count(), 2, "Reference count is not 2");
+}
+
+-(void) testMatrixTranslate
+{
+    std::shared_ptr<MockNode> n = std::make_shared<MockNode>();
+    n->translateX(2.0f);
+
+    live::Matrix4D& matrix = n->calculateModelMatrix();
+    live::Vec3 srcXYZ = {2.0f, 4.0f, 5.0f};
+    live::Vec4 dstXYZ = matrix * srcXYZ;
+
+    XCTAssertEqual(roundf(dstXYZ.x()), 4.0f, "translate failed");
+    XCTAssertEqual(roundf(dstXYZ.y()), 4.0f, "translate failed");
+    XCTAssertEqual(roundf(dstXYZ.z()), 5.0f, "translate failed");
+}
+
+-(void) testMatrixRotation
+{
+    std::shared_ptr<MockNode> n = std::make_shared<MockNode>();
+    n->anchorPoint({0.5f, 0.5f, 0.0f});
+    n->rotateZ(RADIAN_TO_PI(90.0f));
+    live::Matrix4D& matrix = n->calculateModelMatrix();
+    
+    live::Vec3 srcXYZ = {1.0f, 1.0f, 1.0f};
+    live::Vec4 dstXYZ = matrix * srcXYZ;
+    
+    
+    XCTAssertEqualWithAccuracy(dstXYZ.x(), -1.5f, 0.01f, "translate failed");
+    XCTAssertEqualWithAccuracy(dstXYZ.y(),  0.5f, 0.01f, "translate failed");
+    XCTAssertEqualWithAccuracy(dstXYZ.z(),  1.0f, 0.01f, "translate failed");
+}
+
+-(void) testMatrixScale
+{
+    std::shared_ptr<MockNode> n = std::make_shared<MockNode>();
+    n->anchorPoint({0.5f, 0.5f, 0.0f});
+    n->scale({2.0f, 2.0f, 1.0f});
+    live::Matrix4D& matrix = n->calculateModelMatrix();
+    
+    live::Vec3 srcXYZ = {1.0f, 1.0f, 1.0f};
+    live::Vec4 dstXYZ = matrix * srcXYZ;
+    
+    XCTAssertEqual(dstXYZ.x(), 1.0f, "translate failed");
+    XCTAssertEqual(dstXYZ.y(), 1.0f, "translate failed");
+    XCTAssertEqual(dstXYZ.z(), 1.0f, "translate failed");
+}
+
+-(void) testMatrixCalculation
+{
+    std::shared_ptr<MockNode> n = std::make_shared<MockNode>();
+    n->anchorPoint({0.5f, 0.5f, 0.0f});
+    n->translateX(2.0f);
+    n->rotateZ(RADIAN_TO_PI(45.0f));
+    n->scale({2.0f, 2.0f, 1.0f});
+
+    live::Matrix4D&  matrix = n->calculateModelMatrix();
+    live::Vec3 srcXYZ = {1.0f, 1.0f, 1.0f};
+    live::Vec4 dstXYZ = matrix * srcXYZ;
+    
+    XCTAssertEqualWithAccuracy(dstXYZ.x(), 1.0f,                  0.01f, "translate failed");
+    XCTAssertEqualWithAccuracy(dstXYZ.y(), 2.0f * sqrt(2) - 1.0f, 0.01f, "translate failed");
+    XCTAssertEqual(dstXYZ.z(), 1.0f, "translate failed");
 }
 
 @end

@@ -31,7 +31,8 @@ namespace live
     {
         TRANSLATION = 1,
         ROTATION = 2,
-        SCALE = 3
+        SCALE = 3,
+        ANCHOR = 4
     };
     
     class Node : public observer::Subject<Node>
@@ -65,14 +66,19 @@ namespace live
         virtual void scaleX(float value) final;
         virtual void scaleY(float value) final;
         virtual void scaleZ(float value) final;
-        
+
+        virtual void anchorPoint(const Vec3&) final;
+        virtual void anchorPoint(Vec3&& s) final;
+        virtual void anchorPointX(float value) final;
+        virtual void anchorPointY(float value) final;
+        virtual void anchorPointZ(float value) final;
+
         const Vec3& position() const { return _position; }
         const Vec3& rotation() const { return _rotation; }
         const Vec3& scale() const { return _scale; }
+        const Vec3& anchorPoint() const { return _anchorPoint; }
       protected:
-        virtual Matrix4D computeMatrix(const Matrix4D& parent);
-
-      private:
+        void computeModelMatrix();
         int8_t _layerOrder;
         uint8_t _opacity;
         bool _dirty;
@@ -80,6 +86,7 @@ namespace live
         Vec3 _position;
         Vec3 _rotation;
         Vec3 _scale;
+        Vec3 _anchorPoint;
         
         Matrix4D _modelMatrix;
         std::vector<std::shared_ptr<Node>> _child;
