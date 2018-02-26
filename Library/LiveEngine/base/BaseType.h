@@ -107,6 +107,7 @@ namespace live
     class Vertex
     {
       public:
+        Vertex(Vec3 _position, Vec2 _uv, Vec4 _color) : position(_position), uv(_uv), color(_color) {}
         Vec3 position = {0.0f, 0.0f, 0.0f};
         Vec2 uv = {0.0f, 0.0f};
         Vec4 color = {1.0f, 1.0f, 1.0f, 1.0f};
@@ -121,21 +122,55 @@ namespace live
     class Triangle : public Shape
     {
     public:
-        Vertex vertices[3];
-        virtual const bool isContain(const Vec3&) const
+        Triangle(const Vertex& v1,const Vertex& v2,const Vertex& v3) : vertices {v1, v2, v3} {}
+        virtual const bool isContain(const Vec3& v) const
         {
-            return true;
+            Vec3 c1 = (vertices[1].position - vertices[0].position).cross(v - vertices[1].position);
+            Vec3 c2 = (vertices[2].position - vertices[1].position).cross(v - vertices[2].position);
+            Vec3 c3 = (vertices[0].position - vertices[2].position).cross(v - vertices[0].position);
+            
+            float dot_12 = c1 * c2;
+            float dot_13 = c1 * c3;
+            
+            return dot_12 >= 0 && dot_13 >= 0;
         }
+
+        Vertex vertices[3];
     };
-    
+
+    /**
+     *  v[0]-------v[2]
+     *   |           |
+     *  v[1]-------v[3]
+     */                                                                                    
     class Rect : public Shape
     {
       public:
-        Triangle triangles[2];
-        virtual const inline bool isContain(const Vec3& v) const
+        Rect(const Vertex& v1,const Vertex& v2,const Vertex& v3, const Vertex& v4) : vertices {v1, v2, v3, v4} {}
+        
+        virtual const bool isContain(const Vec3& v) const
         {
-            return triangles[0].isContain(v) || triangles[1].isContain(v);
+            Vec3 c1 = (vertices[1].position - vertices[0].position).cross(v - vertices[1].position);
+            Vec3 c2 = (vertices[3].position - vertices[1].position).cross(v - vertices[3].position);
+            Vec3 c3 = (vertices[2].position - vertices[3].position).cross(v - vertices[2].position);
+            Vec3 c4 = (vertices[0].position - vertices[2].position).cross(v - vertices[0].position);
+            
+            float dot_12 = c1 * c2;
+            float dot_13 = c1 * c3;
+            float dot_14 = c1 * c4;
+            
+            return dot_12 >= 0 && dot_13 >= 0 && dot_14 >= 0;
         }
+        
+        std::array<Triangle, 2> split() const
+        {
+            Triangle t1 = {vertices[0], vertices[1], vertices[2] };
+            Triangle t2 = {vertices[2], vertices[1], vertices[3] };
+
+            return {t1, t2};
+        }
+        
+        Vertex vertices[4];
     };
 
     class Matrix4D

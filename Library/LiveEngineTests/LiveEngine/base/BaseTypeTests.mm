@@ -164,14 +164,6 @@
 
 -(void)testMatrix4DDeterminant
 {
-    /*
-    live::Matrix4D mat = {
-        3.0f, 1.0f, 1.0f, 2.0f,
-        5.0f, 1.0f, 3.0f, 4.0f,
-        2.0f, 0.0f, 1.0f, 0.0f,
-        1.0f, 3.0f, 2.0f, 1.0f
-    };*/
-    
     live::Matrix4D mat = {
         3.0f, 5.0f, 2.0f, 1.0f,
         1.0f, 1.0f, 0.0f, 3.0f,
@@ -252,6 +244,99 @@
     XCTAssertEqualWithAccuracy(result.y(), 19.0f, 0.01f, "Fail y");
     XCTAssertEqualWithAccuracy(result.z(), 4.0f,  0.01f, "Fail z");
     XCTAssertEqualWithAccuracy(result.w(), 7.0f,  0.01f, "Fail w");
+}
+
+-(void) testTriangleContain
+{
+    live::Triangle t1 = {
+        { {0.0f, 1.0f, 0.0f}, {0.0f, 0.0f}, {1.0f, 1.0f, 1.0f, 1.0f} },
+        { {0.0f, 0.0f, 0.0f}, {0.0f, 0.0f}, {1.0f, 1.0f, 1.0f, 1.0f} },
+        { {1.0f, 1.0f, 0.0f}, {0.0f, 0.0f}, {1.0f, 1.0f, 1.0f, 1.0f} }
+    };
+    
+    bool result = t1.isContain({0.5f, 0.5f, 0.0f});
+
+    XCTAssert(result, "position is not contain");
+}
+
+-(void) testTriangleNotContain
+{
+    live::Triangle t1 = {
+        { {0.0f, 1.0f, 0.0f}, {0.0f, 0.0f}, {1.0f, 1.0f, 1.0f, 1.0f} },
+        { {0.0f, 0.0f, 0.0f}, {0.0f, 0.0f}, {1.0f, 1.0f, 1.0f, 1.0f} },
+        { {1.0f, 1.0f, 0.0f}, {0.0f, 0.0f}, {1.0f, 1.0f, 1.0f, 1.0f} }
+    };
+    
+    bool result = t1.isContain({0.5f, 1.5f, 0.0f});
+    
+    XCTAssert(!result, "position is contain");
+}
+
+-(void) testRectContain
+{
+    live::Rect r1 = {
+        { {0.0f, 1.0f, 0.0f}, {0.0f, 0.0f}, {1.0f, 1.0f, 1.0f, 1.0f} },
+        { {0.0f, 0.0f, 0.0f}, {0.0f, 0.0f}, {1.0f, 1.0f, 1.0f, 1.0f} },
+        { {1.0f, 1.0f, 0.0f}, {0.0f, 0.0f}, {1.0f, 1.0f, 1.0f, 1.0f} },
+        { {1.0f, 0.0f, 0.0f}, {0.0f, 0.0f}, {1.0f, 1.0f, 1.0f, 1.0f} }
+    };
+    
+    bool result = r1.isContain({0.5f, 0.5f, 0.0f});
+    
+    XCTAssert(result, "position is not contain");
+}
+
+-(void) testRectNotContain
+{
+    live::Rect r1 = {
+        { {0.0f, 1.0f, 0.0f}, {0.0f, 0.0f}, {1.0f, 1.0f, 1.0f, 1.0f} },
+        { {0.0f, 0.0f, 0.0f}, {0.0f, 0.0f}, {1.0f, 1.0f, 1.0f, 1.0f} },
+        { {1.0f, 1.0f, 0.0f}, {0.0f, 0.0f}, {1.0f, 1.0f, 1.0f, 1.0f} },
+        { {1.0f, 0.0f, 0.0f}, {0.0f, 0.0f}, {1.0f, 1.0f, 1.0f, 1.0f} }
+    };
+    
+    bool result = r1.isContain({1.5f, 2.5f, 0.0f});
+    
+    XCTAssert(!result, "position is not contain");
+}
+
+-(void) testRectSplitTriangles
+{
+    live::Rect r1 = {
+        { {0.0f, 1.0f, 0.0f}, {0.0f, 0.0f}, {1.0f, 1.0f, 1.0f, 1.0f} },
+        { {0.0f, 0.0f, 0.0f}, {0.0f, 0.0f}, {1.0f, 1.0f, 1.0f, 1.0f} },
+        { {1.0f, 1.0f, 0.0f}, {0.0f, 0.0f}, {1.0f, 1.0f, 1.0f, 1.0f} },
+        { {1.0f, 0.0f, 0.0f}, {0.0f, 0.0f}, {1.0f, 1.0f, 1.0f, 1.0f} }
+    };
+    
+    std::array<live::Triangle, 2> triangles = r1.split();
+
+    // 1つめの三角形
+    XCTAssertEqual(triangles[0].vertices[0].position.x(), 0.0f, "vert1 position x fail");
+    XCTAssertEqual(triangles[0].vertices[0].position.y(), 1.0f, "vert1 position y fail");
+    XCTAssertEqual(triangles[0].vertices[0].position.z(), 0.0f, "vert1 position z fail");
+    
+    XCTAssertEqual(triangles[0].vertices[1].position.x(), 0.0f, "vert2 position x fail");
+    XCTAssertEqual(triangles[0].vertices[1].position.y(), 0.0f, "vert2 position y fail");
+    XCTAssertEqual(triangles[0].vertices[1].position.z(), 0.0f, "vert2 position z fail");
+    
+    XCTAssertEqual(triangles[0].vertices[2].position.x(), 1.0f, "vert3 position x fail");
+    XCTAssertEqual(triangles[0].vertices[2].position.y(), 1.0f, "vert3 position y fail");
+    XCTAssertEqual(triangles[0].vertices[2].position.z(), 0.0f, "vert3 position z fail");
+
+    // 2つめの三角形
+    XCTAssertEqual(triangles[1].vertices[0].position.x(), 1.0f, "vert1 position x fail");
+    XCTAssertEqual(triangles[1].vertices[0].position.y(), 1.0f, "vert1 position y fail");
+    XCTAssertEqual(triangles[1].vertices[0].position.z(), 0.0f, "vert1 position z fail");
+    
+    XCTAssertEqual(triangles[1].vertices[1].position.x(), 0.0f, "vert2 position x fail");
+    XCTAssertEqual(triangles[1].vertices[1].position.y(), 0.0f, "vert2 position y fail");
+    XCTAssertEqual(triangles[1].vertices[1].position.z(), 0.0f, "vert2 position z fail");
+    
+    XCTAssertEqual(triangles[1].vertices[2].position.x(), 1.0f, "vert3 position x fail");
+    XCTAssertEqual(triangles[1].vertices[2].position.y(), 0.0f, "vert3 position y fail");
+    XCTAssertEqual(triangles[1].vertices[2].position.z(), 0.0f, "vert3 position z fail");
+
 }
 
 @end
