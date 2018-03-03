@@ -20,7 +20,8 @@ namespace live
         virtual ~ITask(){};
         virtual void run() const = 0;
 
-        DEFINE_DEFAULT_MOVE_CONSTRUCTOR(ITask)
+        ITask(ITask&&) = default;
+        ITask& operator=(ITask&&) = default;
     };
 }
 

@@ -122,6 +122,11 @@ namespace live
     class Triangle : public Shape
     {
     public:
+        Triangle() : vertices {
+                                {{0.0f, 1.0f, 0.0f}, {0.0f, 0.0f}, {0.0f, 0.0f, 0.0f, 0.0f}},
+                                {{0.0f, 0.0f, 0.0f}, {0.0f, 0.0f}, {0.0f, 0.0f, 0.0f, 0.0f}},
+                                {{1.0f, 1.0f, 0.0f}, {0.0f, 0.0f}, {0.0f, 0.0f, 0.0f, 0.0f}}
+                              } {}
         Triangle(const Vertex& v1,const Vertex& v2,const Vertex& v3) : vertices {v1, v2, v3} {}
         virtual const bool isContain(const Vec3& v) const
         {
@@ -146,6 +151,12 @@ namespace live
     class Rect : public Shape
     {
       public:
+        Rect() : vertices {
+            {{0.0f, 1.0f, 0.0f}, {0.0f, 0.0f}, {0.0f, 0.0f, 0.0f, 0.0f}},
+            {{0.0f, 0.0f, 0.0f}, {0.0f, 0.0f}, {0.0f, 0.0f, 0.0f, 0.0f}},
+            {{1.0f, 1.0f, 0.0f}, {0.0f, 0.0f}, {0.0f, 0.0f, 0.0f, 0.0f}},
+            {{1.0f, 0.0f, 0.0f}, {0.0f, 0.0f}, {0.0f, 0.0f, 0.0f, 0.0f}}
+        } {}
         Rect(const Vertex& v1,const Vertex& v2,const Vertex& v3, const Vertex& v4) : vertices {v1, v2, v3, v4} {}
         
         virtual const bool isContain(const Vec3& v) const

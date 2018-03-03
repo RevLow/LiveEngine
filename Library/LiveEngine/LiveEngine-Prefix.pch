@@ -44,15 +44,3 @@ private:\
         static unique_ptr p = make_unique();\
         return p;\
     }
-
-
-#define DEFINE_DEFAULT_MOVE_CONSTRUCTOR(_TYPE)\
-_TYPE(_TYPE&&) noexcept {};\
-_TYPE& operator=(_TYPE&& other) noexcept\
-{\
-    if(this != &other )\
-    {\
-        return other;\
-    }\
-    return *this;\
-};

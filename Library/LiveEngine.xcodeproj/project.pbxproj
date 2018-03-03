@@ -17,6 +17,7 @@
 		2E7744D7203184B900671C73 /* BaseTypeTests.mm in Sources */ = {isa = PBXBuildFile; fileRef = 2E7744D6203184B900671C73 /* BaseTypeTests.mm */; };
 		2E7744DA2031D27500671C73 /* NodeTests.mm in Sources */ = {isa = PBXBuildFile; fileRef = 2E7744D92031D27500671C73 /* NodeTests.mm */; };
 		2E7744E12039589800671C73 /* Sprite.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2E7744DF2039589800671C73 /* Sprite.cpp */; };
+		2E7744E42045A4F300671C73 /* TriangleRenderCommand.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2E7744E22045A4F300671C73 /* TriangleRenderCommand.cpp */; };
 		2EB2BE862021F33D00772B0F /* NodeController.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2EB2BE842021F33D00772B0F /* NodeController.cpp */; };
 		2EB2BE892022039100772B0F /* BaseType.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2EB2BE882022039100772B0F /* BaseType.cpp */; };
 		2EB2BE8C2025E68E00772B0F /* Matrix4D.inl in Resources */ = {isa = PBXBuildFile; fileRef = 2EB2BE8B2025E68E00772B0F /* Matrix4D.inl */; };
@@ -31,6 +32,7 @@
 		2ED2AD1A2003465E007409F5 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 2ED2AD182003465E007409F5 /* InfoPlist.strings */; };
 		2ED2AD1C2003465E007409F5 /* LiveEngineTests.mm in Sources */ = {isa = PBXBuildFile; fileRef = 2ED2AD1B2003465E007409F5 /* LiveEngineTests.mm */; };
 		2ED2AD2820034891007409F5 /* Application.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2ED2AD2620034891007409F5 /* Application.cpp */; };
+		2ED468E02046F8AF00589375 /* Texture2D.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2ED468DE2046F8AF00589375 /* Texture2D.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -79,6 +81,8 @@
 		2E7744D92031D27500671C73 /* NodeTests.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = NodeTests.mm; path = LiveEngine/node/NodeTests.mm; sourceTree = "<group>"; };
 		2E7744DF2039589800671C73 /* Sprite.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Sprite.cpp; path = 2d/Sprite.cpp; sourceTree = "<group>"; };
 		2E7744E02039589800671C73 /* Sprite.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Sprite.h; path = 2d/Sprite.h; sourceTree = "<group>"; };
+		2E7744E22045A4F300671C73 /* TriangleRenderCommand.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = TriangleRenderCommand.cpp; path = render/command/TriangleRenderCommand.cpp; sourceTree = "<group>"; };
+		2E7744E32045A4F300671C73 /* TriangleRenderCommand.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TriangleRenderCommand.h; path = render/command/TriangleRenderCommand.h; sourceTree = "<group>"; };
 		2EB2BE842021F33D00772B0F /* NodeController.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = NodeController.cpp; path = controller/NodeController.cpp; sourceTree = "<group>"; };
 		2EB2BE852021F33D00772B0F /* NodeController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NodeController.h; path = controller/NodeController.h; sourceTree = "<group>"; };
 		2EB2BE882022039100772B0F /* BaseType.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = BaseType.cpp; path = base/BaseType.cpp; sourceTree = "<group>"; };
@@ -99,6 +103,8 @@
 		2ED2AD1B2003465E007409F5 /* LiveEngineTests.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = LiveEngineTests.mm; sourceTree = "<group>"; };
 		2ED2AD2620034891007409F5 /* Application.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Application.cpp; path = platform/Application.cpp; sourceTree = "<group>"; };
 		2ED2AD2720034891007409F5 /* Application.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Application.h; path = platform/Application.h; sourceTree = "<group>"; };
+		2ED468DE2046F8AF00589375 /* Texture2D.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Texture2D.cpp; path = 2d/Texture2D.cpp; sourceTree = "<group>"; };
+		2ED468DF2046F8AF00589375 /* Texture2D.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Texture2D.h; path = 2d/Texture2D.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -175,6 +181,8 @@
 			isa = PBXGroup;
 			children = (
 				2E06AF0C2007840200197838 /* RenderCommand.h */,
+				2E7744E22045A4F300671C73 /* TriangleRenderCommand.cpp */,
+				2E7744E32045A4F300671C73 /* TriangleRenderCommand.h */,
 			);
 			name = command;
 			sourceTree = "<group>";
@@ -227,6 +235,8 @@
 			children = (
 				2E7744DF2039589800671C73 /* Sprite.cpp */,
 				2E7744E02039589800671C73 /* Sprite.h */,
+				2ED468DE2046F8AF00589375 /* Texture2D.cpp */,
+				2ED468DF2046F8AF00589375 /* Texture2D.h */,
 			);
 			name = 2d;
 			sourceTree = "<group>";
@@ -418,7 +428,9 @@
 				2ED2AD2820034891007409F5 /* Application.cpp in Sources */,
 				2ECAE357202DF7650028D506 /* Observers.inl in Sources */,
 				2E7744E12039589800671C73 /* Sprite.cpp in Sources */,
+				2ED468E02046F8AF00589375 /* Texture2D.cpp in Sources */,
 				2EB2BE862021F33D00772B0F /* NodeController.cpp in Sources */,
+				2E7744E42045A4F300671C73 /* TriangleRenderCommand.cpp in Sources */,
 				2E06AEC12003898C00197838 /* EAGLViewController.mm in Sources */,
 				2E06AEB820035F1400197838 /* EAGLView.mm in Sources */,
 				2ED2AD072003465E007409F5 /* LiveEngine.cpp in Sources */,

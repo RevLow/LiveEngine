@@ -16,7 +16,7 @@ namespace live {
     class NodeController : public Uncopyable<NodeController>, public observer::Observer<Node>
     {
     public:
-        NodeController(std::shared_ptr<Node> n) { node = n; };
+        NodeController(std::shared_ptr<Node> n) : node(n) { };
         virtual ~NodeController() {};
         
         /**

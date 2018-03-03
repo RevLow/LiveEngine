@@ -38,6 +38,9 @@ namespace live
     class Node : public observer::Subject<Node>
     {
       public:
+        // todo: このメソッドはあとでマクロ化させる
+        static std::shared_ptr<Node> create() noexcept { return std::make_shared<Node>(); };
+
         Node();
         virtual ~Node();
         Node(const Node& other) = default;
@@ -77,6 +80,8 @@ namespace live
         const Vec3& rotation() const { return _rotation; }
         const Vec3& scale() const { return _scale; }
         const Vec3& anchorPoint() const { return _anchorPoint; }
+        
+        virtual void update(float deltaT) {};
       protected:
         void computeModelMatrix();
         int8_t _layerOrder;

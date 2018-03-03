@@ -9,17 +9,17 @@
 #ifndef __LiveEngine__RenderCommand__
 #define __LiveEngine__RenderCommand__
 
-#include "../../base/Uncopyable.h"
-
 namespace live
 {
     class RenderCommand
     {
-      public:
+    public:
         RenderCommand() = default;
         virtual ~RenderCommand() = default;
+        RenderCommand(RenderCommand&&) = default;
+        RenderCommand& operator=(RenderCommand&&) = default;
 
-        DEFINE_DEFAULT_MOVE_CONSTRUCTOR(RenderCommand);
+        virtual void execute() = 0;
     };
 }
 

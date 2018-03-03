@@ -19,7 +19,8 @@ namespace live
         GLView(){};
         virtual ~GLView(){};
 
-        DEFINE_DEFAULT_MOVE_CONSTRUCTOR(GLView)
+        GLView(GLView&&) = default;
+        GLView& operator=(GLView&&) = default;
     };
 }
 
