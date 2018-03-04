@@ -6,6 +6,7 @@
 
 #ifdef __OBJC__
     #import <Foundation/Foundation.h>
+    #import <UIKit/UIKit.h>
 #endif
 
 #ifdef __cplusplus
@@ -16,6 +17,9 @@
     #include <unordered_map>
     #include <iostream>
     #include <math.h>
+    #include <cassert>
+    #include <OpenGLES/ES3/gl.h>
+    #include <OpenGLES/ES3/glext.h>
 #endif
 
 

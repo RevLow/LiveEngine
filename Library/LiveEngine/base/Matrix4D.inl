@@ -91,7 +91,7 @@ inline Matrix4D Matrix4D::operator*(const Matrix4D& other) const
     Matrix4D result;
 
     __MATRIX_OPERATION__::EntryCalc<0>::f(result, *this, other);
-    
+
     return result;
 }
 

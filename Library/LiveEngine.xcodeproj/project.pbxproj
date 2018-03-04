@@ -33,6 +33,9 @@
 		2ED2AD1C2003465E007409F5 /* LiveEngineTests.mm in Sources */ = {isa = PBXBuildFile; fileRef = 2ED2AD1B2003465E007409F5 /* LiveEngineTests.mm */; };
 		2ED2AD2820034891007409F5 /* Application.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2ED2AD2620034891007409F5 /* Application.cpp */; };
 		2ED468E02046F8AF00589375 /* Texture2D.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2ED468DE2046F8AF00589375 /* Texture2D.cpp */; };
+		32BE96DA204A49DA00028B98 /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 32BE96D9204A49DA00028B98 /* OpenGLES.framework */; };
+		32BE96DC204A4A2000028B98 /* GLKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 32BE96DB204A4A2000028B98 /* GLKit.framework */; };
+		32BE96DF204A7CE600028B98 /* Image-ios.mm in Sources */ = {isa = PBXBuildFile; fileRef = 32BE96DD204A7CE600028B98 /* Image-ios.mm */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -105,6 +108,10 @@
 		2ED2AD2720034891007409F5 /* Application.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Application.h; path = platform/Application.h; sourceTree = "<group>"; };
 		2ED468DE2046F8AF00589375 /* Texture2D.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Texture2D.cpp; path = 2d/Texture2D.cpp; sourceTree = "<group>"; };
 		2ED468DF2046F8AF00589375 /* Texture2D.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Texture2D.h; path = 2d/Texture2D.h; sourceTree = "<group>"; };
+		32BE96D9204A49DA00028B98 /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
+		32BE96DB204A4A2000028B98 /* GLKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GLKit.framework; path = System/Library/Frameworks/GLKit.framework; sourceTree = SDKROOT; };
+		32BE96DD204A7CE600028B98 /* Image-ios.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = "Image-ios.mm"; path = "2d/Image-ios.mm"; sourceTree = "<group>"; };
+		32BE96DE204A7CE600028B98 /* Image.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Image.h; path = 2d/Image.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -112,6 +119,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				32BE96DC204A4A2000028B98 /* GLKit.framework in Frameworks */,
+				32BE96DA204A49DA00028B98 /* OpenGLES.framework in Frameworks */,
 				2ED2AD002003465E007409F5 /* Foundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -237,6 +246,8 @@
 				2E7744E02039589800671C73 /* Sprite.h */,
 				2ED468DE2046F8AF00589375 /* Texture2D.cpp */,
 				2ED468DF2046F8AF00589375 /* Texture2D.h */,
+				32BE96DD204A7CE600028B98 /* Image-ios.mm */,
+				32BE96DE204A7CE600028B98 /* Image.h */,
 			);
 			name = 2d;
 			sourceTree = "<group>";
@@ -281,6 +292,8 @@
 		2ED2ACFE2003465E007409F5 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				32BE96DB204A4A2000028B98 /* GLKit.framework */,
+				32BE96D9204A49DA00028B98 /* OpenGLES.framework */,
 				2ED2ACFF2003465E007409F5 /* Foundation.framework */,
 				2ED2AD0D2003465E007409F5 /* XCTest.framework */,
 				2ED2AD102003465E007409F5 /* UIKit.framework */,
@@ -434,6 +447,7 @@
 				2E06AEC12003898C00197838 /* EAGLViewController.mm in Sources */,
 				2E06AEB820035F1400197838 /* EAGLView.mm in Sources */,
 				2ED2AD072003465E007409F5 /* LiveEngine.cpp in Sources */,
+				32BE96DF204A7CE600028B98 /* Image-ios.mm in Sources */,
 				2E06AF16200B41F000197838 /* RenderTask.cpp in Sources */,
 				2EB2BE892022039100772B0F /* BaseType.cpp in Sources */,
 				2E06AEAF2003519400197838 /* GLViewImpl-ios.mm in Sources */,

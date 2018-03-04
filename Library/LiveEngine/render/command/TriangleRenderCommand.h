@@ -22,9 +22,11 @@ namespace live {
         TriangleRenderCommand(TriangleRenderCommand&&) = default;
         TriangleRenderCommand& operator=(TriangleRenderCommand&&) = default;
         virtual void execute() override;
+        uint32_t getMaterialId() const { return materialId; }
     private:
         std::array<Triangle, 2> triangles;
         std::weak_ptr<Texture2D> texture;
+        uint32_t materialId;
     };
 }
 

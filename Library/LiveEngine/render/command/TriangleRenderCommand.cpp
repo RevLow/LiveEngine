@@ -13,7 +13,9 @@ using namespace live;
 TriangleRenderCommand::TriangleRenderCommand(const std::array<Triangle, 2>& _triangles, std::shared_ptr<Texture2D> _texture)
 : triangles(_triangles)
 , texture(_texture)
+, materialId(0)
 {
+    // todo: generate material id from shaderprogram and texture information
 }
 
 void TriangleRenderCommand::execute()
