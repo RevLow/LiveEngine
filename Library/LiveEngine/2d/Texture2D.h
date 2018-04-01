@@ -20,6 +20,7 @@ namespace live{
         virtual ~Texture2D();
         float getImageWidth() const { return width; }
         float getImageHeight() const { return height; }
+        GLuint getTextureId() const { return textureID; }
     private:
         GLuint textureID;
         float width;

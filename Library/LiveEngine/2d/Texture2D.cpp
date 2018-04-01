@@ -18,6 +18,11 @@ namespace {
 
 using namespace live;
 
+std::shared_ptr<Texture2D> Texture2D::create(const std::string& filePath)
+{
+    return std::make_shared<Texture2D>(filePath);
+}
+
 Texture2D::Texture2D(const std::string& filePath) : width(0.0f), height(0.0f), textureID(0)
 {
     glGenTextures(1, &textureID);

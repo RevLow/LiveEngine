@@ -24,6 +24,7 @@ namespace live {
         virtual void execute() override;
         uint32_t getMaterialId() const { return materialId; }
     private:
+        uint32_t createMatrialId();
         std::array<Triangle, 2> triangles;
         std::weak_ptr<Texture2D> texture;
         uint32_t materialId;
