@@ -20,23 +20,19 @@ namespace live
     {
         DEFINE_SINGLETON(Application)
       public:
-        using RenderQueue = std::vector<std::unique_ptr<RenderCommand>>;
-        using RenderGroup = std::vector<RenderQueue>;
-
-      public:
+        virtual ~Application() = default;
         void initGLView(GLView* glview);
         void update(float delta);
         void resetRenderGroup();
         // RenderQueueはコピーコストがかかるのでmoveで明示的に渡せるように右辺値参照のみとるようにする
         void pushRenderQueue(RenderQueue&& queue);
-        
-        virtual ~Application() = default;
-
+        std::stack<std::unique_ptr<Scene>>& getSceneStack() { return _sceneStack; };
       private:
         Application();
 
         std::unique_ptr<GLView> _glview;
         std::vector<std::unique_ptr<ITask>> _tasks;
+        std::stack<std::unique_ptr<Scene>> _sceneStack;
         RenderGroup _renderGroup;
     };
 }

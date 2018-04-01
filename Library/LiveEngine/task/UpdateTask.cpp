@@ -8,15 +8,22 @@
 
 #include "UpdateTask.h"
 #include "Application.h"
+#include "../base/Visitor.h"
 
 using namespace live;
 
 void UpdateTask::run() const
 {
-    // レンダーツリーを深さ優先探索で見ていき、renderコマンドを発行
     Application::getInstance()->resetRenderGroup();
-    /*
-     const Level& level = Application::getInstance()->popLevelStack()
-     level->traverse();
-     */
+    Visitor visitor;
+    std::stack<std::unique_ptr<Scene>>& sceneStack = Application::getInstance()->getSceneStack();
+
+    if (sceneStack.empty()) {
+        return;
+    }
+
+    std::unique_ptr<Scene>& topScene = sceneStack.top();
+    topScene->startTraversal(visitor);
+
+    // visitorにはRenderCommandが入っている
 }
