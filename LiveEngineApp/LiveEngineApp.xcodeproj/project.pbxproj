@@ -20,6 +20,7 @@
 		2E06AEF22003900B00197838 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 2E06AEF02003900B00197838 /* InfoPlist.strings */; };
 		2E06AEF42003900B00197838 /* LiveEngineAppTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 2E06AEF32003900B00197838 /* LiveEngineAppTests.m */; };
 		2E06AF062003903900197838 /* libLiveEngine.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2E06AF032003901900197838 /* libLiveEngine.a */; };
+		2EAA2DD620661F90004C162A /* MainScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2EAA2DD420661F90004C162A /* MainScene.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -64,6 +65,8 @@
 		2E06AEF12003900B00197838 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		2E06AEF32003900B00197838 /* LiveEngineAppTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LiveEngineAppTests.m; sourceTree = "<group>"; };
 		2E06AEFD2003901900197838 /* LiveEngine.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = LiveEngine.xcodeproj; path = ../Library/LiveEngine.xcodeproj; sourceTree = "<group>"; };
+		2EAA2DD420661F90004C162A /* MainScene.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = MainScene.cpp; path = App/MainScene.cpp; sourceTree = "<group>"; };
+		2EAA2DD520661F90004C162A /* MainScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MainScene.h; path = App/MainScene.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -125,6 +128,7 @@
 		2E06AED42003900B00197838 /* LiveEngineApp */ = {
 			isa = PBXGroup;
 			children = (
+				2EAA2DD120661F6F004C162A /* App */,
 				2E06AEDD2003900B00197838 /* LVAppDelegate.h */,
 				2E06AEDE2003900B00197838 /* LVAppDelegate.mm */,
 				2E06AEE02003900B00197838 /* Images.xcassets */,
@@ -169,6 +173,15 @@
 				2E06AF052003901900197838 /* LiveEngineTests.xctest */,
 			);
 			name = Products;
+			sourceTree = "<group>";
+		};
+		2EAA2DD120661F6F004C162A /* App */ = {
+			isa = PBXGroup;
+			children = (
+				2EAA2DD420661F90004C162A /* MainScene.cpp */,
+				2EAA2DD520661F90004C162A /* MainScene.h */,
+			);
+			name = App;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -292,6 +305,7 @@
 			files = (
 				2E06AEDF2003900B00197838 /* LVAppDelegate.mm in Sources */,
 				2E06AEDB2003900B00197838 /* main.m in Sources */,
+				2EAA2DD620661F90004C162A /* MainScene.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -365,6 +379,11 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
+					"${PROJECT_DIR}/../Library/include/",
+				);
 				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -398,6 +417,11 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
+					"${PROJECT_DIR}/../Library/include/",
+				);
 				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";

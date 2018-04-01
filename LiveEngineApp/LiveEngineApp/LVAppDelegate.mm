@@ -8,6 +8,7 @@
 
 #import "LVAppDelegate.h"
 #import "EAGLViewController.h"
+#import "App/MainScene.h"
 
 @implementation LVAppDelegate
 

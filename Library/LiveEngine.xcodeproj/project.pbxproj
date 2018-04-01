@@ -86,6 +86,7 @@
 		2E7744E02039589800671C73 /* Sprite.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Sprite.h; path = 2d/Sprite.h; sourceTree = "<group>"; };
 		2E7744E22045A4F300671C73 /* TriangleRenderCommand.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = TriangleRenderCommand.cpp; path = render/command/TriangleRenderCommand.cpp; sourceTree = "<group>"; };
 		2E7744E32045A4F300671C73 /* TriangleRenderCommand.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TriangleRenderCommand.h; path = render/command/TriangleRenderCommand.h; sourceTree = "<group>"; };
+		2EAA2DCF206212E9004C162A /* Scene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Scene.h; path = node/Scene.h; sourceTree = "<group>"; };
 		2EB2BE842021F33D00772B0F /* NodeController.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = NodeController.cpp; path = controller/NodeController.cpp; sourceTree = "<group>"; };
 		2EB2BE852021F33D00772B0F /* NodeController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NodeController.h; path = controller/NodeController.h; sourceTree = "<group>"; };
 		2EB2BE882022039100772B0F /* BaseType.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = BaseType.cpp; path = base/BaseType.cpp; sourceTree = "<group>"; };
@@ -219,6 +220,7 @@
 			children = (
 				2E06AF2920131C8E00197838 /* Node.cpp */,
 				2E06AF2A20131C8E00197838 /* Node.h */,
+				2EAA2DCF206212E9004C162A /* Scene.h */,
 			);
 			name = node;
 			sourceTree = "<group>";
