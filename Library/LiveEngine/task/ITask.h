@@ -9,8 +9,6 @@
 #ifndef __LiveEngine__ITask__
 #define __LiveEngine__ITask__
 
-#include "../base/Uncopyable.h"
-
 namespace live
 {
     class ITask

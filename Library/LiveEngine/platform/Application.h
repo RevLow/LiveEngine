@@ -9,8 +9,9 @@
 #ifndef __LiveEngine__Application__
 #define __LiveEngine__Application__
 
-#include "../render/command/RenderCommand.h"
 #include "../task/ITask.h"
+#include "../node/Scene.h"
+#include "../base/Uncopyable.h"
 #include "GLView.h"
 
 namespace live

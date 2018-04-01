@@ -9,8 +9,6 @@
 #ifndef __LiveEngine__GLView__
 #define __LiveEngine__GLView__
 
-#include "../base/Uncopyable.h"
-
 namespace live
 {
     class GLView
