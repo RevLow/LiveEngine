@@ -11,14 +11,6 @@
 
 using namespace live;
 
-namespace {
-    Rect convertRectByModelMatrix(const Rect& rect, const Matrix4D& matrix)
-    {
-        return rect;
-    }
-}
-
-
 Sprite::Sprite(const std::string& filePath)
 {
     texture = TextureFactory::getInstance()->produceTexture(filePath);
@@ -55,17 +47,13 @@ Sprite::Sprite(const std::string& filePath,  const std::array<Vec2, 4>&  uv)
     };
 }
 
-void Sprite::traversal(const live::Matrix4D &parentMatrix, const live::Visitor& visitior)
+void Sprite::traversal(const live::Matrix4D &parentMatrix, live::Visitor& visitior)
 {
     Node::traversal(parentMatrix, visitior);
 }
 
-void Sprite::drawCall(const live::Visitor &visitor)
+void Sprite::drawCall(const Matrix4D& modelMatrix, Visitor& visitor)
 {
-    // 1. モデル行列を使いboundsに変換をかける
-    Rect convertedRect = convertRectByModelMatrix(bounds, _modelMatrix);
-
-    // 2. 変換後のboundsをsplitして、レンダーコマンドを作成する
-    TriangleRenderCommand cmd(convertedRect.split(), texture.lock());
-    
+    std::unique_ptr<TriangleRenderCommand> cmd(new TriangleRenderCommand(bounds.split(), texture.lock(), modelMatrix));
+    visitor.pushRenderCommand(std::move(cmd));
 }

@@ -10,10 +10,11 @@
 
 using namespace live;
 
-TriangleRenderCommand::TriangleRenderCommand(const std::array<Triangle, 2>& _triangles, std::shared_ptr<Texture2D> _texture)
+TriangleRenderCommand::TriangleRenderCommand(const std::array<Triangle, 2>& _triangles, std::shared_ptr<Texture2D> _texture, const Matrix4D& _modelMatrix)
 : triangles(_triangles)
 , texture(_texture)
 , materialId(0)
+, modelMatrix(_modelMatrix)
 {
     // todo: generate material id from shaderprogram and texture information
 }

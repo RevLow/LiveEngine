@@ -12,9 +12,12 @@
 using namespace live;
 
 Node::Node()
-    : _modelMatrix(Matrix4D::Identity()), _dirty(false),
-      _position(0.0f, 0.0f, 0.0f), _rotation(0.0f, 0.0f, 0.0f),
-      _scale(1.0f, 1.0f, 1.0f), _anchorPoint(0.0f, 0.0f, 0.0f)
+: _modelMatrix(Matrix4D::Identity())
+, _dirty(false)
+, _position(0.0f, 0.0f, 0.0f)
+, _rotation(0.0f, 0.0f, 0.0f)
+, _scale(1.0f, 1.0f, 1.0f)
+, _anchorPoint(0.0f, 0.0f, 0.0f)
 {
 }
 
@@ -31,7 +34,7 @@ void Node::addChild(std::shared_ptr<Node> node)
     }
 }
 
-void Node::traversal(const Matrix4D& parentMatrix, const Visitor& visitor)
+void Node::traversal(const Matrix4D& parentMatrix, Visitor& visitor)
 {
     if(_dirty)
     {
@@ -39,7 +42,7 @@ void Node::traversal(const Matrix4D& parentMatrix, const Visitor& visitor)
     }
     
     Matrix4D m = parentMatrix * _modelMatrix;
-    
+
     std::sort(
         _child.begin(), _child.end(),
         [](const std::shared_ptr<Node>& lhs, const std::shared_ptr<Node>& rhs) {
@@ -54,7 +57,7 @@ void Node::traversal(const Matrix4D& parentMatrix, const Visitor& visitor)
         (*it)->traversal(m, visitor);
     }
 
-    drawCall(visitor);
+    drawCall(m, visitor);
 
     for (; it != _child.end(); it++)
     {
@@ -62,11 +65,8 @@ void Node::traversal(const Matrix4D& parentMatrix, const Visitor& visitor)
     }
 }
 
-void Node::drawCall(const live::Visitor& visitor) {
-    if (_dirty)
-    {
-        
-    }
+void Node::drawCall(const Matrix4D& modelMatrix, Visitor& visitor)
+{
 }
 
 #pragma mark TRANSFORMATION

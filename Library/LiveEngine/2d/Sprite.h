@@ -11,6 +11,7 @@
 
 #include "../node/Node.h"
 #include "Texture2D.h"
+#include "../base/Visitor.h"
 
 namespace live
 {
@@ -37,8 +38,8 @@ namespace live
         };
 
         virtual void update(float deltaT) {};
-        virtual void traversal(const Matrix4D& parentMatrix, const Visitor& visitor) override;
-        virtual void drawCall(const Visitor& visitor) override;
+        virtual void traversal(const Matrix4D& parentMatrix, Visitor& visitor) override;
+        virtual void drawCall(const Matrix4D& modelMatrix, Visitor& visitor) override;
     private:
         Rect bounds;
         std::weak_ptr<Texture2D> texture;

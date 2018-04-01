@@ -9,8 +9,6 @@
 #ifndef __LiveEngine__Rect__
 #define __LiveEngine__Rect__
 
-#include "Uncopyable.h"
-
 namespace live
 {
     template <int N> class _Vec_
@@ -239,16 +237,18 @@ namespace live
 
             float m[ROW * COLUMN];
         };
-
-        Matrix4D(Matrix4D&& mat) noexcept { *this = std::move(mat); };
-        Matrix4D& operator=(Matrix4D&& other) noexcept
+        
+        // コピーコンストラクタ
+        Matrix4D(const Matrix4D& mat) noexcept { *this = mat; }
+        Matrix4D& operator=(const Matrix4D& other) noexcept
         {
-            if (this != &other)
+            if(this != &other)
             {
                 memcpy(this->m, other.m, sizeof(float) * ROW * COLUMN);
             }
+            
             return *this;
-        };
+        }
     };
 
 #include "Matrix4D.inl"

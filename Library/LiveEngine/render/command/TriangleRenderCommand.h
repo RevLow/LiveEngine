@@ -17,7 +17,7 @@ namespace live {
     class TriangleRenderCommand : public RenderCommand
     {
     public:
-        TriangleRenderCommand(const std::array<Triangle, 2>& _triangles, std::shared_ptr<Texture2D> _texture);
+        TriangleRenderCommand(const std::array<Triangle, 2>& _triangles, std::shared_ptr<Texture2D> _texture, const Matrix4D& modelMatrix);
         virtual ~TriangleRenderCommand() = default;
         TriangleRenderCommand(TriangleRenderCommand&&) = default;
         TriangleRenderCommand& operator=(TriangleRenderCommand&&) = default;
@@ -27,6 +27,7 @@ namespace live {
         std::array<Triangle, 2> triangles;
         std::weak_ptr<Texture2D> texture;
         uint32_t materialId;
+        Matrix4D modelMatrix;
     };
 }
 

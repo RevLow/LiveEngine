@@ -9,13 +9,12 @@
 #ifndef __LiveEngine__Node__
 #define __LiveEngine__Node__
 
-#include "../base/Uncopyable.h"
 #include "../base/observer/Observer.h"
 #include "../base/BaseType.h"
+#include "../base/Visitor.h"
 
 namespace live
 {
-    class Visitor;
     typedef struct _transformAction : observer::Action
     {
         _transformAction(uint8_t _key, Vec3 _value) : key(_key), value(_value)
@@ -47,8 +46,8 @@ namespace live
         Node& operator=(const Node& other) = default;
         
         virtual void addChild(std::shared_ptr<Node> childNode) final;
-        virtual void traversal(const Matrix4D& parentMatrix, const Visitor& visitor);
-        virtual void drawCall(const Visitor& visitor);
+        virtual void traversal(const Matrix4D& parentMatrix, Visitor& visitor);
+        virtual void drawCall(const Matrix4D& modelMatrix, Visitor& visitor);
 
         virtual void transform(Matrix4D&& mat);
         
