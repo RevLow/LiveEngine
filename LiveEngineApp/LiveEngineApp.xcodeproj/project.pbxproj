@@ -12,7 +12,7 @@
 		2E06AED32003900B00197838 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2E06AED22003900B00197838 /* UIKit.framework */; };
 		2E06AED92003900B00197838 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 2E06AED72003900B00197838 /* InfoPlist.strings */; };
 		2E06AEDB2003900B00197838 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 2E06AEDA2003900B00197838 /* main.m */; };
-		2E06AEDF2003900B00197838 /* LVAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 2E06AEDE2003900B00197838 /* LVAppDelegate.m */; };
+		2E06AEDF2003900B00197838 /* LVAppDelegate.mm in Sources */ = {isa = PBXBuildFile; fileRef = 2E06AEDE2003900B00197838 /* LVAppDelegate.mm */; };
 		2E06AEE12003900B00197838 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2E06AEE02003900B00197838 /* Images.xcassets */; };
 		2E06AEE82003900B00197838 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2E06AEE72003900B00197838 /* XCTest.framework */; };
 		2E06AEE92003900B00197838 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2E06AECE2003900B00197838 /* Foundation.framework */; };
@@ -56,7 +56,7 @@
 		2E06AEDA2003900B00197838 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		2E06AEDC2003900B00197838 /* LiveEngineApp-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "LiveEngineApp-Prefix.pch"; sourceTree = "<group>"; };
 		2E06AEDD2003900B00197838 /* LVAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LVAppDelegate.h; sourceTree = "<group>"; };
-		2E06AEDE2003900B00197838 /* LVAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LVAppDelegate.m; sourceTree = "<group>"; };
+		2E06AEDE2003900B00197838 /* LVAppDelegate.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = LVAppDelegate.mm; sourceTree = "<group>"; };
 		2E06AEE02003900B00197838 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		2E06AEE62003900B00197838 /* LiveEngineAppTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = LiveEngineAppTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		2E06AEE72003900B00197838 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
@@ -126,7 +126,7 @@
 			isa = PBXGroup;
 			children = (
 				2E06AEDD2003900B00197838 /* LVAppDelegate.h */,
-				2E06AEDE2003900B00197838 /* LVAppDelegate.m */,
+				2E06AEDE2003900B00197838 /* LVAppDelegate.mm */,
 				2E06AEE02003900B00197838 /* Images.xcassets */,
 				2E06AED52003900B00197838 /* Supporting Files */,
 			);
@@ -290,7 +290,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2E06AEDF2003900B00197838 /* LVAppDelegate.m in Sources */,
+				2E06AEDF2003900B00197838 /* LVAppDelegate.mm in Sources */,
 				2E06AEDB2003900B00197838 /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
