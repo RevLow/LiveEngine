@@ -18,6 +18,7 @@
 		2E7744DA2031D27500671C73 /* NodeTests.mm in Sources */ = {isa = PBXBuildFile; fileRef = 2E7744D92031D27500671C73 /* NodeTests.mm */; };
 		2E7744E12039589800671C73 /* Sprite.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2E7744DF2039589800671C73 /* Sprite.cpp */; };
 		2E7744E42045A4F300671C73 /* TriangleRenderCommand.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2E7744E22045A4F300671C73 /* TriangleRenderCommand.cpp */; };
+		2EAA2DE5206FF787004C162A /* xxhash.c in Sources */ = {isa = PBXBuildFile; fileRef = 2EAA2DE3206FF787004C162A /* xxhash.c */; };
 		2EB2BE862021F33D00772B0F /* NodeController.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2EB2BE842021F33D00772B0F /* NodeController.cpp */; };
 		2EB2BE892022039100772B0F /* BaseType.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2EB2BE882022039100772B0F /* BaseType.cpp */; };
 		2EB2BE8C2025E68E00772B0F /* Matrix4D.inl in Resources */ = {isa = PBXBuildFile; fileRef = 2EB2BE8B2025E68E00772B0F /* Matrix4D.inl */; };
@@ -88,6 +89,8 @@
 		2E7744E32045A4F300671C73 /* TriangleRenderCommand.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TriangleRenderCommand.h; path = render/command/TriangleRenderCommand.h; sourceTree = "<group>"; };
 		2EAA2DCF206212E9004C162A /* Scene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Scene.h; path = node/Scene.h; sourceTree = "<group>"; };
 		2EAA2DD920662703004C162A /* macro.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = macro.h; path = base/macro.h; sourceTree = "<group>"; };
+		2EAA2DE3206FF787004C162A /* xxhash.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = xxhash.c; path = external/xxhash/xxhash.c; sourceTree = "<group>"; };
+		2EAA2DE4206FF787004C162A /* xxhash.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = xxhash.h; path = external/xxhash/xxhash.h; sourceTree = "<group>"; };
 		2EB2BE842021F33D00772B0F /* NodeController.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = NodeController.cpp; path = controller/NodeController.cpp; sourceTree = "<group>"; };
 		2EB2BE852021F33D00772B0F /* NodeController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NodeController.h; path = controller/NodeController.h; sourceTree = "<group>"; };
 		2EB2BE882022039100772B0F /* BaseType.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = BaseType.cpp; path = base/BaseType.cpp; sourceTree = "<group>"; };
@@ -256,6 +259,23 @@
 			name = 2d;
 			sourceTree = "<group>";
 		};
+		2EAA2DE1206FF723004C162A /* external */ = {
+			isa = PBXGroup;
+			children = (
+				2EAA2DE2206FF777004C162A /* xxhash */,
+			);
+			name = external;
+			sourceTree = "<group>";
+		};
+		2EAA2DE2206FF777004C162A /* xxhash */ = {
+			isa = PBXGroup;
+			children = (
+				2EAA2DE3206FF787004C162A /* xxhash.c */,
+				2EAA2DE4206FF787004C162A /* xxhash.h */,
+			);
+			name = xxhash;
+			sourceTree = "<group>";
+		};
 		2EB2BE832021F32000772B0F /* controller */ = {
 			isa = PBXGroup;
 			children = (
@@ -308,6 +328,7 @@
 		2ED2AD012003465E007409F5 /* LiveEngine */ = {
 			isa = PBXGroup;
 			children = (
+				2EAA2DE1206FF723004C162A /* external */,
 				2E7744DE2039586B00671C73 /* 2d */,
 				2EB2BE832021F32000772B0F /* controller */,
 				2E06AF1C200B91EC00197838 /* node */,
@@ -448,6 +469,7 @@
 				2ED468E02046F8AF00589375 /* Texture2D.cpp in Sources */,
 				2EB2BE862021F33D00772B0F /* NodeController.cpp in Sources */,
 				2E7744E42045A4F300671C73 /* TriangleRenderCommand.cpp in Sources */,
+				2EAA2DE5206FF787004C162A /* xxhash.c in Sources */,
 				2E06AEC12003898C00197838 /* EAGLViewController.mm in Sources */,
 				2E06AEB820035F1400197838 /* EAGLView.mm in Sources */,
 				2ED2AD072003465E007409F5 /* LiveEngine.cpp in Sources */,
