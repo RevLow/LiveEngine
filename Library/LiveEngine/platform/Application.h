@@ -24,9 +24,9 @@ namespace live
         void initGLView(GLView* glview);
         void update(float delta);
         void resetRenderGroup();
-        // RenderQueueはコピーコストがかかるのでmoveで明示的に渡せるように右辺値参照のみとるようにする
         void pushRenderQueue(RenderQueue&& queue);
         std::stack<std::unique_ptr<Scene>>& getSceneStack() { return _sceneStack; };
+        const RenderGroup& getRenderGroup() const { return _renderGroup; }
       private:
         Application();
 
