@@ -22,6 +22,8 @@
 		2EAA2DDD20691C63004C162A /* RenderQueue.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2EAA2DDC20691C63004C162A /* RenderQueue.cpp */; };
 		2EAA2DE020691F0C004C162A /* VertexBuffer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2EAA2DDE20691F0C004C162A /* VertexBuffer.cpp */; };
 		2EAA2DE5206FF787004C162A /* xxhash.c in Sources */ = {isa = PBXBuildFile; fileRef = 2EAA2DE3206FF787004C162A /* xxhash.c */; };
+		2EAA2DED207260A7004C162A /* FileManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2EAA2DEB207260A7004C162A /* FileManager.cpp */; };
+		2EAA2DF12072655D004C162A /* FileManagerImpl-ios.mm in Sources */ = {isa = PBXBuildFile; fileRef = 2EAA2DF02072655D004C162A /* FileManagerImpl-ios.mm */; };
 		2EB2BE862021F33D00772B0F /* NodeController.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2EB2BE842021F33D00772B0F /* NodeController.cpp */; };
 		2EB2BE892022039100772B0F /* BaseType.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2EB2BE882022039100772B0F /* BaseType.cpp */; };
 		2EB2BE8C2025E68E00772B0F /* Matrix4D.inl in Resources */ = {isa = PBXBuildFile; fileRef = 2EB2BE8B2025E68E00772B0F /* Matrix4D.inl */; };
@@ -100,6 +102,10 @@
 		2EAA2DDF20691F0C004C162A /* VertexBuffer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = VertexBuffer.h; path = render/VertexBuffer.h; sourceTree = "<group>"; };
 		2EAA2DE3206FF787004C162A /* xxhash.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = xxhash.c; path = external/xxhash/xxhash.c; sourceTree = "<group>"; };
 		2EAA2DE4206FF787004C162A /* xxhash.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = xxhash.h; path = external/xxhash/xxhash.h; sourceTree = "<group>"; };
+		2EAA2DEB207260A7004C162A /* FileManager.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = FileManager.cpp; path = platform/FileManager.cpp; sourceTree = "<group>"; };
+		2EAA2DEC207260A7004C162A /* FileManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FileManager.h; path = platform/FileManager.h; sourceTree = "<group>"; };
+		2EAA2DEE20726469004C162A /* FileManagerImpl.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = FileManagerImpl.h; path = platform/FileManagerImpl.h; sourceTree = "<group>"; };
+		2EAA2DF02072655D004C162A /* FileManagerImpl-ios.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = "FileManagerImpl-ios.mm"; path = "platform/ios/FileManagerImpl-ios.mm"; sourceTree = "<group>"; };
 		2EB2BE842021F33D00772B0F /* NodeController.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = NodeController.cpp; path = controller/NodeController.cpp; sourceTree = "<group>"; };
 		2EB2BE852021F33D00772B0F /* NodeController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NodeController.h; path = controller/NodeController.h; sourceTree = "<group>"; };
 		2EB2BE882022039100772B0F /* BaseType.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = BaseType.cpp; path = base/BaseType.cpp; sourceTree = "<group>"; };
@@ -184,6 +190,7 @@
 				2E06AEBA2003692100197838 /* GLViewImpl-ios.h */,
 				2E06AEBF2003898C00197838 /* EAGLViewController.h */,
 				2E06AEC02003898C00197838 /* EAGLViewController.mm */,
+				2EAA2DF02072655D004C162A /* FileManagerImpl-ios.mm */,
 			);
 			name = ios;
 			path = LiveEngine;
@@ -391,7 +398,10 @@
 				2E06AEB520035DF600197838 /* ios */,
 				2ED2AD2620034891007409F5 /* Application.cpp */,
 				2ED2AD2720034891007409F5 /* Application.h */,
+				2EAA2DEE20726469004C162A /* FileManagerImpl.h */,
 				2E06AEAE2003519400197838 /* GLView.h */,
+				2EAA2DEB207260A7004C162A /* FileManager.cpp */,
+				2EAA2DEC207260A7004C162A /* FileManager.h */,
 			);
 			name = platform;
 			sourceTree = "<group>";
@@ -479,6 +489,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				2EAA2DDD20691C63004C162A /* RenderQueue.cpp in Sources */,
+				2EAA2DF12072655D004C162A /* FileManagerImpl-ios.mm in Sources */,
 				2ED2AD2820034891007409F5 /* Application.cpp in Sources */,
 				2ECAE357202DF7650028D506 /* Observers.inl in Sources */,
 				2E7744E12039589800671C73 /* Sprite.cpp in Sources */,
@@ -495,6 +506,7 @@
 				2EB2BE892022039100772B0F /* BaseType.cpp in Sources */,
 				2EAA2DCD2062118D004C162A /* Visitor.cpp in Sources */,
 				2E06AEAF2003519400197838 /* GLViewImpl-ios.mm in Sources */,
+				2EAA2DED207260A7004C162A /* FileManager.cpp in Sources */,
 				2E06AF0A200631AC00197838 /* UpdateTask.cpp in Sources */,
 				2E06AF2B20131C8E00197838 /* Node.cpp in Sources */,
 			);
