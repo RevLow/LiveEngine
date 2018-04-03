@@ -25,5 +25,5 @@ void RenderQueue::pushQueue(std::unique_ptr<TriangleRenderCommand> cmd)
 
 bool RenderQueue::isSameMaterialId(uint32_t materialId)
 {
-    return materialId == this->materialId;
+    return materialId == this->material->getMaterialId();
 }

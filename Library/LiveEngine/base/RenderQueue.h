@@ -10,13 +10,14 @@
 #define LiveEngine_RenderQueue_h
 
 #include "../render/command/TriangleRenderCommand.h"
+#include "../render/Material.h"
 
 namespace live
 {
     class RenderQueue
     {
     public:
-        RenderQueue(std::unique_ptr<TriangleRenderCommand>& cmd) : materialId(cmd->getMaterialId()) {};
+        RenderQueue(std::unique_ptr<TriangleRenderCommand>& cmd) {};
         ~RenderQueue();
         RenderQueue(RenderQueue&& other)
         {
@@ -26,7 +27,7 @@ namespace live
         {
             if(&other != this)
             {
-                this->materialId = other.materialId;
+                this->material = std::move(other.material);
                 for(std::unique_ptr<TriangleRenderCommand>& cmd : other.queue)
                 {
                     this->queue.emplace_back(std::move(cmd));
@@ -38,7 +39,7 @@ namespace live
         bool isSameMaterialId(uint32_t materialId);
 
         std::vector<std::unique_ptr<TriangleRenderCommand>> queue;
-        uint32_t materialId;
+        std::unique_ptr<Material> material;
     };
     
     using RenderGroup = std::vector<std::unique_ptr<RenderQueue>>;
