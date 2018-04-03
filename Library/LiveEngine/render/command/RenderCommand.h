@@ -18,8 +18,6 @@ namespace live
         virtual ~RenderCommand() = default;
         RenderCommand(RenderCommand&&) = default;
         RenderCommand& operator=(RenderCommand&&) = default;
-
-        virtual void execute() = 0;
     };
 }
 

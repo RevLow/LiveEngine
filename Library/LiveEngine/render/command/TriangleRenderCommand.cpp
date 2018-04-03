@@ -21,11 +21,6 @@ TriangleRenderCommand::TriangleRenderCommand(const std::array<Triangle, 2>& _tri
     materialId = createMatrialId();
 }
 
-void TriangleRenderCommand::execute()
-{
-    
-}
-
 uint32_t TriangleRenderCommand::createMatrialId()
 {
     /*

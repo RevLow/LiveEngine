@@ -21,7 +21,6 @@ namespace live {
         virtual ~TriangleRenderCommand() = default;
         TriangleRenderCommand(TriangleRenderCommand&&) = default;
         TriangleRenderCommand& operator=(TriangleRenderCommand&&) = default;
-        virtual void execute() override;
         uint32_t getMaterialId() const { return materialId; }
     private:
         uint32_t createMatrialId();
