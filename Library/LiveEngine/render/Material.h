@@ -18,7 +18,7 @@ namespace live
     public:
         void use();
         uint32_t getMaterialId() const { return materialId; }
-        const Material& operator=(Material&& other) noexcept
+        Material& operator=(Material&& other) noexcept
         {
             if(&other != this)
             {
@@ -28,7 +28,7 @@ namespace live
                 this->program = other.program;
             }
             
-            return this;
+            return *this;
         }
         Material(Material&& other) noexcept { *this = std::move(other); }
     private:

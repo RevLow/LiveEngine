@@ -25,39 +25,46 @@ void RenderTask::run() const
         int bufferCount = 0;
         for (const std::unique_ptr<TriangleRenderCommand>& cmd : renderQueue->queue)
         {
-            for(const Triangle& triangle : cmd->triangles)
+            for(const Triangle& triangle : cmd->getTriangles())
             {
                 for(const Vertex& vertex : triangle.vertices)
                 {
-                    buffer[bufferCount + 0] = vertex.position.x();
-                    buffer[bufferCount + 1] = vertex.position.y();
-                    buffer[bufferCount + 2] = vertex.position.z();
+                    buffer[bufferCount + 0] = vertex.position.x;
+                    buffer[bufferCount + 1] = vertex.position.y;
+                    buffer[bufferCount + 2] = vertex.position.z;
                     
-                    buffer[bufferCount + 3] = vertex.color.x();
-                    buffer[bufferCount + 4] = vertex.color.y();
-                    buffer[bufferCount + 5] = vertex.color.z();
-                    buffer[bufferCount + 6] = vertex.color.z();
+                    buffer[bufferCount + 3] = vertex.color.x;
+                    buffer[bufferCount + 4] = vertex.color.y;
+                    buffer[bufferCount + 5] = vertex.color.z;
+                    buffer[bufferCount + 6] = vertex.color.w;
 
-                    buffer[bufferCount + 7] = vertex.uv.u();
-                    buffer[bufferCount + 8] = vertex.uv.v();
+                    buffer[bufferCount + 7] = vertex.uv.u;
+                    buffer[bufferCount + 8] = vertex.uv.v;
 
                     bufferCount += 9;
                 }
             }
         }
-        
+
         // renderQueue.materialIdからシェーダを使用する
+        renderQueue->material->use();
+
         /*
          Shader shader("vertexshaderのファイル名", "fragmentshaderのファイル名");
          shader.compile();
          shader.useProgram();
-         */
+        */
         
-        VBO vbo(buffer, vertSize);
-        free(buffer);
 
-        VAO vao(vbo);
-        vao.draw();
+        /*
+         VBO vbo(buffer, vertSize);
+         free(buffer);
+
+         VAO vao(vbo);
+         vao.draw();
+        */
+        
+        
 
         // vbo, vao delete
         // release vertex buffer and vertex array

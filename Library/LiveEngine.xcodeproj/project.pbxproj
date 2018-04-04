@@ -20,6 +20,9 @@
 		2E7744E42045A4F300671C73 /* TriangleRenderCommand.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2E7744E22045A4F300671C73 /* TriangleRenderCommand.cpp */; };
 		2EA9B53C207272D3003FD137 /* ShaderFactory.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2EA9B53A207272D3003FD137 /* ShaderFactory.cpp */; };
 		2EA9B53F20727B9A003FD137 /* Material.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2EA9B53D20727B9A003FD137 /* Material.cpp */; };
+		2EA9B5442074F4A4003FD137 /* Vec2.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2EA9B5422074F4A4003FD137 /* Vec2.cpp */; };
+		2EA9B5472074F975003FD137 /* Vec3.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2EA9B5452074F975003FD137 /* Vec3.cpp */; };
+		2EA9B54A2074FC2A003FD137 /* Vec4.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2EA9B5482074FC2A003FD137 /* Vec4.cpp */; };
 		2EAA2DCD2062118D004C162A /* Visitor.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2EAA2DCB2062118D004C162A /* Visitor.cpp */; };
 		2EAA2DDD20691C63004C162A /* RenderQueue.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2EAA2DDC20691C63004C162A /* RenderQueue.cpp */; };
 		2EAA2DE020691F0C004C162A /* VertexBuffer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2EAA2DDE20691F0C004C162A /* VertexBuffer.cpp */; };
@@ -99,6 +102,12 @@
 		2EA9B53B207272D3003FD137 /* ShaderFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ShaderFactory.h; path = shader/ShaderFactory.h; sourceTree = "<group>"; };
 		2EA9B53D20727B9A003FD137 /* Material.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Material.cpp; path = render/Material.cpp; sourceTree = "<group>"; };
 		2EA9B53E20727B9A003FD137 /* Material.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Material.h; path = render/Material.h; sourceTree = "<group>"; };
+		2EA9B5422074F4A4003FD137 /* Vec2.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Vec2.cpp; path = base/Vec2.cpp; sourceTree = "<group>"; };
+		2EA9B5432074F4A4003FD137 /* Vec2.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Vec2.h; path = base/Vec2.h; sourceTree = "<group>"; };
+		2EA9B5452074F975003FD137 /* Vec3.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Vec3.cpp; path = base/Vec3.cpp; sourceTree = "<group>"; };
+		2EA9B5462074F975003FD137 /* Vec3.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Vec3.h; path = base/Vec3.h; sourceTree = "<group>"; };
+		2EA9B5482074FC2A003FD137 /* Vec4.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Vec4.cpp; path = base/Vec4.cpp; sourceTree = "<group>"; };
+		2EA9B5492074FC2A003FD137 /* Vec4.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Vec4.h; path = base/Vec4.h; sourceTree = "<group>"; };
 		2EAA2DCB2062118D004C162A /* Visitor.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Visitor.cpp; path = base/Visitor.cpp; sourceTree = "<group>"; };
 		2EAA2DCC2062118D004C162A /* Visitor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Visitor.h; path = base/Visitor.h; sourceTree = "<group>"; };
 		2EAA2DCF206212E9004C162A /* Scene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Scene.h; path = node/Scene.h; sourceTree = "<group>"; };
@@ -119,7 +128,6 @@
 		2EB2BE852021F33D00772B0F /* NodeController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NodeController.h; path = controller/NodeController.h; sourceTree = "<group>"; };
 		2EB2BE882022039100772B0F /* BaseType.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = BaseType.cpp; path = base/BaseType.cpp; sourceTree = "<group>"; };
 		2EB2BE8B2025E68E00772B0F /* Matrix4D.inl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = Matrix4D.inl; path = base/Matrix4D.inl; sourceTree = "<group>"; };
-		2EB2BE8D2025E80F00772B0F /* Vec.inl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = Vec.inl; path = base/Vec.inl; sourceTree = "<group>"; };
 		2ECAE355202DF7650028D506 /* Observers.inl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = Observers.inl; path = base/observer/Observers.inl; sourceTree = "<group>"; };
 		2ECAE356202DF7650028D506 /* Observer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Observer.h; path = base/observer/Observer.h; sourceTree = "<group>"; };
 		2ED2ACFC2003465E007409F5 /* libLiveEngine.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libLiveEngine.a; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -215,12 +223,17 @@
 				2E06AEBD20036A2800197838 /* BaseType.h */,
 				2E06AF0F200B05E700197838 /* Uncopyable.h */,
 				2EB2BE882022039100772B0F /* BaseType.cpp */,
-				2EB2BE8D2025E80F00772B0F /* Vec.inl */,
 				2EAA2DCB2062118D004C162A /* Visitor.cpp */,
 				2EAA2DCC2062118D004C162A /* Visitor.h */,
 				2EAA2DD920662703004C162A /* macro.h */,
 				2EAA2DDB206905AF004C162A /* RenderQueue.h */,
 				2EAA2DDC20691C63004C162A /* RenderQueue.cpp */,
+				2EA9B5422074F4A4003FD137 /* Vec2.cpp */,
+				2EA9B5432074F4A4003FD137 /* Vec2.h */,
+				2EA9B5452074F975003FD137 /* Vec3.cpp */,
+				2EA9B5462074F975003FD137 /* Vec3.h */,
+				2EA9B5482074FC2A003FD137 /* Vec4.cpp */,
+				2EA9B5492074FC2A003FD137 /* Vec4.h */,
 			);
 			name = base;
 			sourceTree = "<group>";
@@ -511,6 +524,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2EA9B54A2074FC2A003FD137 /* Vec4.cpp in Sources */,
 				2EAA2DDD20691C63004C162A /* RenderQueue.cpp in Sources */,
 				2EAA2DF12072655D004C162A /* FileManagerImpl-ios.mm in Sources */,
 				2ED2AD2820034891007409F5 /* Application.cpp in Sources */,
@@ -520,8 +534,10 @@
 				2EA9B53C207272D3003FD137 /* ShaderFactory.cpp in Sources */,
 				2EAA2DE020691F0C004C162A /* VertexBuffer.cpp in Sources */,
 				2EB2BE862021F33D00772B0F /* NodeController.cpp in Sources */,
+				2EA9B5442074F4A4003FD137 /* Vec2.cpp in Sources */,
 				2E7744E42045A4F300671C73 /* TriangleRenderCommand.cpp in Sources */,
 				2EAA2DE5206FF787004C162A /* xxhash.c in Sources */,
+				2EA9B5472074F975003FD137 /* Vec3.cpp in Sources */,
 				2E06AEC12003898C00197838 /* EAGLViewController.mm in Sources */,
 				2E06AEB820035F1400197838 /* EAGLView.mm in Sources */,
 				2ED2AD072003465E007409F5 /* LiveEngine.cpp in Sources */,

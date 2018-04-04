@@ -21,7 +21,9 @@ namespace live {
         virtual ~TriangleRenderCommand() = default;
         TriangleRenderCommand(TriangleRenderCommand&&) = default;
         TriangleRenderCommand& operator=(TriangleRenderCommand&&) = default;
+        std::array<Triangle, 2>& getTriangles() { return this->triangles; }
         uint32_t getMaterialId() const { return materialId; }
+        void useMaterial();
     private:
         uint32_t createMatrialId();
         std::array<Triangle, 2> triangles;

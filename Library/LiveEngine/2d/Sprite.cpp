@@ -40,10 +40,10 @@ Sprite::Sprite(const std::string& filePath,  const std::array<Vec2, 4>&  uv)
     float width = texture.lock()->getImageWidth();
     float height = texture.lock()->getImageHeight();
     bounds = {
-        {{width * uv[0].u(), height * uv[0].v(), 0.0f}, {uv[0].u(), uv[0].v()}, {1.0f, 1.0f, 1.0f, 1.0f}},
-        {{width * uv[1].u(), height * uv[1].v(), 0.0f}, {uv[1].u(), uv[1].v()}, {1.0f, 1.0f, 1.0f, 1.0f}},
-        {{width * uv[2].u(), height * uv[2].v(), 0.0f}, {uv[2].u(), uv[2].v()}, {1.0f, 1.0f, 1.0f, 1.0f}},
-        {{width * uv[3].u(), height * uv[3].v(), 0.0f}, {uv[3].u(), uv[3].v()}, {1.0f, 1.0f, 1.0f, 1.0f}}
+        {{width * uv[0].u, height * uv[0].v, 0.0f}, {uv[0].u, uv[0].v}, {1.0f, 1.0f, 1.0f, 1.0f}},
+        {{width * uv[1].u, height * uv[1].v, 0.0f}, {uv[1].u, uv[1].v}, {1.0f, 1.0f, 1.0f, 1.0f}},
+        {{width * uv[2].u, height * uv[2].v, 0.0f}, {uv[2].u, uv[2].v}, {1.0f, 1.0f, 1.0f, 1.0f}},
+        {{width * uv[3].u, height * uv[3].v, 0.0f}, {uv[3].u, uv[3].v}, {1.0f, 1.0f, 1.0f, 1.0f}}
     };
 }
 

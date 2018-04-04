@@ -9,108 +9,19 @@
 #ifndef __LiveEngine__Rect__
 #define __LiveEngine__Rect__
 
+#include "Vec2.h"
+#include "Vec3.h"
+#include "Vec4.h"
+
 namespace live
 {
-    template <int N> class _Vec_
+    struct Vertex
     {
-        template <int M, int NN> friend struct plus;
-        template <int M, int NN> friend struct minus;
-        template <int M, int NN> friend struct dot;
-
-      public:
-        _Vec_() { memset(_v, 0, sizeof(float) * N); }
-
-        template <typename... Args>
-        _Vec_(float f, Args&&... args) : _v{f, args...}
-        {
-        }
-
-        virtual ~_Vec_() = default;
-
-        template <typename DerivedClass>
-        inline DerivedClass operator+(const DerivedClass& other) const;
-        template <typename DerivedClass>
-        inline DerivedClass operator-(const DerivedClass& other) const;
-        inline float operator*(const _Vec_<N>& other) const;
-        inline _Vec_<N> operator+=(const _Vec_<N>& other) const;
-        inline _Vec_<N> operator-=(const _Vec_<N>& other) const;
-
-        bool isZero() const
-        {
-            for (float* vPtr = _v; vPtr != &_v[N-1]; vPtr++)
-            {
-                if(std::round(*vPtr) != 0.0f)
-                {
-                    return false;
-                }
-            }
-            
-            return true;
-        }
-        
-        mutable float _v[N];
+        Vec3 position;
+        Vec2 uv;
+        Vec4 color;
     };
 
-    class Vec2 : public _Vec_<2>
-    {
-      public:
-        Vec2() : _Vec_<2>(0.0f, 0.0f) {}
-        Vec2(const _Vec_<2>& other) : _Vec_<2>(other) {}
-        Vec2(float _u, float _v) : _Vec_<2>(_u, _v) {}
-
-        float u() const { return _v[0]; }
-        float v() const { return _v[1]; }
-
-        void setU(float value) { _v[0] = value; }
-        void setV(float value) { _v[1] = value; }
-    };
-
-    class Vec3 : public _Vec_<3>
-    {
-      public:
-        Vec3() : _Vec_<3>(0.0f, 0.0f, 0.0f) {}
-        Vec3(const _Vec_<3>& other) : _Vec_<3>(other) {}
-        Vec3(float _x, float _y, float _z) : _Vec_<3>(_x, _y, _z) {}
-        inline Vec3 cross(const Vec3& other) const;
-
-        float x() const { return _v[0]; }
-        float y() const { return _v[1]; }
-        float z() const { return _v[2]; }
-
-        void setX(float value) { _v[0] = value; }
-        void setY(float value) { _v[1] = value; }
-        void setZ(float value) { _v[2] = value; }
-    };
-
-    class Vec4 : public _Vec_<4>
-    {
-      public:
-        Vec4() : _Vec_<4>(0.0f, 0.0f, 0.0f, 0.0f) {}
-        Vec4(const _Vec_<4>& other) : _Vec_<4>(other) {}
-        Vec4(float _x, float _y, float _z, float _w) : _Vec_<4>(_x, _y, _z, _w)
-        {
-        }
-
-        float x() const { return _v[0]; }
-        float y() const { return _v[1]; }
-        float z() const { return _v[2]; }
-        float w() const { return _v[3]; }
-
-        void setX(float value) { _v[0] = value; }
-        void setY(float value) { _v[1] = value; }
-        void setZ(float value) { _v[2] = value; }
-        void setW(float value) { _v[2] = value; }
-    };
-
-    class Vertex
-    {
-      public:
-        Vertex(Vec3 _position, Vec2 _uv, Vec4 _color) : position(_position), uv(_uv), color(_color) {}
-        Vec3 position = {0.0f, 0.0f, 0.0f};
-        Vec2 uv = {0.0f, 0.0f};
-        Vec4 color = {1.0f, 1.0f, 1.0f, 1.0f};
-    };
-    
     class Shape
     {
     public:
@@ -252,7 +163,6 @@ namespace live
     };
 
 #include "Matrix4D.inl"
-#include "Vec.inl"
 }
 
 #endif /* defined(__LiveEngine__Rect__) */

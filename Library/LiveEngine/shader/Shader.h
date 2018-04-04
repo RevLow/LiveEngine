@@ -12,16 +12,15 @@
 namespace live {
     class ShaderProgram
     {
-        friend class ShaderFactory;
     public:
         virtual ~ShaderProgram();
         void use();
         GLint getAttribute(const std::string& attr) const;
         GLint getUniform(const std::string& str) const;
-    private:
+        
         ShaderProgram(const std::string& vertexShader, const std::string& fragmentShader);
+    private:
         GLuint shaderProgram;
-
     };
 
     class ShaderProgramState

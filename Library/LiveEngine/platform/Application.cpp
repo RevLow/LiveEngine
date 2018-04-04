@@ -42,5 +42,5 @@ void Application::resetRenderGroup()
 
 void Application::pushRenderQueue(RenderQueue&& queue)
 {
-    _renderGroup.emplace_back(std::move(queue));
+    _renderGroup.emplace_back(new RenderQueue(std::move(queue)));
 }

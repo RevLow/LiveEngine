@@ -14,10 +14,10 @@ using namespace live;
 Node::Node()
 : _modelMatrix(Matrix4D::Identity())
 , _dirty(false)
-, _position(0.0f, 0.0f, 0.0f)
-, _rotation(0.0f, 0.0f, 0.0f)
-, _scale(1.0f, 1.0f, 1.0f)
-, _anchorPoint(0.0f, 0.0f, 0.0f)
+, _position { 0.0f, 0.0f, 0.0f }
+, _rotation { 0.0f, 0.0f, 0.0f }
+, _scale { 1.0f, 1.0f, 1.0f }
+, _anchorPoint { 0.0f, 0.0f, 0.0f }
 {
 }
 
@@ -94,15 +94,15 @@ void Node::translate(Vec3&& pos)
 
 void Node::translateX(float value)
 {
-    translate({value, _position.y(), _position.z()});
+    translate({value, _position.y, _position.z});
 }
 void Node::translateY(float value)
 {
-    translate({_position.x(), value, _position.z()});
+    translate({_position.x, value, _position.z});
 }
 void Node::translateZ(float value)
 {
-    translate({_position.x(), _position.y(), value});
+    translate({_position.x, _position.y, value});
 }
 
 void Node::rotate(const Vec3& r)
@@ -124,15 +124,15 @@ void Node::rotate(Vec3&& r)
 
 void Node::rotateX(float value)
 {
-    rotate({value, _rotation.y(), _rotation.z()});
+    rotate({value, _rotation.y, _rotation.z});
 }
 void Node::rotateY(float value)
 {
-    rotate({_rotation.x(), value, _rotation.z()});
+    rotate({_rotation.x, value, _rotation.z});
 }
 void Node::rotateZ(float value)
 {
-    rotate({_rotation.x(), _rotation.y(), value});
+    rotate({_rotation.x, _rotation.y, value});
 }
 
 void Node::scale(const Vec3& s)
@@ -151,9 +151,9 @@ void Node::scale(Vec3&& s)
     _dirty = true;
 }
 
-void Node::scaleX(float value) { scale({value, _scale.y(), _scale.z()}); }
-void Node::scaleY(float value) { scale({_scale.x(), value, _scale.z()}); }
-void Node::scaleZ(float value) { scale({_scale.x(), _scale.y(), value}); }
+void Node::scaleX(float value) { scale({value, _scale.y, _scale.z}); }
+void Node::scaleY(float value) { scale({_scale.x, value, _scale.z}); }
+void Node::scaleZ(float value) { scale({_scale.x, _scale.y, value}); }
 
 void Node::anchorPoint(const Vec3& anchorPoint)
 {
@@ -171,9 +171,9 @@ void Node::anchorPoint(Vec3&& anchorPoint)
     _dirty = true;
 }
 
-void Node::anchorPointX(float value) { anchorPoint({value, _anchorPoint.y(), _anchorPoint.z()}); }
-void Node::anchorPointY(float value) { anchorPoint({_anchorPoint.x(), value, _anchorPoint.z()}); }
-void Node::anchorPointZ(float value) { anchorPoint({_anchorPoint.x(), _anchorPoint.y(), value}); }
+void Node::anchorPointX(float value) { anchorPoint({value, _anchorPoint.y, _anchorPoint.z}); }
+void Node::anchorPointY(float value) { anchorPoint({_anchorPoint.x, value, _anchorPoint.z}); }
+void Node::anchorPointZ(float value) { anchorPoint({_anchorPoint.x, _anchorPoint.y, value}); }
 
 /**
  *  モデル行列の計算
@@ -181,26 +181,26 @@ void Node::anchorPointZ(float value) { anchorPoint({_anchorPoint.x(), _anchorPoi
  */
 void Node::computeModelMatrix()
 {
-    float m14 = _position.x();
-    float m24 = _position.y();
-    float m34 = _position.z();
+    float m14 = _position.x;
+    float m24 = _position.y;
+    float m34 = _position.z;
 
     if (!_anchorPoint.isZero())
     {
-        m14 -= _scale.x() * _anchorPoint.x();
-        m24 -= _scale.y() * _anchorPoint.y();
-        m34 -= _scale.z() * _anchorPoint.z();
+        m14 -= _scale.x * _anchorPoint.x;
+        m24 -= _scale.y * _anchorPoint.y;
+        m34 -= _scale.z * _anchorPoint.z;
     }
 
     
-    float cosX = cosf(_rotation.x());
-    float sinX = sinf(_rotation.x());
+    float cosX = cosf(_rotation.x);
+    float sinX = sinf(_rotation.x);
     
-    float cosY = cosf(_rotation.y());
-    float sinY = sinf(_rotation.y());
+    float cosY = cosf(_rotation.y);
+    float sinY = sinf(_rotation.y);
     
-    float cosZ = cosf(_rotation.z());
-    float sinZ = sinf(_rotation.z());
+    float cosZ = cosf(_rotation.z);
+    float sinZ = sinf(_rotation.z);
     
     float m11 = cosX * cosY * cosZ - sinX * sinZ,
           m12 = -cosX * cosY * sinZ - sinX * cosZ,
@@ -212,9 +212,9 @@ void Node::computeModelMatrix()
           m32 = sinY * sinZ,
           m33 = cosY;
 
-    m11 *= _scale.x(), m21 *= _scale.x(), m31 *= _scale.x();
-    m12 *= _scale.y(), m22 *= _scale.y(), m32 *= _scale.y();
-    m13 *= _scale.z(), m23 *= _scale.z(), m33 *= _scale.z();
+    m11 *= _scale.x, m21 *= _scale.x, m31 *= _scale.x;
+    m12 *= _scale.y, m22 *= _scale.y, m32 *= _scale.y;
+    m13 *= _scale.z, m23 *= _scale.z, m33 *= _scale.z;
     
     _modelMatrix = {
         m11, m21, m31, 0.0f,

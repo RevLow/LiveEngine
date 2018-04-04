@@ -23,6 +23,7 @@ TriangleRenderCommand::TriangleRenderCommand(const std::array<Triangle, 2>& _tri
 
 uint32_t TriangleRenderCommand::createMatrialId()
 {
+    return 0;
     /*
      int glProgram = (int)_glProgramState-> getGLProgram()->getProgram();
      int intArray[4] = {

@@ -19,8 +19,8 @@ void Visitor::pushRenderCommand(std::unique_ptr<TriangleRenderCommand> cmd)
     }
     else
     {
-        RenderQueue queue(cmd);
-        queue.pushQueue(std::move(cmd));
-        group.emplace_back(queue);
+        std::unique_ptr<RenderQueue> queue(new RenderQueue(cmd));
+        queue->pushQueue(std::move(cmd));
+        group.emplace_back(std::move(queue));
     }
 }

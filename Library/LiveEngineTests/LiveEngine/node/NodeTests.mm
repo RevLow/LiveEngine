@@ -92,9 +92,9 @@ public:
     
     n->attach(controller);
     controller->nodeTranslateX(1.0f);
-    XCTAssertEqual(n->position().x(), 1.0f, "X value is fail");
-    XCTAssertEqual(n->position().y(), 0.0f, "Y value is fail");
-    XCTAssertEqual(n->position().z(), 0.0f, "Z value is fail");
+    XCTAssertEqual(n->position().x, 1.0f, "X value is fail");
+    XCTAssertEqual(n->position().y, 0.0f, "Y value is fail");
+    XCTAssertEqual(n->position().z, 0.0f, "Z value is fail");
     XCTAssertEqual(controller->isTranslateCall, true, "Controller does not call");
 }
 
@@ -105,9 +105,9 @@ public:
     
     n->attach(controller);
     controller->nodeRotateX(0.1f);
-    XCTAssertEqual(n->rotation().x(), 0.1f, "X value is fail");
-    XCTAssertEqual(n->rotation().y(), 0.0f, "Y value is fail");
-    XCTAssertEqual(n->rotation().z(), 0.0f, "Z value is fail");
+    XCTAssertEqual(n->rotation().x, 0.1f, "X value is fail");
+    XCTAssertEqual(n->rotation().y, 0.0f, "Y value is fail");
+    XCTAssertEqual(n->rotation().z, 0.0f, "Z value is fail");
     XCTAssertEqual(controller->isRotateCall, true, "Controller does not call");
 }
 
@@ -118,9 +118,9 @@ public:
     
     n->attach(controller);
     controller->nodeScaleX(2.0f);
-    XCTAssertEqual(n->scale().x(), 2.0f, "X value is fail");
-    XCTAssertEqual(n->scale().y(), 1.0f, "X value is fail");
-    XCTAssertEqual(n->scale().z(), 1.0f, "X value is fail");
+    XCTAssertEqual(n->scale().x, 2.0f, "X value is fail");
+    XCTAssertEqual(n->scale().y, 1.0f, "X value is fail");
+    XCTAssertEqual(n->scale().z, 1.0f, "X value is fail");
     XCTAssertEqual(controller->isScaleCall, true, "Controller does not call");
 }
 
@@ -144,9 +144,9 @@ public:
     live::Vec3 srcXYZ = {2.0f, 4.0f, 5.0f};
     live::Vec4 dstXYZ = matrix * srcXYZ;
 
-    XCTAssertEqual(roundf(dstXYZ.x()), 4.0f, "translate failed");
-    XCTAssertEqual(roundf(dstXYZ.y()), 4.0f, "translate failed");
-    XCTAssertEqual(roundf(dstXYZ.z()), 5.0f, "translate failed");
+    XCTAssertEqual(roundf(dstXYZ.x), 4.0f, "translate failed");
+    XCTAssertEqual(roundf(dstXYZ.y), 4.0f, "translate failed");
+    XCTAssertEqual(roundf(dstXYZ.z), 5.0f, "translate failed");
 }
 
 -(void) testMatrixRotation
@@ -160,9 +160,9 @@ public:
     live::Vec4 dstXYZ = matrix * srcXYZ;
     
     
-    XCTAssertEqualWithAccuracy(dstXYZ.x(), -1.5f, 0.01f, "translate failed");
-    XCTAssertEqualWithAccuracy(dstXYZ.y(),  0.5f, 0.01f, "translate failed");
-    XCTAssertEqualWithAccuracy(dstXYZ.z(),  1.0f, 0.01f, "translate failed");
+    XCTAssertEqualWithAccuracy(dstXYZ.x, -1.5f, 0.01f, "translate failed");
+    XCTAssertEqualWithAccuracy(dstXYZ.y,  0.5f, 0.01f, "translate failed");
+    XCTAssertEqualWithAccuracy(dstXYZ.z,  1.0f, 0.01f, "translate failed");
 }
 
 -(void) testMatrixScale
@@ -175,9 +175,9 @@ public:
     live::Vec3 srcXYZ = {1.0f, 1.0f, 1.0f};
     live::Vec4 dstXYZ = matrix * srcXYZ;
     
-    XCTAssertEqual(dstXYZ.x(), 1.0f, "translate failed");
-    XCTAssertEqual(dstXYZ.y(), 1.0f, "translate failed");
-    XCTAssertEqual(dstXYZ.z(), 1.0f, "translate failed");
+    XCTAssertEqual(dstXYZ.x, 1.0f, "translate failed");
+    XCTAssertEqual(dstXYZ.y, 1.0f, "translate failed");
+    XCTAssertEqual(dstXYZ.z, 1.0f, "translate failed");
 }
 
 -(void) testMatrixCalculation
@@ -192,9 +192,9 @@ public:
     live::Vec3 srcXYZ = {1.0f, 1.0f, 1.0f};
     live::Vec4 dstXYZ = matrix * srcXYZ;
     
-    XCTAssertEqualWithAccuracy(dstXYZ.x(), 1.0f,                  0.01f, "translate failed");
-    XCTAssertEqualWithAccuracy(dstXYZ.y(), 2.0f * sqrt(2) - 1.0f, 0.01f, "translate failed");
-    XCTAssertEqual(dstXYZ.z(), 1.0f, "translate failed");
+    XCTAssertEqualWithAccuracy(dstXYZ.x, 1.0f,                  0.01f, "translate failed");
+    XCTAssertEqualWithAccuracy(dstXYZ.y, 2.0f * sqrt(2) - 1.0f, 0.01f, "translate failed");
+    XCTAssertEqual(dstXYZ.z, 1.0f, "translate failed");
 }
 
 @end
