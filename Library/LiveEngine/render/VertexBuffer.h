@@ -12,27 +12,42 @@
 
 namespace live
 {
+    namespace VBO_CONST
+    {
+        constexpr int VBO_SIZE = 65536;
+        constexpr int INDEX_VBO_SIZE = VBO_SIZE * 6 / 4;
+    }
+
     class VBO
     {
-    friend class VAO;
     public:
-        VBO(GLfloat buffer[], size_t vertSize);
+        VBO();
         ~VBO();
-        void bind() const;
+        void bind(int filledVertexSize, int filledIndexSize);
+        static void unbind();
+        Vertex* getVertsPtr() { return verts; }
+        GLushort* getIndicesPtr() { return indices; }
     private:
+        Vertex verts[VBO_CONST::VBO_SIZE];
+        GLushort indices[VBO_CONST::INDEX_VBO_SIZE];
+
         GLuint bufferHandler;
-        uint32_t vertSize;
+        GLuint indicesHandler;
     };
     
     class VAO
     {
     public:
-        VAO(const VBO& vbo);
+        VAO();
         ~VAO();
-        void draw();
+        std::unique_ptr<VBO>& getVbo() { return vbo; };
+        void bind(int filledVertexSize, int filledIndexSize);
+        void draw(ssize_t indexCount, ssize_t startIndex);
+        static void unbind();
     private:
         GLuint vaoHandler;
         uint32_t vertSize;
+        std::unique_ptr<VBO> vbo;
     };
     
 }

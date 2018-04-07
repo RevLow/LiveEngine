@@ -10,23 +10,23 @@
 
 using namespace live;
 
-enum VBOAttribute
+enum VERTEX_ATTRIB
 {
     POSITION = 0,
     COLOR = 1,
     UV = 2
 };
 
-VAO::VAO(const VBO& vbo)
-: vaoHandler(0),
-vertSize(vbo.vertSize)
+VAO::VAO()
+: vaoHandler(0)
+, vbo(nullptr)
 {
     glGenVertexArrays(1, &vaoHandler);
     glBindVertexArray(vaoHandler);
 
-    vbo.bind();
+    vbo = std::unique_ptr<VBO>(new VBO());
 
-    glBindVertexArray(0);
+    VAO::unbind();
 };
 
 VAO::~VAO()
@@ -34,10 +34,22 @@ VAO::~VAO()
     glDeleteVertexArrays(1, &vaoHandler);
 }
 
-void VAO::draw()
+void VAO::draw(ssize_t indexCount, ssize_t startIndex)
+{
+    glDrawElements(GL_TRIANGLES, (GLsizei)indexCount, GL_UNSIGNED_SHORT, (GLvoid*)(startIndex * sizeof(GLushort)));
+}
+
+void VAO::bind(int filledVertexSize, int filledIndexSize)
 {
     glBindVertexArray(vaoHandler);
-    glDrawArrays(GL_TRIANGLES, 0, vertSize);
+    vbo->bind(filledVertexSize, filledIndexSize);
+}
+
+
+void VAO::unbind()
+{
+    glBindVertexArray(0);
+    VBO::unbind();
 }
 
 /*
@@ -50,35 +62,55 @@ buffer:
       color:
       uv:
  */
-VBO::VBO(GLfloat buffer[], size_t vertSize)
+VBO::VBO()
 {
-    glGenBuffers(1, &bufferHandler);
-    assert(glGetError() == GL_NO_ERROR);
-    assert(bufferHandler != 0);
+    GLuint buffers[2];
+    glGenBuffers(2, buffers);
 
+    bufferHandler = buffers[0];
+    indicesHandler = buffers[1];
+    
     glBindBuffer(GL_ARRAY_BUFFER, bufferHandler);
-    glBufferData(GL_ARRAY_BUFFER, (sizeof(float) * 9) * vertSize, buffer, GL_STATIC_DRAW);
-    this->vertSize = vertSize;
+    glBufferData(GL_ARRAY_BUFFER, sizeof(verts[0]) * VBO_CONST::VBO_SIZE, verts, GL_DYNAMIC_DRAW);
+
+    // position
+    glEnableVertexAttribArray(VERTEX_ATTRIB::POSITION);
+    glVertexAttribPointer(VERTEX_ATTRIB::POSITION, 3, GL_FLOAT, GL_FALSE, sizeof(Vertex), (GLvoid*)offsetof(Vertex, position));
+    
+    // uv
+    glEnableVertexAttribArray(VERTEX_ATTRIB::UV);
+    glVertexAttribPointer(VERTEX_ATTRIB::UV, 2, GL_FLOAT, GL_FALSE, sizeof(Vertex), (GLvoid*)offsetof(Vertex, uv));
+
+    // color
+    glEnableVertexAttribArray(VERTEX_ATTRIB::COLOR);
+    glVertexAttribPointer(VERTEX_ATTRIB::COLOR, 4, GL_FLOAT,  GL_FALSE, sizeof(Vertex), (GLvoid*)offsetof(Vertex, color));
+    
+    // index
+    glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, indicesHandler);
+    glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(indices[0]) * VBO_CONST::INDEX_VBO_SIZE, indices, GL_STATIC_DRAW);
 }
 
 VBO::~VBO()
 {
     glDeleteBuffers(1, &bufferHandler);
+    glDeleteBuffers(1, &indicesHandler);
 }
 
-void VBO::bind() const
+void VBO::unbind()
+{
+    glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);
+    glBindBuffer(GL_ARRAY_BUFFER, 0);
+}
+
+void VBO::bind(int filledVertexSize, int filledIndexSize)
 {
     glBindBuffer(GL_ARRAY_BUFFER, bufferHandler);
-    glEnableVertexAttribArray(VBOAttribute::POSITION);
-    glVertexAttribPointer(VBOAttribute::POSITION, 3, GL_FLOAT, GL_FALSE, sizeof(GLfloat) * 9, (GLubyte*)(sizeof(GLfloat) * 0));
-    
-    glBindBuffer(GL_ARRAY_BUFFER, bufferHandler);
-    glEnableVertexAttribArray(VBOAttribute::COLOR);
-    glVertexAttribPointer(VBOAttribute::COLOR, 4, GL_FLOAT, GL_FALSE, sizeof(GLfloat) * 9, (GLubyte*)(sizeof(GLfloat) * 3));
-
-    glBindBuffer(GL_ARRAY_BUFFER, bufferHandler);
-    glEnableVertexAttribArray(VBOAttribute::UV);
-    glVertexAttribPointer(VBOAttribute::UV, 2, GL_FLOAT, GL_FALSE, sizeof(GLfloat) * 9, (GLubyte*)(sizeof(GLfloat) * 7));
-    
+    glBufferData(GL_ARRAY_BUFFER, sizeof(verts[0]) * filledVertexSize, nullptr, GL_DYNAMIC_COPY);
+    void* buf = glMapBufferRange(GL_ARRAY_BUFFER, 0, sizeof(verts[0]) * filledVertexSize, GL_MAP_WRITE_BIT | GL_MAP_INVALIDATE_RANGE_BIT | GL_MAP_INVALIDATE_BUFFER_BIT);
+    memcpy(buf, verts, sizeof(verts[0]) * filledVertexSize);
+    glUnmapBuffer(GL_ARRAY_BUFFER);
     glBindBuffer(GL_ARRAY_BUFFER, 0);
+    
+    glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, indicesHandler);
+    glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(indices[0]) * filledIndexSize, indices, GL_STATIC_DRAW);
 }
