@@ -29,6 +29,7 @@ namespace live {
 
         Vertex* getVertices() { return vertices; }
         unsigned short* getIndices() { return indices; }
+        Matrix4D& getModelMatrix() const { return modelMatrix; }
     private:
         uint32_t createMatrialId();
         std::weak_ptr<Texture2D> texture;
