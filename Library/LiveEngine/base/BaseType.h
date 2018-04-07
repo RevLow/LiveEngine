@@ -31,6 +31,7 @@ namespace live
     class Triangle : public Shape
     {
     public:
+        static constexpr ssize_t VERTEX_SIZE() { return 3; }
         Triangle() : vertices {
                                 {{0.0f, 1.0f, 0.0f}, {0.0f, 0.0f}, {0.0f, 0.0f, 0.0f, 0.0f}},
                                 {{0.0f, 0.0f, 0.0f}, {0.0f, 0.0f}, {0.0f, 0.0f, 0.0f, 0.0f}},
