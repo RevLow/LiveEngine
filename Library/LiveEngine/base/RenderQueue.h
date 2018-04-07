@@ -35,6 +35,8 @@ namespace live {
         }
         void pushQueue(std::unique_ptr<TriangleRenderCommand> cmd);
         bool isSameMaterialId(uint32_t materialId);
+        std::unique_ptr<Material>& getMaterial() { return material; }
+        std::vector<std::unique_ptr<TriangleRenderCommand>>& getQueue() { return queue; }
     private:
         std::unique_ptr<Material> material;
         std::vector<std::unique_ptr<TriangleRenderCommand>> queue;

@@ -23,8 +23,8 @@ void RenderTask::run()
     std::vector<MaterialMap> materialQueue;
     for (const std::unique_ptr<RenderQueue>& renderQueue : renderGroup )
     {
-        MaterialMap map = { 0, renderQueue->material };
-        for(const std::unique_ptr<TriangleRenderCommand>& cmd : renderQueue->queue)
+        MaterialMap map = { 0, renderQueue->getMaterial() };
+        for(const std::unique_ptr<TriangleRenderCommand>& cmd : renderQueue->getQueue())
         {
             fillVerticesAndIndices(cmd);
             map.indicesCount += TriangleRenderCommand::INDEX_COUNT;
