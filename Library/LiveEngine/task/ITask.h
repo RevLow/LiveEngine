@@ -16,7 +16,7 @@ namespace live
       public:
         ITask() = default;
         virtual ~ITask(){};
-        virtual void run() const = 0;
+        virtual void run() = 0;
 
         ITask(ITask&&) = default;
         ITask& operator=(ITask&&) = default;

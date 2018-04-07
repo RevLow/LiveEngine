@@ -12,6 +12,7 @@
 using namespace live;
 
 void RenderTask::run() const
+void RenderTask::run()
 {
     const RenderGroup& renderGroup = Application::getInstance()->getRenderGroup();
     

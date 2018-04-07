@@ -17,6 +17,7 @@ namespace live
     {
       public:
         virtual void run() const;
+        virtual void run();
     };
 }
 

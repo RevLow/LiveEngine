@@ -12,7 +12,7 @@
 
 using namespace live;
 
-void UpdateTask::run() const
+void UpdateTask::run()
 {
     Application::getInstance()->resetRenderGroup();
     Visitor visitor;

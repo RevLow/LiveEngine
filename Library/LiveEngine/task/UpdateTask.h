@@ -17,7 +17,7 @@ namespace live
     {
       public:
         UpdateTask() = default;
-        virtual void run() const override;
+        virtual void run() override;
 
         UpdateTask(UpdateTask&&) = default;
         UpdateTask& operator=(UpdateTask&&) = default;
