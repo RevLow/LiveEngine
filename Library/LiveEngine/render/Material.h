@@ -10,6 +10,7 @@
 #define __LiveEngine__Material__
 
 #include "../shader/Shader.h"
+#include "Texture2D.h"
 
 namespace live
 {

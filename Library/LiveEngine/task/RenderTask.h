@@ -11,18 +11,23 @@
 
 #include "ITask.h"
 #include "VertexBuffer.h"
+#include "RenderQueue.h"
 
 namespace live
 {
     class RenderTask : public ITask
     {
-        using TriangleRenderCommandPtrReference = std::reference_wrapper<std::unique_ptr<TriangleRenderCommand>>;
+        struct MaterialMap
+        {
+            int indicesCount;
+            std::unique_ptr<Material>& material;
+        };
     public:
         RenderTask();
         virtual void run();
     private:
         void fillVerticesAndIndices(const std::unique_ptr<TriangleRenderCommand>& cmd);
-        void rendering(std::vector<TriangleRenderCommandPtrReference>& batchedCommand);
+        void rendering(std::vector<MaterialMap>& batchedCommand);
         void clean();
         std::unique_ptr<VAO> vao;
         int filledVertex;

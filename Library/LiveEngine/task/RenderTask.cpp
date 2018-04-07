@@ -19,17 +19,20 @@ RenderTask::RenderTask()
 void RenderTask::run()
 {
     const RenderGroup& renderGroup = Application::getInstance()->getRenderGroup();
-    std::vector<TriangleRenderCommandPtrReference> batchedCommand;
+
+    std::vector<MaterialMap> materialQueue;
     for (const std::unique_ptr<RenderQueue>& renderQueue : renderGroup )
     {
+        MaterialMap map = { 0, renderQueue->material };
         for(const std::unique_ptr<TriangleRenderCommand>& cmd : renderQueue->queue)
         {
             fillVerticesAndIndices(cmd);
-            batchedCommand.emplace_back(cmd);
+            map.indicesCount += TriangleRenderCommand::INDEX_COUNT;
         }
+        materialQueue.emplace_back(map);
     }
 
-    rendering(batchedCommand);
+    rendering(materialQueue);
     clean();
 }
 
@@ -38,9 +41,9 @@ void RenderTask::fillVerticesAndIndices(const std::unique_ptr<TriangleRenderComm
     Vertex* vptr = vao->getVbo()->getVertsPtr();
     memcpy(vptr + filledVertex,
            cmd->getVertices(),
-           sizeof(Vertex) * TriangleRenderCommand::VerticesCount());
+           sizeof(Vertex) * TriangleRenderCommand::VERTICES_COUNT);
 
-    for(ssize_t i = 0; i < TriangleRenderCommand::VerticesCount(); i++)
+    for(ssize_t i = 0; i < TriangleRenderCommand::VERTICES_COUNT; i++)
     {
         Vertex* vertex = &vptr[i + filledVertex];
         Vec3* position = &vertex->position;
@@ -55,34 +58,29 @@ void RenderTask::fillVerticesAndIndices(const std::unique_ptr<TriangleRenderComm
 
     const unsigned short* indices = cmd->getIndices();
     GLushort* indicesPtr = vao->getVbo()->getIndicesPtr();
-    for (ssize_t i = 0; i < TriangleRenderCommand::IndexCount(); i++)
+    for (ssize_t i = 0; i < TriangleRenderCommand::INDEX_COUNT; i++)
     {
         indicesPtr[i + filledIndex] = filledVertex + indices[i];
     }
 
-    filledVertex += TriangleRenderCommand::VerticesCount();
-    filledIndex += TriangleRenderCommand::IndexCount();
+    filledVertex += TriangleRenderCommand::VERTICES_COUNT;
+    filledIndex += TriangleRenderCommand::INDEX_COUNT;
 }
 
-void RenderTask::rendering(std::vector<TriangleRenderCommandPtrReference>& batchedCommand)
+void RenderTask::rendering(std::vector<MaterialMap>& batchedCommand)
 {
-    uint32_t lastMaterialId = 0;
-    ssize_t indexCount = 0, startIndex = 0;
-    // 貯めていた頂点バッファをGPUに転送
     vao->bind(filledVertex, filledIndex);
 
-    for(std::unique_ptr<TriangleRenderCommand>& cmd : batchedCommand)
+    ssize_t offset = 0;
+    for(MaterialMap& map : batchedCommand)
     {
-        indexCount += cmd->IndexCount();
-        
-        // 最後のマテリアルIDと違うなら、マテリアルを有効化
-        // cmd->useMaterial();
-        // vao->draw(indexCount, startIndex);
+        map.material->use();
+        vao->draw(map.indicesCount, offset);
+        offset += map.indicesCount;
     }
 
     vao->unbind();
 }
-
 
 void RenderTask::clean()
 {

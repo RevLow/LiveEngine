@@ -34,9 +34,9 @@ VAO::~VAO()
     glDeleteVertexArrays(1, &vaoHandler);
 }
 
-void VAO::draw(ssize_t indexCount, ssize_t startIndex)
+void VAO::draw(ssize_t indexCount, ssize_t offset)
 {
-    glDrawElements(GL_TRIANGLES, (GLsizei)indexCount, GL_UNSIGNED_SHORT, (GLvoid*)(startIndex * sizeof(GLushort)));
+    glDrawElements(GL_TRIANGLES, (GLsizei)indexCount, GL_UNSIGNED_SHORT, (GLvoid*)(offset * sizeof(GLushort)));
 }
 
 void VAO::bind(int filledVertexSize, int filledIndexSize)

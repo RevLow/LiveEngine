@@ -17,14 +17,12 @@
 		2E7744D7203184B900671C73 /* BaseTypeTests.mm in Sources */ = {isa = PBXBuildFile; fileRef = 2E7744D6203184B900671C73 /* BaseTypeTests.mm */; };
 		2E7744DA2031D27500671C73 /* NodeTests.mm in Sources */ = {isa = PBXBuildFile; fileRef = 2E7744D92031D27500671C73 /* NodeTests.mm */; };
 		2E7744E12039589800671C73 /* Sprite.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2E7744DF2039589800671C73 /* Sprite.cpp */; };
-		2E7744E42045A4F300671C73 /* TriangleRenderCommand.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2E7744E22045A4F300671C73 /* TriangleRenderCommand.cpp */; };
 		2EA9B53C207272D3003FD137 /* ShaderFactory.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2EA9B53A207272D3003FD137 /* ShaderFactory.cpp */; };
 		2EA9B53F20727B9A003FD137 /* Material.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2EA9B53D20727B9A003FD137 /* Material.cpp */; };
 		2EA9B5442074F4A4003FD137 /* Vec2.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2EA9B5422074F4A4003FD137 /* Vec2.cpp */; };
 		2EA9B5472074F975003FD137 /* Vec3.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2EA9B5452074F975003FD137 /* Vec3.cpp */; };
 		2EA9B54A2074FC2A003FD137 /* Vec4.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2EA9B5482074FC2A003FD137 /* Vec4.cpp */; };
 		2EAA2DCD2062118D004C162A /* Visitor.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2EAA2DCB2062118D004C162A /* Visitor.cpp */; };
-		2EAA2DDD20691C63004C162A /* RenderQueue.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2EAA2DDC20691C63004C162A /* RenderQueue.cpp */; };
 		2EAA2DE020691F0C004C162A /* VertexBuffer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2EAA2DDE20691F0C004C162A /* VertexBuffer.cpp */; };
 		2EAA2DE5206FF787004C162A /* xxhash.c in Sources */ = {isa = PBXBuildFile; fileRef = 2EAA2DE3206FF787004C162A /* xxhash.c */; };
 		2EAA2DEA2070C700004C162A /* Shader.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2EAA2DE82070C700004C162A /* Shader.cpp */; };
@@ -48,6 +46,8 @@
 		32BE96DA204A49DA00028B98 /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 32BE96D9204A49DA00028B98 /* OpenGLES.framework */; };
 		32BE96DC204A4A2000028B98 /* GLKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 32BE96DB204A4A2000028B98 /* GLKit.framework */; };
 		32BE96DF204A7CE600028B98 /* Image-ios.mm in Sources */ = {isa = PBXBuildFile; fileRef = 32BE96DD204A7CE600028B98 /* Image-ios.mm */; };
+		32C67F3720789F6A00EC4BF2 /* TriangleRenderCommand.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 32C67F3520789F6A00EC4BF2 /* TriangleRenderCommand.cpp */; };
+		32C67F3A2078A79900EC4BF2 /* RenderQueue.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 32C67F382078A79900EC4BF2 /* RenderQueue.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -96,8 +96,6 @@
 		2E7744D92031D27500671C73 /* NodeTests.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = NodeTests.mm; path = LiveEngine/node/NodeTests.mm; sourceTree = "<group>"; };
 		2E7744DF2039589800671C73 /* Sprite.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Sprite.cpp; path = 2d/Sprite.cpp; sourceTree = "<group>"; };
 		2E7744E02039589800671C73 /* Sprite.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Sprite.h; path = 2d/Sprite.h; sourceTree = "<group>"; };
-		2E7744E22045A4F300671C73 /* TriangleRenderCommand.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = TriangleRenderCommand.cpp; path = render/command/TriangleRenderCommand.cpp; sourceTree = "<group>"; };
-		2E7744E32045A4F300671C73 /* TriangleRenderCommand.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TriangleRenderCommand.h; path = render/command/TriangleRenderCommand.h; sourceTree = "<group>"; };
 		2EA9B53A207272D3003FD137 /* ShaderFactory.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = ShaderFactory.cpp; path = shader/ShaderFactory.cpp; sourceTree = "<group>"; };
 		2EA9B53B207272D3003FD137 /* ShaderFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ShaderFactory.h; path = shader/ShaderFactory.h; sourceTree = "<group>"; };
 		2EA9B53D20727B9A003FD137 /* Material.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Material.cpp; path = render/Material.cpp; sourceTree = "<group>"; };
@@ -112,8 +110,6 @@
 		2EAA2DCC2062118D004C162A /* Visitor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Visitor.h; path = base/Visitor.h; sourceTree = "<group>"; };
 		2EAA2DCF206212E9004C162A /* Scene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Scene.h; path = node/Scene.h; sourceTree = "<group>"; };
 		2EAA2DD920662703004C162A /* macro.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = macro.h; path = base/macro.h; sourceTree = "<group>"; };
-		2EAA2DDB206905AF004C162A /* RenderQueue.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = RenderQueue.h; path = base/RenderQueue.h; sourceTree = "<group>"; };
-		2EAA2DDC20691C63004C162A /* RenderQueue.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = RenderQueue.cpp; path = base/RenderQueue.cpp; sourceTree = "<group>"; };
 		2EAA2DDE20691F0C004C162A /* VertexBuffer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = VertexBuffer.cpp; path = render/VertexBuffer.cpp; sourceTree = "<group>"; };
 		2EAA2DDF20691F0C004C162A /* VertexBuffer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = VertexBuffer.h; path = render/VertexBuffer.h; sourceTree = "<group>"; };
 		2EAA2DE3206FF787004C162A /* xxhash.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = xxhash.c; path = external/xxhash/xxhash.c; sourceTree = "<group>"; };
@@ -149,6 +145,10 @@
 		32BE96DB204A4A2000028B98 /* GLKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GLKit.framework; path = System/Library/Frameworks/GLKit.framework; sourceTree = SDKROOT; };
 		32BE96DD204A7CE600028B98 /* Image-ios.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = "Image-ios.mm"; path = "2d/Image-ios.mm"; sourceTree = "<group>"; };
 		32BE96DE204A7CE600028B98 /* Image.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Image.h; path = 2d/Image.h; sourceTree = "<group>"; };
+		32C67F3520789F6A00EC4BF2 /* TriangleRenderCommand.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = TriangleRenderCommand.cpp; path = render/command/TriangleRenderCommand.cpp; sourceTree = "<group>"; };
+		32C67F3620789F6A00EC4BF2 /* TriangleRenderCommand.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TriangleRenderCommand.h; path = render/command/TriangleRenderCommand.h; sourceTree = "<group>"; };
+		32C67F382078A79900EC4BF2 /* RenderQueue.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = RenderQueue.cpp; path = base/RenderQueue.cpp; sourceTree = "<group>"; };
+		32C67F392078A79900EC4BF2 /* RenderQueue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RenderQueue.h; path = base/RenderQueue.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -226,14 +226,14 @@
 				2EAA2DCB2062118D004C162A /* Visitor.cpp */,
 				2EAA2DCC2062118D004C162A /* Visitor.h */,
 				2EAA2DD920662703004C162A /* macro.h */,
-				2EAA2DDB206905AF004C162A /* RenderQueue.h */,
-				2EAA2DDC20691C63004C162A /* RenderQueue.cpp */,
 				2EA9B5422074F4A4003FD137 /* Vec2.cpp */,
 				2EA9B5432074F4A4003FD137 /* Vec2.h */,
 				2EA9B5452074F975003FD137 /* Vec3.cpp */,
 				2EA9B5462074F975003FD137 /* Vec3.h */,
 				2EA9B5482074FC2A003FD137 /* Vec4.cpp */,
 				2EA9B5492074FC2A003FD137 /* Vec4.h */,
+				32C67F382078A79900EC4BF2 /* RenderQueue.cpp */,
+				32C67F392078A79900EC4BF2 /* RenderQueue.h */,
 			);
 			name = base;
 			sourceTree = "<group>";
@@ -242,8 +242,8 @@
 			isa = PBXGroup;
 			children = (
 				2E06AF0C2007840200197838 /* RenderCommand.h */,
-				2E7744E22045A4F300671C73 /* TriangleRenderCommand.cpp */,
-				2E7744E32045A4F300671C73 /* TriangleRenderCommand.h */,
+				32C67F3520789F6A00EC4BF2 /* TriangleRenderCommand.cpp */,
+				32C67F3620789F6A00EC4BF2 /* TriangleRenderCommand.h */,
 			);
 			name = command;
 			sourceTree = "<group>";
@@ -525,7 +525,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				2EA9B54A2074FC2A003FD137 /* Vec4.cpp in Sources */,
-				2EAA2DDD20691C63004C162A /* RenderQueue.cpp in Sources */,
 				2EAA2DF12072655D004C162A /* FileManagerImpl-ios.mm in Sources */,
 				2ED2AD2820034891007409F5 /* Application.cpp in Sources */,
 				2ECAE357202DF7650028D506 /* Observers.inl in Sources */,
@@ -535,7 +534,7 @@
 				2EAA2DE020691F0C004C162A /* VertexBuffer.cpp in Sources */,
 				2EB2BE862021F33D00772B0F /* NodeController.cpp in Sources */,
 				2EA9B5442074F4A4003FD137 /* Vec2.cpp in Sources */,
-				2E7744E42045A4F300671C73 /* TriangleRenderCommand.cpp in Sources */,
+				32C67F3720789F6A00EC4BF2 /* TriangleRenderCommand.cpp in Sources */,
 				2EAA2DE5206FF787004C162A /* xxhash.c in Sources */,
 				2EA9B5472074F975003FD137 /* Vec3.cpp in Sources */,
 				2E06AEC12003898C00197838 /* EAGLViewController.mm in Sources */,
@@ -550,6 +549,7 @@
 				2EA9B53F20727B9A003FD137 /* Material.cpp in Sources */,
 				2EAA2DED207260A7004C162A /* FileManager.cpp in Sources */,
 				2E06AF0A200631AC00197838 /* UpdateTask.cpp in Sources */,
+				32C67F3A2078A79900EC4BF2 /* RenderQueue.cpp in Sources */,
 				2E06AF2B20131C8E00197838 /* Node.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

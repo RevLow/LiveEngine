@@ -2,22 +2,20 @@
 //  RenderQueue.h
 //  LiveEngine
 //
-//  Created by Tetsushi on 2018/03/26.
+//  Created by Tetsushi on 2018/04/07.
 //  Copyright (c) 2018年 RevLow. All rights reserved.
 //
 
-#ifndef LiveEngine_RenderQueue_h
-#define LiveEngine_RenderQueue_h
+#ifndef __LiveEngine__RenderQueue__
+#define __LiveEngine__RenderQueue__
 
-#include "../render/command/TriangleRenderCommand.h"
-#include "../render/Material.h"
+#include "Material.h"
+#include "TriangleRenderCommand.h"
 
-namespace live
-{
+namespace live {
     class RenderQueue
     {
     public:
-        RenderQueue(std::unique_ptr<TriangleRenderCommand>& cmd) {};
         ~RenderQueue();
         RenderQueue(RenderQueue&& other)
         {
@@ -37,12 +35,12 @@ namespace live
         }
         void pushQueue(std::unique_ptr<TriangleRenderCommand> cmd);
         bool isSameMaterialId(uint32_t materialId);
-
-        std::vector<std::unique_ptr<TriangleRenderCommand>> queue;
+    private:
         std::unique_ptr<Material> material;
+        std::vector<std::unique_ptr<TriangleRenderCommand>> queue;
     };
-    
+
     using RenderGroup = std::vector<std::unique_ptr<RenderQueue>>;
 }
 
-#endif
+#endif /* defined(__LiveEngine__RenderQueue__) */
