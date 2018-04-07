@@ -54,6 +54,6 @@ void Sprite::traversal(const live::Matrix4D &parentMatrix, live::Visitor& visiti
 
 void Sprite::drawCall(const Matrix4D& modelMatrix, Visitor& visitor)
 {
-    std::unique_ptr<TriangleRenderCommand> cmd(new TriangleRenderCommand(bounds.split(), texture.lock(), modelMatrix));
+    std::unique_ptr<TriangleRenderCommand> cmd(new TriangleRenderCommand(bounds, texture.lock(), modelMatrix));
     visitor.pushRenderCommand(std::move(cmd));
 }

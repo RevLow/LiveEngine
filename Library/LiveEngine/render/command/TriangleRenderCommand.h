@@ -17,19 +17,25 @@ namespace live {
     class TriangleRenderCommand : public RenderCommand
     {
     public:
-        TriangleRenderCommand(const std::array<Triangle, 2>& _triangles, std::shared_ptr<Texture2D> _texture, const Matrix4D& modelMatrix);
+        static constexpr ssize_t VerticesCount() { return 4; }
+        static constexpr ssize_t IndexCount() { return 6; }
+    public:
+        TriangleRenderCommand(const Rect& boundingRect, std::shared_ptr<Texture2D> _texture, const Matrix4D& modelMatrix);
         virtual ~TriangleRenderCommand() = default;
         TriangleRenderCommand(TriangleRenderCommand&&) = default;
         TriangleRenderCommand& operator=(TriangleRenderCommand&&) = default;
-        std::array<Triangle, 2>& getTriangles() { return this->triangles; }
         uint32_t getMaterialId() const { return materialId; }
         void useMaterial();
+
+        Vertex* getVertices() { return vertices; }
+        unsigned short* getIndices() { return indices; }
     private:
         uint32_t createMatrialId();
-        std::array<Triangle, 2> triangles;
         std::weak_ptr<Texture2D> texture;
         uint32_t materialId;
         Matrix4D modelMatrix;
+        Vertex vertices[TriangleRenderCommand::VerticesCount()];
+        unsigned short indices[] = { 0, 1, 2,  3, 2, 1 };
     };
 }
 

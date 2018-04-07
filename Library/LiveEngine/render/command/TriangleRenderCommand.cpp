@@ -11,12 +11,12 @@
 
 using namespace live;
 
-TriangleRenderCommand::TriangleRenderCommand(const std::array<Triangle, 2>& _triangles, std::shared_ptr<Texture2D> _texture, const Matrix4D& _modelMatrix)
-: triangles(_triangles)
-, texture(_texture)
+TriangleRenderCommand::TriangleRenderCommand(const Rect& boundingRect, std::shared_ptr<Texture2D> _texture, const Matrix4D& _modelMatrix)
+: texture(_texture)
 , materialId(0)
 , modelMatrix(_modelMatrix)
 {
+    memcpy(vertices, boundingRect.vertices, sizeof(Vertex) * VerticesCount());
     // todo: generate material id from shaderprogram and texture information
     materialId = createMatrialId();
 }
