@@ -7,7 +7,7 @@
 //
 
 #import <XCTest/XCTest.h>
-#include "../../../LiveEngine/platform/Application.h"
+#import "../../../LiveEngine/platform/Application.h"
 
 using namespace live;
 
@@ -33,7 +33,7 @@ using namespace live;
 // RenderCommandが発行されている
 - (void)test_Application_update
 {
-    Application::getInstance()->update(0);
+    Application::instance().update(0);
     XCTAssertTrue(true, @"publish triangle command");
 }
 

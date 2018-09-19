@@ -10,22 +10,28 @@
 #define __LiveEngine__Application__
 
 #include "../base/Uncopyable.h"
+#include "FileManager.h"
 #include "GLView.h"
 
 namespace live
 {
-    class Application : Uncopyable<Application>
+    class Application
     {
-        DEFINE_SINGLETON(Application)
-      public:
-        virtual ~Application() = default;
+    public:
+        static Application& instance()
+        {
+            return m_application;
+        }
+
         void initGLView(GLView* glview);
         void update(float delta);
-        void resetRenderGroup();
-      private:
-        Application();
+        FileManager& getFileManager() { return m_file_manager; }
+    private:
+        static Application m_application;
+        FileManager m_file_manager;
+        std::unique_ptr<GLView> m_glview;
 
-        std::unique_ptr<GLView> _glview;
+        Application();
     };
 }
 

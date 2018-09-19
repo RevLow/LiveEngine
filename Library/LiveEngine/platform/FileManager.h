@@ -12,7 +12,6 @@
 namespace live {
     class FileManager
     {
-        DEFINE_SINGLETON(FileManager)
     public:
         std::string readFile(const std::string& filePath);
         // iOS: /Documents

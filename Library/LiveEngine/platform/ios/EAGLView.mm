@@ -71,7 +71,7 @@ using namespace live;
     glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
     glClear(GL_COLOR_BUFFER_BIT);
     
-    Application::getInstance()->update(link.duration);
+    Application::instance().update(link.duration);
     
     glBindRenderbuffer(GL_RENDERBUFFER, _renderBuffer);
     [_context presentRenderbuffer:GL_RENDERBUFFER];

@@ -81,7 +81,6 @@
 		2EA9B5462074F975003FD137 /* Vec3.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Vec3.h; path = base/Vec3.h; sourceTree = "<group>"; };
 		2EA9B5482074FC2A003FD137 /* Vec4.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Vec4.cpp; path = base/Vec4.cpp; sourceTree = "<group>"; };
 		2EA9B5492074FC2A003FD137 /* Vec4.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Vec4.h; path = base/Vec4.h; sourceTree = "<group>"; };
-		2EAA2DD920662703004C162A /* macro.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = macro.h; path = base/macro.h; sourceTree = "<group>"; };
 		2EAA2DDE20691F0C004C162A /* VertexBuffer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = VertexBuffer.cpp; path = render/VertexBuffer.cpp; sourceTree = "<group>"; };
 		2EAA2DDF20691F0C004C162A /* VertexBuffer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = VertexBuffer.h; path = render/VertexBuffer.h; sourceTree = "<group>"; };
 		2EAA2DE3206FF787004C162A /* xxhash.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = xxhash.c; path = external/xxhash/xxhash.c; sourceTree = "<group>"; };
@@ -175,7 +174,6 @@
 				2E06AEBD20036A2800197838 /* BaseType.h */,
 				2E06AF0F200B05E700197838 /* Uncopyable.h */,
 				2EB2BE882022039100772B0F /* BaseType.cpp */,
-				2EAA2DD920662703004C162A /* macro.h */,
 				2EA9B5422074F4A4003FD137 /* Vec2.cpp */,
 				2EA9B5432074F4A4003FD137 /* Vec2.h */,
 				2EA9B5452074F975003FD137 /* Vec3.cpp */,

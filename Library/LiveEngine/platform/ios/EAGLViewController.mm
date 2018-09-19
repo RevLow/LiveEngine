@@ -8,8 +8,6 @@
 
 #import "EAGLViewController.h"
 #import "EAGLView.h"
-
-#include "Application.h"
 #include "GLViewImpl-ios.h"
 
 using namespace live;
@@ -27,7 +25,7 @@ using namespace live;
         EAGLView* view = [[EAGLView alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
         GLView* glView = new GLViewImpl((__bridge void*)view);
         
-        Application::getInstance()->initGLView(glView);
+        Application::instance().initGLView(glView);
 
         self.view = view;
     }

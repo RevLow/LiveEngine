@@ -7,7 +7,6 @@
 //
 
 #include "Shader.h"
-#include "../platform/FileManager.h"
 
 namespace {
     template<GLenum T>
@@ -102,7 +101,7 @@ namespace {
     GLuint readShader(const std::string& shaderSourcePath)
     {
         // ソースコード読み取り
-        const std::string source = FileManager::getInstance()->readFile(shaderSourcePath);
+        const std::string source = Application::instance().getFileManager().readFile(shaderSourcePath);
         if(source == "")
         {
             // 失敗処理

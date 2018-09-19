@@ -14,9 +14,39 @@ namespace {
     {
         return filePath;
     }
+    
+    static std::unordered_map<std::string, std::shared_ptr<live::Texture2D>> textureCache;
 }
 
 using namespace live;
+
+std::weak_ptr<Texture2D> Texture2D::produceTexture(const std::string &filePath)
+{
+    std::string serializeKey = serializeFilePath(filePath);
+    
+    if(textureCache.find(serializeKey) != textureCache.end())
+    {
+        return textureCache[serializeKey];
+    }
+    
+    textureCache[serializeKey] = Texture2D::create(filePath);
+    return textureCache[serializeKey];
+}
+
+void Texture2D::releaseTextureCache(const std::string& filePath)
+{
+    std::string serializeKey = serializeFilePath(filePath);
+    auto itr = textureCache.find(serializeKey);
+    if(itr != textureCache.end())
+    {
+        textureCache.erase(itr);
+    }
+}
+
+void Texture2D::releaseAllTextureCache()
+{
+    textureCache.erase(textureCache.begin(), textureCache.end());
+}
 
 std::shared_ptr<Texture2D> Texture2D::create(const std::string& filePath)
 {
@@ -64,32 +94,4 @@ Texture2D::~Texture2D()
     glBindTexture(textureID, 0);
     glDeleteTextures(1, &textureID);
     assert(glGetError() == GL_NO_ERROR);
-}
-
-std::weak_ptr<Texture2D> TextureFactory::produceTexture(const std::string &filePath)
-{
-    std::string serializeKey = serializeFilePath(filePath);
-    
-    if(textureCache.find(serializeKey) != textureCache.end())
-    {
-        return textureCache[serializeKey];
-    }
-
-    textureCache[serializeKey] = Texture2D::create(filePath);
-    return textureCache[serializeKey];
-}
-
-void TextureFactory::releaseTextureCache(const std::string& filePath)
-{
-    std::string serializeKey = serializeFilePath(filePath);
-    auto itr = textureCache.find(serializeKey);
-    if(itr != textureCache.end())
-    {
-        textureCache.erase(itr);
-    }
-}
-
-void TextureFactory::releaseAllTextureCache()
-{
-    textureCache.erase(textureCache.begin(), textureCache.end());
 }

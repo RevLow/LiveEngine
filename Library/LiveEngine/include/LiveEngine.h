@@ -21,7 +21,6 @@
 #include <OpenGLES/ES3/gl.h>
 #include <OpenGLES/ES3/glext.h>
 
-#include "../base/macro.h"
 #include "../platform/Application.h"
 #include "../base/BaseType.h"
 

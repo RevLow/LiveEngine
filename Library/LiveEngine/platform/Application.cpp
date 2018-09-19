@@ -9,14 +9,15 @@
 #include "Application.h"
 
 using namespace live;
+Application Application::m_application;
 
-Application::Application() : _glview(nullptr)
+Application::Application() : m_glview(nullptr)
 {
 }
 
 void Application::initGLView(GLView* glview)
 {
-    _glview = std::unique_ptr<GLView>(glview);
+    m_glview = std::unique_ptr<GLView>(glview);
 }
 
 void Application::update(float delta)
