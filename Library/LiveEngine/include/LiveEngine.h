@@ -23,7 +23,6 @@
 
 #include "../base/macro.h"
 #include "../platform/Application.h"
-#include "../2d/Sprite.h"
-#include "../controller/NodeController.h"
+#include "../base/BaseType.h"
 
 #endif

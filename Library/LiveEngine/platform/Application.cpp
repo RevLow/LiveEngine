@@ -7,13 +7,11 @@
 //
 
 #include "Application.h"
-#include "../task/UpdateTask.h"
 
 using namespace live;
 
 Application::Application() : _glview(nullptr)
 {
-    _tasks.emplace_back(new UpdateTask);
 }
 
 void Application::initGLView(GLView* glview)
@@ -23,24 +21,19 @@ void Application::initGLView(GLView* glview)
 
 void Application::update(float delta)
 {
-    if (!_tasks.empty())
-    {
-        for (const std::unique_ptr<ITask>& task : _tasks)
-        {
-            task->run();
-        }
-    }
-}
-
-void Application::resetRenderGroup()
-{
-    if (!_renderGroup.empty())
-    {
-        RenderGroup().swap(_renderGroup);
-    }
-}
-
-void Application::pushRenderQueue(RenderQueue&& queue)
-{
-    _renderGroup.emplace_back(new RenderQueue(std::move(queue)));
+    /*
+     // レンダー用とストア用のコマンドバッファをスワップ
+     std::thread th1([](){
+        // シーングラフのUPDATE
+        // 次フレームに描画するため、コマンドバッファを送信
+     });
+     
+     std::thread th2([]() {
+        // 前フレームのレンダーコマンドをGPUに送信しレンダリング
+     });
+     
+     
+     th1.join();
+     th2.join();
+     */
 }

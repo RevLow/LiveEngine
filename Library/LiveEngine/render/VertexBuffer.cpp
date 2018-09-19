@@ -45,7 +45,6 @@ void VAO::bind(int filledVertexSize, int filledIndexSize)
     vbo->bind(filledVertexSize, filledIndexSize);
 }
 
-
 void VAO::unbind()
 {
     glBindVertexArray(0);

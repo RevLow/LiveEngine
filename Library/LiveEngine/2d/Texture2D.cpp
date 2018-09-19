@@ -33,13 +33,12 @@ Texture2D::Texture2D(const std::string& filePath) : width(0.0f), height(0.0f), t
     assert(glGetError() == GL_NO_ERROR);
     
     // Imageの読み出し
-    auto img = new Image(filePath);
+    Image* const img = new Image(filePath);
     width = img->getWidth();
     height = img->getHeight();
-
     glPixelStorei(GL_UNPACK_ALIGNMENT, 1);
     assert(glGetError() == GL_NO_ERROR);
-    
+
     // VRAMにピクセル情報をコピーする
     glTexImage2D(GL_TEXTURE_2D, 0, img->hasAlpha() ? GL_RGBA : GL_RGB,
                  img->getWidth(), img->getHeight(),

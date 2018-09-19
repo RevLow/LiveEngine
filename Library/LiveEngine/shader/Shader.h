@@ -22,11 +22,6 @@ namespace live {
     private:
         GLuint shaderProgram;
     };
-
-    class ShaderProgramState
-    {
-        
-    };
 }
 
 #endif /* defined(__LiveEngine__Shader__) */
