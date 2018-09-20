@@ -58,10 +58,10 @@ Texture2D::Texture2D(const std::string& filePath) : width(0.0f), height(0.0f), t
     glGenTextures(1, &textureID);
     assert(textureID != 0);
     assert(glGetError() == GL_NO_ERROR);
-    
+
     glBindTexture(GL_TEXTURE_2D, textureID);
     assert(glGetError() == GL_NO_ERROR);
-    
+
     // Imageの読み出し
     Image* const img = new Image(filePath);
     width = img->getWidth();

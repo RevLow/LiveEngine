@@ -24,17 +24,13 @@ void Application::update(float delta)
 {
     /*
      // レンダー用とストア用のコマンドバッファをスワップ
-     std::thread th1([](){
+
+     std::thread update_thread([](){
         // シーングラフのUPDATE
         // 次フレームに描画するため、コマンドバッファを送信
      });
+     // メインスレッドで前フレームの描画処理
      
-     std::thread th2([]() {
-        // 前フレームのレンダーコマンドをGPUに送信しレンダリング
-     });
-     
-     
-     th1.join();
-     th2.join();
+     update_thread.join();
      */
 }
