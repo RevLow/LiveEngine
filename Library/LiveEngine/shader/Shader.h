@@ -13,12 +13,11 @@ namespace live {
     class ShaderProgram
     {
     public:
+        ShaderProgram();
+        ShaderProgram(const GLchar* vertexShader, const GLchar* fragmentShader);
         virtual ~ShaderProgram();
         void use();
-        GLint getAttribute(const std::string& attr) const;
-        GLint getUniform(const std::string& str) const;
-        
-        ShaderProgram(const std::string& vertexShader, const std::string& fragmentShader);
+        void link();
     private:
         GLuint shaderProgram;
     };

@@ -11,22 +11,21 @@
 
 namespace live {
     class Node;
-    using NodePtr = std::shared_ptr<Node>;
+    using NodePtr = std::unique_ptr<Node>;
 
     class Node {
     public:
         static inline NodePtr create()
         {
-            return std::make_shared<Node>();
+            return std::unique_ptr<Node>(new Node);
         }
 
-        virtual void addChild(NodePtr node);
-        virtual void updateMatrix();
+        virtual void addChild(const NodePtr& node);
+        virtual void update();
+        virtual void draw();
         virtual void setPosition(const Vec3& position);
         virtual void setRotation(const Vec3& rotation);
         virtual void setScale(const Vec3& scale);
-    protected:
-        std::weak_ptr<Node> m_parent;
     private:
         std::vector<NodePtr> m_children;
         Vec3 m_position;

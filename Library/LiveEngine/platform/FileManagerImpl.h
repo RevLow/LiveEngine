@@ -12,11 +12,11 @@
 namespace live {
     namespace FileManagerImpl
     {
-        static std::string getAppBasePath();
-        static std::string getUserPath();
-        static std::string getCachePath();
-        static std::string getTemporaryPath();
-        static bool isFileExist(const std::string& filePath);
+        std::string getAppBasePath();
+        std::string getUserPath();
+        std::string getCachePath();
+        std::string getTemporaryPath();
+        bool isFileExist(const std::string& filePath);
     };
 }
 

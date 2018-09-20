@@ -24,4 +24,13 @@
 #include "../platform/Application.h"
 #include "../base/BaseType.h"
 
+#ifdef __OBJC__
+    #define __log(message) NSLog(@message)
+    #define __logf(fmt, ...) NSLog(@message, __VA_ARGS__)
+#else
+    #define __log(message) printf("%s\n", message)
+    #define __logf(fmt, ...) printf(fmt "\n",  __VA_ARGS__)
+#endif
+
+
 #endif

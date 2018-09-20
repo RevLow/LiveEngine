@@ -38,6 +38,8 @@ using namespace live;
 {
     CAEAGLLayer* layer = (CAEAGLLayer*)self.layer;
     layer.opaque = YES;
+    
+    self.contentScaleFactor = [UIScreen mainScreen].scale;
     _context = [[EAGLContext alloc] initWithAPI:kEAGLRenderingAPIOpenGLES3];
     [EAGLContext setCurrentContext:_context];
     

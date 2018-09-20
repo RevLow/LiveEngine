@@ -10,18 +10,22 @@
 
 using namespace live;
 
-void Node::addChild(live::NodePtr node)
+void Node::addChild(const live::NodePtr& node)
 {
-    node->m_parent = std::make_shared<Node>(this);
-    m_children.emplace_back(node);
+    //m_children.emplace_back(std::move(node));
 }
 
-void Node::updateMatrix()
+void Node::update()
 {
     if(m_dirty == false) return;
     
 
     m_dirty = false;
+}
+
+void Node::draw()
+{
+    
 }
 
 void Node::setPosition(const Vec3& position)

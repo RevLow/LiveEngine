@@ -44,3 +44,8 @@ bool FileManager::isFileExist(const std::string& filePath)
 {
     return FileManagerImpl::isFileExist(filePath);
 }
+
+std::string FileManager::getAppBasePath()
+{
+    return FileManagerImpl::getAppBasePath();
+}

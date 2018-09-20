@@ -14,6 +14,8 @@
     GLuint _frameBuffer;
     GLuint _renderBuffer;
     CADisplayLink* _displayLink;
+    
+    
 }
 
 @end

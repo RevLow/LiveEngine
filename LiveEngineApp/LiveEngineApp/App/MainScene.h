@@ -13,7 +13,7 @@
 
 namespace live
 {
-    class MainScene : public Scene
+    class MainScene
     {
     public:
         MainScene();

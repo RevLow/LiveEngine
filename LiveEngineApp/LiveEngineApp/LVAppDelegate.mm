@@ -21,10 +21,6 @@
     EAGLViewController* controller = [[EAGLViewController alloc] init];
     self.window.rootViewController = controller;
 
-    std::unique_ptr<live::MainScene> scene(new live::MainScene());
-    std::stack<std::unique_ptr<live::Scene>>& sceneStack = live::Application::getInstance()->getSceneStack();
-    sceneStack.push(std::move(scene));
-
     [self.window makeKeyAndVisible];
     return YES;
 }
